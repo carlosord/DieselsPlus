@@ -1,0 +1,120 @@
+grammar uo.diesels.model.DtoDsl with org.eclipse.xtext.common.Terminals
+
+generate dtoDsl "http://www.diesels.uo/model/DtoDsl"
+
+import "http://www.diesels.uo/model/ModelDsl" as Model
+
+Model:
+	dtos+=Dto*	
+;
+
+Dto:
+	DtoEntity |
+	DtoFor
+;
+
+DtoEntity:
+	'Dto' name = ID '{'
+		attributes += DefDtoAttribute*
+	'}'
+;
+	
+DtoFor:
+	'Dto' name = ID 'for' entity = [Model::Entity]
+;
+
+DefDtoAttribute:
+	DefDtoSimpleVariable |
+	DefDtoModelTypeVariable |
+	DefDtoCollectionTypeAttribute
+;
+
+DefDtoSimpleVariable:
+	type = Type name = ID 
+;
+
+DefDtoModelTypeVariable:
+	type = [Model::ModelType] name = ID
+;
+
+DefDtoCollectionTypeAttribute:
+	DefDtoModelTypeCollectionVariable |
+	DefDtoSimpleTypeCollectionVariable
+;
+
+DefDtoModelTypeCollectionVariable:
+	collection = (LIST | SET) '<' type = [Model::ModelType] '>' name = ID
+;
+
+DefDtoSimpleTypeCollectionVariable:
+	collection = (LIST | SET) '<' type = Type '>' name = ID
+;
+
+Type:
+	BasicType |
+	ComplexType
+;
+
+BasicType:
+	TYPE_INT |
+	TYPE_DOUBLE |
+	TYPE_FLOAT |
+	TYPE_LONG | 
+	TYPE_CHAR | 
+	TYPE_STRING |
+	TYPE_BOOLEAN 
+;
+
+ComplexType:
+	DATE
+;
+
+/* Tipos soportados para los parametros, atributos y metodos (Terminales) */
+
+/* Colecciones soportadas */
+terminal LIST:
+	'List'
+;
+
+terminal SET:
+	'Set'
+;
+
+/* Tipo date */
+terminal DATE:
+	'Date'
+;
+
+/* Tipo entero */
+terminal TYPE_INT:
+	'Integer'
+;
+
+/* Tipo long */
+terminal TYPE_LONG:
+	'Long'
+;
+
+/* Tipo double */
+terminal TYPE_DOUBLE:
+	'Double'
+;
+
+/* Tipo float */
+terminal TYPE_FLOAT:
+	'Float'
+;
+
+/* Tipos texto (char y string) */
+terminal TYPE_CHAR:
+	'Character'
+;
+
+terminal TYPE_STRING:
+	'String'
+;
+
+/* Tipo boolean */
+terminal TYPE_BOOLEAN:
+	'Boolean'
+;

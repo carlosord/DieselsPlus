@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.diesels.uo/model/ModelDsl"
+			class = "uo.diesels.model.modelDsl.ModelDslPackage"
+			genModel = "model/generated/ModelDsl.genmodel" />
+	</extension>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.diesels.uo/model/BusinessDsl"
+			class = "uo.diesels.model.businessDsl.BusinessDslPackage"
+			genModel = "model/generated/BusinessDsl.genmodel" />
+	</extension>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.diesels.uo/model/DtoDsl"
+			class = "uo.diesels.model.dtoDsl.DtoDslPackage"
+			genModel = "model/generated/DtoDsl.genmodel" />
+	</extension>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.diesels.uo/model/PersistenceDsl"
+			class = "uo.diesels.model.persistenceDsl.PersistenceDslPackage"
+			genModel = "model/generated/PersistenceDsl.genmodel" />
+	</extension>
+</plugin>

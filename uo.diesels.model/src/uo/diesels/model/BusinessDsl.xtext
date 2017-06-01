@@ -1,0 +1,185 @@
+grammar uo.diesels.model.BusinessDsl with org.eclipse.xtext.common.Terminals
+
+generate businessDsl "http://www.diesels.uo/model/BusinessDsl"
+
+import "http://www.diesels.uo/model/ModelDsl" as Model
+import "http://www.diesels.uo/model/PersistenceDsl" as Persistence
+import "http://www.diesels.uo/model/DtoDsl" as Dto
+
+Model:
+	services+=Service*;
+	
+Service:
+	'Service' name=ID '{'
+		methods += ServiceMethod+ 
+	'}'
+;
+
+ServiceMethod:
+	JpaMethod |
+	FinderUserMethod
+;
+
+// Métodos Jpa
+JpaMethod:
+	name = ID '('')' keyword = ('save' | 'update' | 'delete' | 'find') '<' entity = [Model::Entity] '>'
+;
+
+// Métodos Finder y User
+FinderUserMethod:
+	(MethodSimpleReturn | 
+	MethodAllModelReturn |
+	MethodDtoReturn |
+	MethodCollectionReturn) (keyword = 'finder' '<' finder = [Persistence::Finder] '>')?
+;
+
+MethodSimpleReturn:
+	returnType = SimpleReturnType name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+MethodAllModelReturn:
+	returnType = [Model::AllModelType] name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+MethodDtoReturn:
+	'#' returnType = [Dto::Dto] name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+MethodCollectionReturn:
+	returnType = CollectionReturnType name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+// Variables soportadas para los métodos
+DefVariable:
+	DefSimpleVariable |
+	DefAllModelTypeVariable |
+	DefDtoTypeVariable |
+	DefCollectionTypeVariable 
+;
+
+DefAllModelTypeVariable:
+	type = [Model::AllModelType] name = ID
+;
+
+DefDtoTypeVariable:
+	'#' type = [Dto::Dto] name = ID
+;
+	
+DefSimpleVariable:
+	type = Type name = ID 
+;
+
+DefCollectionTypeVariable:
+	DefAllModelTypeCollectionVariable |
+	DefDtoTypeCollectionVariable |
+	DefSimpleTypeCollectionVariable
+;
+
+DefAllModelTypeCollectionVariable:
+	type = AllModelTypeCollection name = ID
+;
+
+DefSimpleTypeCollectionVariable:
+	type = SimpleTypeCollection name = ID
+;
+
+DefDtoTypeCollectionVariable: 
+	type = DtoTypeCollection name = ID
+;
+
+// Tipos de colección
+CollectionReturnType:
+	AllModelTypeCollection |
+	DtoTypeCollection |
+	SimpleTypeCollection
+;
+
+AllModelTypeCollection:
+	collection = (LIST | SET) '<' type = [Model::AllModelType] '>'
+;
+
+DtoTypeCollection:
+	collection = (LIST | SET) '<' '#' type = [Dto::Dto] '>'
+;
+
+SimpleTypeCollection:
+	collection = (LIST | SET) '<' type = Type '>'
+;
+
+//Tipos simples (básicos) y complejos (Date) soportados
+SimpleReturnType:
+	Type |
+	VOID 
+;
+
+Type:
+	BasicType |
+	ComplexType
+;
+
+BasicType:
+	TYPE_INT |
+	TYPE_DOUBLE |
+	TYPE_FLOAT |
+	TYPE_LONG | 
+	TYPE_CHAR | 
+	TYPE_STRING |
+	TYPE_BOOLEAN 
+;
+
+ComplexType:
+	DATE
+;
+
+/* Colecciones soportadas */
+terminal LIST:
+	'List'
+;
+
+terminal SET:
+	'Set'
+;
+
+/* Tipo date */
+terminal DATE:
+	'Date'
+;
+
+/* Tipo void */
+terminal VOID:
+	'void'
+;
+
+/* Tipo entero */
+terminal TYPE_INT:
+	'Integer'
+;
+
+/* Tipo long */
+terminal TYPE_LONG:
+	'Long'
+;
+
+/* Tipo double */
+terminal TYPE_DOUBLE:
+	'Double'
+;
+
+/* Tipo float */
+terminal TYPE_FLOAT:
+	'Float'
+;
+
+/* Tipos texto (char y string) */
+terminal TYPE_CHAR:
+	'Character'
+;
+
+terminal TYPE_STRING:
+	'String'
+;
+
+/* Tipo boolean */
+terminal TYPE_BOOLEAN:
+	'Boolean'
+;

@@ -1,0 +1,260 @@
+grammar uo.diesels.model.ModelDsl with org.eclipse.xtext.common.Terminals
+
+generate modelDsl "http://www.diesels.uo/model/ModelDsl"
+
+Model:
+	elements+=Element*;
+	
+Element:
+	AllModelType |
+	SimpleLink
+;
+
+AllModelType:
+	Entity |
+	ModelType
+;
+
+Entity:
+	SimpleEntity |
+	AssociativeEntity
+;
+
+ModelType:
+	Enumerable |
+	ValueType
+;
+
+Link:
+	SimpleLink |
+	AssociativeEntity
+;
+
+SimpleEntity:
+	'Entity' (implementation = 'abstract')? name = ID ('extends' superClass = [SimpleEntity])?
+	'{' 
+		attributesId += DefIdAttribute*
+		attributes += DefAttribute* 
+		methods += Method* '}'
+;
+
+AssociativeEntity:
+	'EntityLink' name = ID
+	'{' relations += Relation
+		relations += Relation
+		attributes += DefAttribute* 
+		methods += Method* '}'
+;
+
+ValueType:
+	'ValueType' name = ID 
+	'{' attributes += DefAttribute+ '}'
+;
+
+Enumerable:
+	'Enumerable' name = ID
+	'{' enums += ENUMERATE+ '}'
+;
+
+SimpleLink:
+	'Link' name = ID
+	'{'	relations += Relation
+		relations += Relation '}'		
+;
+
+Relation:
+	multiplicity = Multiplicity type = [Entity] name = ID (navigable = ( 'navigable' | 'non-navigable' ))?
+;
+
+DefAttribute:
+	(DefSimpleVariable |
+	DefModelTypeVariable ) (nullable = ('nullable' | 'non-nullable'))? |
+	DefCollectionTypeAttribute
+;
+
+DefVariable:
+	DefSimpleVariable |
+	DefAllModelTypeVariable |
+	DefCollectionTypeVariable 
+;
+
+DefIdAttribute:
+	(DefSimpleVariable |
+	DefModelTypeVariable |
+	DefLinkVariable) 'id'
+;
+
+DefAllModelTypeVariable:
+	type = [AllModelType] name = ID
+;
+	
+DefSimpleVariable:
+	type = Type name = ID 
+;
+
+DefModelTypeVariable:
+	type = [ModelType] name = ID
+;
+
+DefCollectionTypeAttribute:
+	DefModelModelTypeCollectionVariable |
+	DefModelSimpleTypeCollectionVariable
+;
+
+DefCollectionTypeVariable:
+	type = AllModelTypeCollection name = ID |
+	type = SimpleTypeCollection name = ID
+;
+
+DefModelModelTypeCollectionVariable:
+	type = ModelTypeCollection name = ID
+;
+
+DefModelSimpleTypeCollectionVariable:
+	type = SimpleTypeCollection name = ID
+;
+
+DefLinkVariable:
+	'Link.' type = [Link] name = ID
+;
+
+Method:
+	MethodSimpleReturn |
+	MethodCollectionReturn |
+	MethodAllModelReturn
+;
+
+MethodSimpleReturn:
+	returnType = SimpleReturnType name = ID 
+	'(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+MethodCollectionReturn:
+	returnType = CollectionReturnType name = ID 
+	'(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+MethodAllModelReturn:
+	returnType = [AllModelType] name = ID 
+	'(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+AllModelTypeCollection:
+	collection = (LIST | SET) '<' type = [AllModelType] '>'
+;
+
+ModelTypeCollection:
+	collection = (LIST | SET) '<' type = [ModelType] '>'
+;
+
+SimpleTypeCollection:
+	collection = (LIST | SET) '<' type = Type '>'
+;
+
+CollectionReturnType:
+	AllModelTypeCollection |
+	SimpleTypeCollection
+;
+
+SimpleReturnType:
+	Type |
+	VOID 
+;
+
+Type:
+	BasicType |
+	ComplexType
+;
+
+BasicType:
+	TYPE_INT |
+	TYPE_DOUBLE |
+	TYPE_FLOAT |
+	TYPE_LONG | 
+	TYPE_CHAR | 
+	TYPE_STRING |
+	TYPE_BOOLEAN 
+;
+
+ComplexType:
+	DATE
+;
+
+Multiplicity:
+	ONE |
+	MANY |
+	ONE_ONE
+;
+
+/* Multiplicidad de las relaciones */
+terminal ONE:
+	'one'
+;
+
+terminal MANY:
+	'many'
+;
+
+terminal ONE_ONE:
+	'one-one'
+;
+
+/* Tipos soportados para los parametros, atributos y metodos (Terminales) */
+
+/* Colecciones soportadas */
+terminal LIST:
+	'List'
+;
+
+terminal SET:
+	'Set'
+;
+
+/* Tipo date */
+terminal DATE:
+	'Date'
+;
+
+/* Tipo void */
+terminal VOID:
+	'void'
+;
+
+/* Tipo entero */
+terminal TYPE_INT:
+	'Integer'
+;
+
+/* Tipo long */
+terminal TYPE_LONG:
+	'Long'
+;
+
+/* Tipo double */
+terminal TYPE_DOUBLE:
+	'Double'
+;
+
+/* Tipo float */
+terminal TYPE_FLOAT:
+	'Float'
+;
+
+/* Tipos texto (char y string) */
+terminal TYPE_CHAR:
+	'Character'
+;
+
+terminal TYPE_STRING:
+	'String'
+;
+
+/* Tipo boolean */
+terminal TYPE_BOOLEAN:
+	'Boolean'
+;
+
+/* Tipo para el enumerated */
+terminal ENUMERATE:
+	('A'..'Z'|'Ñ'|'_')('A'..'Z'|'0'..'9'|'Ñ'|'_')*
+;

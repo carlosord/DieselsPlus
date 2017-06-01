@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: uo.diesels.model.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: uo.diesels.model.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: uo.diesels.model,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: uo.diesels.model.ide.contentassist.antlr.internal,
+ uo.diesels.model.ide.contentassist.antlr
+

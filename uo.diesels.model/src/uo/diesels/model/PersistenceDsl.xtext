@@ -1,0 +1,162 @@
+grammar uo.diesels.model.PersistenceDsl with org.eclipse.xtext.common.Terminals
+
+generate persistenceDsl "http://www.diesels.uo/model/PersistenceDsl"
+
+import "http://www.diesels.uo/model/ModelDsl" as Model
+import "http://www.diesels.uo/model/DtoDsl" as Dto
+
+Model:
+	finder+=Finder*;
+	
+Finder:
+	'Finder' name=ID '{'
+		methods += FinderMethod+		
+	'}'
+;
+
+FinderMethod:
+	MethodEntityReturn |
+	MethodDtoReturn |
+	MethodSimpleReturn |
+	MethodCollectionReturn
+;
+
+MethodSimpleReturn:
+	returnType = Type name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')' (nullable = "non-null")?
+;
+
+MethodEntityReturn:
+	returnType = [Model::Entity] name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')' (nullable = "non-null")?
+;
+
+MethodDtoReturn:
+	'#' returnType = [Dto::Dto] name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')' (nullable = "non-null")?
+;
+
+MethodCollectionReturn:
+	returnType = CollectionReturnType name = ID '(' (parameters += DefVariable (',' parameters += DefVariable)*)? ')'
+;
+
+// Tipos de colección
+CollectionReturnType:
+	EntityReturnTypeCollection |
+	DtoReturnTypeCollection |
+	SimpleReturnTypeCollection
+;
+
+EntityReturnTypeCollection:
+	LIST '<' type = [Model::Entity] '>'
+;
+
+DtoReturnTypeCollection:
+	LIST '<' '#' type = [Dto::Dto] '>'
+;
+
+SimpleReturnTypeCollection:
+	LIST '<' type = Type '>'
+;
+
+
+AllModelTypeCollection:
+	collection = (LIST | SET) '<' type = [Model::AllModelType] '>'
+;
+
+SimpleTypeCollection:
+	collection = (LIST | SET) '<' type = Type '>'
+;
+
+// Variables soportadas para los métodos
+DefVariable:
+	DefSimpleVariable |
+	DefAllModelTypeVariable |
+	DefCollectionTypeVariable 
+;
+
+DefAllModelTypeVariable:
+	type = [Model::AllModelType] name = ID
+;
+	
+DefSimpleVariable:
+	type = Type name = ID 
+;
+
+DefCollectionTypeVariable:
+	DefAllModelTypeCollectionVariable |
+	DefSimpleTypeCollectionVariable
+;
+
+DefAllModelTypeCollectionVariable:
+	type = AllModelTypeCollection name = ID
+;
+
+DefSimpleTypeCollectionVariable:
+	type = SimpleTypeCollection name = ID
+;
+
+//Tipos simples (básicos) y complejos (Date) soportados
+Type:
+	BasicType |
+	ComplexType
+;
+
+BasicType:
+	TYPE_INT |
+	TYPE_DOUBLE |
+	TYPE_FLOAT |
+	TYPE_LONG | 
+	TYPE_CHAR | 
+	TYPE_STRING |
+	TYPE_BOOLEAN 
+;
+
+ComplexType:
+	DATE
+;
+
+/* Colecciones soportadas */
+terminal LIST:
+	'List'
+;
+
+terminal SET:
+	'Set'
+;
+
+/* Tipo date */
+terminal DATE:
+	'Date'
+;
+
+/* Tipo entero */
+terminal TYPE_INT:
+	'Integer'
+;
+
+/* Tipo long */
+terminal TYPE_LONG:
+	'Long'
+;
+
+/* Tipo double */
+terminal TYPE_DOUBLE:
+	'Double'
+;
+
+/* Tipo float */
+terminal TYPE_FLOAT:
+	'Float'
+;
+
+/* Tipos texto (char y string) */
+terminal TYPE_CHAR:
+	'Character'
+;
+
+terminal TYPE_STRING:
+	'String'
+;
+
+/* Tipo boolean */
+terminal TYPE_BOOLEAN:
+	'Boolean'
+;
