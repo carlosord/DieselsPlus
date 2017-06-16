@@ -103,9 +103,9 @@ class EntityLinkKeyGenerator {
 	
 	def createDefaultConstructor(String className, EList<Relation> relations) {
 		'''
-			public «className»(«FOR r: relations»«IF r.type instanceof SimpleEntity»Long «r.name»_id«ELSE»«r.type.name»Key «r.name»_id«ENDIF»«IF !r.equals(relations.get(relations.size-1 ))», «ENDIF»«ENDFOR») {
+			public «className»(«FOR r: relations»«IF r.type instanceof SimpleEntity»Long «r.name»«ELSE»«r.type.name»Key «r.name»«ENDIF»«IF !r.equals(relations.get(relations.size-1 ))», «ENDIF»«ENDFOR») {
 				«FOR r: relations»
-					this.«r.name» = «r.name»_id;
+					this.«r.name» = «r.name»;
 				«ENDFOR»
 			}
 		'''

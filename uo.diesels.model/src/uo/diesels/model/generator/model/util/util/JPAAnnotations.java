@@ -35,11 +35,12 @@ public class JPAAnnotations {
 		annotations.put("uniqueConstraint", new String[] {"@UniqueConstraint", "import javax.persistence.UniqueConstraint;"});
 		annotations.put("inheritance", new String[] {"@Inheritance(strategy = InheritanceType.JOINED)", "import javax.persistence.Inheritance;"});
 		annotations.put("inheritanceType", new String[] {"", "import javax.persistence.InheritanceType;"});
+		annotations.put("lob", new String[] {"@Lob", "import javax.persistence.Lob;"});
 		
 		annotations.put("temporal", new String[] {"@Temporal(value = TemporalType.TIMESTAMP)", "import javax.persistence.Temporal;"});
 		annotations.put("temporalType", new String[] {"", "import javax.persistence.TemporalType;"});
 		
-		annotations.put("manytomany", new String[] {"@ManyToMany", "import javax.persistence.ManyToMany;"});
+		annotations.put("manytomany", new String[] {"@ManyToMany(mappedBy = \"%s\")", "import javax.persistence.ManyToMany;"});
 		annotations.put("manytoone", new String[] {"@ManyToOne(optional = %s)", "import javax.persistence.ManyToOne;"});
 		annotations.put("onetoone", new String[] {"@OneToOne(optional = %s)", "import javax.persistence.OneToOne;"});
 		annotations.put("onetomany", new String[] {"@OneToMany(mappedBy = \"%s\")", "import javax.persistence.OneToMany;"});

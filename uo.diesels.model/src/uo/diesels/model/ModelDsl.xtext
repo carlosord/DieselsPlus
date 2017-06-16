@@ -173,7 +173,8 @@ BasicType:
 	TYPE_LONG | 
 	TYPE_CHAR | 
 	TYPE_STRING |
-	TYPE_BOOLEAN 
+	TYPE_BOOLEAN |
+	TYPE_BINARY
 ;
 
 ComplexType:
@@ -252,6 +253,11 @@ terminal TYPE_STRING:
 /* Tipo boolean */
 terminal TYPE_BOOLEAN:
 	'Boolean'
+;
+
+/* Tipo binary (Byte[]) */
+terminal TYPE_BINARY:
+	'Binary'
 ;
 
 /* Tipo para el enumerated */

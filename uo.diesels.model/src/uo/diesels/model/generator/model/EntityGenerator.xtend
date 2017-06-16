@@ -25,6 +25,7 @@ import uo.diesels.model.modelDsl.Link
 import uo.diesels.model.modelDsl.SimpleEntity
 import uo.diesels.model.modelDsl.SimpleLink
 import uo.diesels.model.modelDsl.ValueType
+import uo.diesels.model.generator.common.util.TypeCodeTransformation
 
 class EntityGenerator {
 
@@ -250,7 +251,7 @@ class EntityGenerator {
 							«ENDIF»
 						«ENDIF»
 					«ENDIF»
-					private «v.variableType» «v.variableName»;
+					private «IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»;
 				«ENDIF»
 			«ENDFOR»
 			«FOR v: e.attributes»
@@ -270,7 +271,7 @@ class EntityGenerator {
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
-				private «v.variableType» «v.variableName»«v.collectionVariable»;
+				private «IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»«v.collectionVariable»;
 			«ENDFOR»
 «««			En caso concreto de que la id sea un enlace declarado en su padre
 			«FOR v: e.primaryKey»
@@ -317,7 +318,7 @@ class EntityGenerator {
 								«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), otherRel.optional)»
 								private «otherRel.type.entityName» «otherRel.name»;
 							«ELSE»
-								«JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0)»
+								«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), thisRel.name)»
 								private Set<«otherRel.type.entityName»> «otherRel.name» = new HashSet<>();
 							«ENDIF»
 						«ENDIF»
@@ -355,7 +356,7 @@ class EntityGenerator {
 		}
 		var allIds = e.idVariables;
 		'''
-			public «e.className»(«FOR v: allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«v.variableType» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
+			public «e.className»(«FOR v: allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
 				super(«FOR i: superClassIds»«i.variableName»«IF !i.equals(superClassIds.get(superClassIds.size-1))», «ENDIF»«ENDFOR»);
 «««				En caso concreto de que la id sea un enlace declarado en su padre
 				«FOR v: e.primaryKey»
@@ -418,7 +419,7 @@ class EntityGenerator {
 		'''
 			«FOR p : e.primaryKey»
 				«IF(!(p.variableTypeClass instanceof Link))»		
-					public «p.variableType» get«StringUtils.toUpperFirst(p.variableName)»() {
+					public «IF(TypeCodeTransformation.instance.types.get(p.variableType) != null)»«TypeCodeTransformation.instance.types.get(p.variableType)»«ELSE»«p.variableType»«ENDIF» get«StringUtils.toUpperFirst(p.variableName)»() {
 						return this.«p.variableName»;
 					}
 					
@@ -426,11 +427,11 @@ class EntityGenerator {
 			«ENDFOR»
 			«FOR v : e.attributes»			
 				«IF !(v instanceof ModelTypeCollectionVariableClass) && !(v instanceof SimpleTypeCollectionVariableClass) »
-					public «v.variableType» get«StringUtils.toUpperFirst(v.variableName)»() {
+					public «IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» get«StringUtils.toUpperFirst(v.variableName)»() {
 						return this.«v.variableName»;
 					}
 							
-					public void set«StringUtils.toUpperFirst(v.variableName)»(«v.variableType» «v.variableName») {
+					public void set«StringUtils.toUpperFirst(v.variableName)»(«IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName») {
 						this.«v.variableName» = «v.variableName»;
 					}
 					
@@ -492,7 +493,7 @@ class EntityGenerator {
 	def createMethods(SimpleEntityClass e) {
 		'''
 			«FOR m: e.methods»
-				public abstract «m.methodReturnType» «m.methodName»(«FOR p : m.methodParameters»«p.variableType» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
+				public abstract «IF(TypeCodeTransformation.instance.types.get(m.methodReturnType) != null)»«TypeCodeTransformation.instance.types.get(m.methodReturnType)»«ELSE»«m.methodReturnType»«ENDIF» «m.methodName»(«FOR p : m.methodParameters»«IF(TypeCodeTransformation.instance.types.get(p.variableType) != null)»«TypeCodeTransformation.instance.types.get(p.variableType)»«ELSE»«p.variableType»«ENDIF» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
 			«ENDFOR»			
 		'''
 	}

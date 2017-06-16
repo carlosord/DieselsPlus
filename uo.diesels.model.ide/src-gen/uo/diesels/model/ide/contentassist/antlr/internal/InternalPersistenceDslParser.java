@@ -22,36 +22,37 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPersistenceDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_DATE", "RULE_LIST", "RULE_SET", "RULE_TYPE_INT", "RULE_TYPE_DOUBLE", "RULE_TYPE_FLOAT", "RULE_TYPE_LONG", "RULE_TYPE_CHAR", "RULE_TYPE_STRING", "RULE_TYPE_BOOLEAN", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Finder'", "'{'", "'}'", "'('", "')'", "','", "'#'", "'<'", "'>'", "'non-null'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_DATE", "RULE_LIST", "RULE_SET", "RULE_TYPE_INT", "RULE_TYPE_DOUBLE", "RULE_TYPE_FLOAT", "RULE_TYPE_LONG", "RULE_TYPE_CHAR", "RULE_TYPE_STRING", "RULE_TYPE_BOOLEAN", "RULE_TYPE_BINARY", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Finder'", "'{'", "'}'", "'('", "')'", "','", "'#'", "'<'", "'>'", "'non-null'"
     };
     public static final int RULE_SET=6;
-    public static final int RULE_STRING=16;
+    public static final int RULE_STRING=17;
     public static final int RULE_TYPE_CHAR=11;
-    public static final int RULE_SL_COMMENT=18;
+    public static final int RULE_SL_COMMENT=19;
     public static final int RULE_TYPE_STRING=12;
     public static final int EOF=-1;
     public static final int T__30=30;
+    public static final int T__31=31;
     public static final int RULE_TYPE_INT=7;
     public static final int RULE_LIST=5;
     public static final int RULE_TYPE_LONG=10;
-    public static final int RULE_ID=14;
-    public static final int RULE_WS=19;
+    public static final int RULE_ID=15;
+    public static final int RULE_WS=20;
     public static final int RULE_TYPE_FLOAT=9;
-    public static final int RULE_ANY_OTHER=20;
+    public static final int RULE_TYPE_BINARY=14;
+    public static final int RULE_ANY_OTHER=21;
     public static final int RULE_TYPE_BOOLEAN=13;
     public static final int RULE_DATE=4;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
-    public static final int RULE_INT=15;
+    public static final int RULE_INT=16;
     public static final int T__29=29;
     public static final int T__22=22;
-    public static final int RULE_ML_COMMENT=17;
+    public static final int RULE_ML_COMMENT=18;
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int RULE_TYPE_DOUBLE=8;
     public static final int T__25=25;
-    public static final int T__21=21;
 
     // delegates
     // delegators
@@ -138,7 +139,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==21) ) {
+                if ( (LA1_0==22) ) {
                     alt1=1;
                 }
 
@@ -1805,7 +1806,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
                 alt2=1;
                 }
                 break;
-            case 27:
+            case 28:
                 {
                 alt2=2;
                 }
@@ -1818,6 +1819,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             case RULE_TYPE_CHAR:
             case RULE_TYPE_STRING:
             case RULE_TYPE_BOOLEAN:
+            case RULE_TYPE_BINARY:
                 {
                 alt2=3;
                 }
@@ -1942,8 +1944,13 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             if ( (LA3_0==RULE_LIST) ) {
                 int LA3_1 = input.LA(2);
 
-                if ( (LA3_1==28) ) {
+                if ( (LA3_1==29) ) {
                     switch ( input.LA(3) ) {
+                    case 28:
+                        {
+                        alt3=2;
+                        }
+                        break;
                     case RULE_DATE:
                     case RULE_TYPE_INT:
                     case RULE_TYPE_DOUBLE:
@@ -1952,6 +1959,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
                     case RULE_TYPE_CHAR:
                     case RULE_TYPE_STRING:
                     case RULE_TYPE_BOOLEAN:
+                    case RULE_TYPE_BINARY:
                         {
                         alt3=3;
                         }
@@ -1959,11 +1967,6 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
                     case RULE_ID:
                         {
                         alt3=1;
-                        }
-                        break;
-                    case 27:
-                        {
-                        alt3=2;
                         }
                         break;
                     default:
@@ -2222,6 +2225,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             case RULE_TYPE_CHAR:
             case RULE_TYPE_STRING:
             case RULE_TYPE_BOOLEAN:
+            case RULE_TYPE_BINARY:
                 {
                 alt6=1;
                 }
@@ -2333,10 +2337,10 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             if ( (LA7_0==RULE_LIST) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==28) ) {
+                if ( (LA7_1==29) ) {
                     int LA7_3 = input.LA(3);
 
-                    if ( (LA7_3==RULE_DATE||(LA7_3>=RULE_TYPE_INT && LA7_3<=RULE_TYPE_BOOLEAN)) ) {
+                    if ( (LA7_3==RULE_DATE||(LA7_3>=RULE_TYPE_INT && LA7_3<=RULE_TYPE_BINARY)) ) {
                         alt7=2;
                     }
                     else if ( (LA7_3==RULE_ID) ) {
@@ -2359,10 +2363,10 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             else if ( (LA7_0==RULE_SET) ) {
                 int LA7_2 = input.LA(2);
 
-                if ( (LA7_2==28) ) {
+                if ( (LA7_2==29) ) {
                     int LA7_3 = input.LA(3);
 
-                    if ( (LA7_3==RULE_DATE||(LA7_3>=RULE_TYPE_INT && LA7_3<=RULE_TYPE_BOOLEAN)) ) {
+                    if ( (LA7_3==RULE_DATE||(LA7_3>=RULE_TYPE_INT && LA7_3<=RULE_TYPE_BINARY)) ) {
                         alt7=2;
                     }
                     else if ( (LA7_3==RULE_ID) ) {
@@ -2455,7 +2459,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( ((LA8_0>=RULE_TYPE_INT && LA8_0<=RULE_TYPE_BOOLEAN)) ) {
+            if ( ((LA8_0>=RULE_TYPE_INT && LA8_0<=RULE_TYPE_BINARY)) ) {
                 alt8=1;
             }
             else if ( (LA8_0==RULE_DATE) ) {
@@ -2524,14 +2528,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__BasicType__Alternatives"
-    // InternalPersistenceDsl.g:773:1: rule__BasicType__Alternatives : ( ( RULE_TYPE_INT ) | ( RULE_TYPE_DOUBLE ) | ( RULE_TYPE_FLOAT ) | ( RULE_TYPE_LONG ) | ( RULE_TYPE_CHAR ) | ( RULE_TYPE_STRING ) | ( RULE_TYPE_BOOLEAN ) );
+    // InternalPersistenceDsl.g:773:1: rule__BasicType__Alternatives : ( ( RULE_TYPE_INT ) | ( RULE_TYPE_DOUBLE ) | ( RULE_TYPE_FLOAT ) | ( RULE_TYPE_LONG ) | ( RULE_TYPE_CHAR ) | ( RULE_TYPE_STRING ) | ( RULE_TYPE_BOOLEAN ) | ( RULE_TYPE_BINARY ) );
     public final void rule__BasicType__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:777:1: ( ( RULE_TYPE_INT ) | ( RULE_TYPE_DOUBLE ) | ( RULE_TYPE_FLOAT ) | ( RULE_TYPE_LONG ) | ( RULE_TYPE_CHAR ) | ( RULE_TYPE_STRING ) | ( RULE_TYPE_BOOLEAN ) )
-            int alt9=7;
+            // InternalPersistenceDsl.g:777:1: ( ( RULE_TYPE_INT ) | ( RULE_TYPE_DOUBLE ) | ( RULE_TYPE_FLOAT ) | ( RULE_TYPE_LONG ) | ( RULE_TYPE_CHAR ) | ( RULE_TYPE_STRING ) | ( RULE_TYPE_BOOLEAN ) | ( RULE_TYPE_BINARY ) )
+            int alt9=8;
             switch ( input.LA(1) ) {
             case RULE_TYPE_INT:
                 {
@@ -2566,6 +2570,11 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             case RULE_TYPE_BOOLEAN:
                 {
                 alt9=7;
+                }
+                break;
+            case RULE_TYPE_BINARY:
+                {
+                alt9=8;
                 }
                 break;
             default:
@@ -2681,6 +2690,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
                     }
                     break;
+                case 8 :
+                    // InternalPersistenceDsl.g:820:2: ( RULE_TYPE_BINARY )
+                    {
+                    // InternalPersistenceDsl.g:820:2: ( RULE_TYPE_BINARY )
+                    // InternalPersistenceDsl.g:821:3: RULE_TYPE_BINARY
+                    {
+                     before(grammarAccess.getBasicTypeAccess().getTYPE_BINARYTerminalRuleCall_7()); 
+                    match(input,RULE_TYPE_BINARY,FOLLOW_2); 
+                     after(grammarAccess.getBasicTypeAccess().getTYPE_BINARYTerminalRuleCall_7()); 
+
+                    }
+
+
+                    }
+                    break;
 
             }
         }
@@ -2699,14 +2723,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__0"
-    // InternalPersistenceDsl.g:824:1: rule__Finder__Group__0 : rule__Finder__Group__0__Impl rule__Finder__Group__1 ;
+    // InternalPersistenceDsl.g:830:1: rule__Finder__Group__0 : rule__Finder__Group__0__Impl rule__Finder__Group__1 ;
     public final void rule__Finder__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:828:1: ( rule__Finder__Group__0__Impl rule__Finder__Group__1 )
-            // InternalPersistenceDsl.g:829:2: rule__Finder__Group__0__Impl rule__Finder__Group__1
+            // InternalPersistenceDsl.g:834:1: ( rule__Finder__Group__0__Impl rule__Finder__Group__1 )
+            // InternalPersistenceDsl.g:835:2: rule__Finder__Group__0__Impl rule__Finder__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__Finder__Group__0__Impl();
@@ -2737,20 +2761,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__0__Impl"
-    // InternalPersistenceDsl.g:836:1: rule__Finder__Group__0__Impl : ( 'Finder' ) ;
+    // InternalPersistenceDsl.g:842:1: rule__Finder__Group__0__Impl : ( 'Finder' ) ;
     public final void rule__Finder__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:840:1: ( ( 'Finder' ) )
-            // InternalPersistenceDsl.g:841:1: ( 'Finder' )
+            // InternalPersistenceDsl.g:846:1: ( ( 'Finder' ) )
+            // InternalPersistenceDsl.g:847:1: ( 'Finder' )
             {
-            // InternalPersistenceDsl.g:841:1: ( 'Finder' )
-            // InternalPersistenceDsl.g:842:2: 'Finder'
+            // InternalPersistenceDsl.g:847:1: ( 'Finder' )
+            // InternalPersistenceDsl.g:848:2: 'Finder'
             {
              before(grammarAccess.getFinderAccess().getFinderKeyword_0()); 
-            match(input,21,FOLLOW_2); 
+            match(input,22,FOLLOW_2); 
              after(grammarAccess.getFinderAccess().getFinderKeyword_0()); 
 
             }
@@ -2774,14 +2798,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__1"
-    // InternalPersistenceDsl.g:851:1: rule__Finder__Group__1 : rule__Finder__Group__1__Impl rule__Finder__Group__2 ;
+    // InternalPersistenceDsl.g:857:1: rule__Finder__Group__1 : rule__Finder__Group__1__Impl rule__Finder__Group__2 ;
     public final void rule__Finder__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:855:1: ( rule__Finder__Group__1__Impl rule__Finder__Group__2 )
-            // InternalPersistenceDsl.g:856:2: rule__Finder__Group__1__Impl rule__Finder__Group__2
+            // InternalPersistenceDsl.g:861:1: ( rule__Finder__Group__1__Impl rule__Finder__Group__2 )
+            // InternalPersistenceDsl.g:862:2: rule__Finder__Group__1__Impl rule__Finder__Group__2
             {
             pushFollow(FOLLOW_5);
             rule__Finder__Group__1__Impl();
@@ -2812,21 +2836,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__1__Impl"
-    // InternalPersistenceDsl.g:863:1: rule__Finder__Group__1__Impl : ( ( rule__Finder__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:869:1: rule__Finder__Group__1__Impl : ( ( rule__Finder__NameAssignment_1 ) ) ;
     public final void rule__Finder__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:867:1: ( ( ( rule__Finder__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:868:1: ( ( rule__Finder__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:873:1: ( ( ( rule__Finder__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:874:1: ( ( rule__Finder__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:868:1: ( ( rule__Finder__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:869:2: ( rule__Finder__NameAssignment_1 )
+            // InternalPersistenceDsl.g:874:1: ( ( rule__Finder__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:875:2: ( rule__Finder__NameAssignment_1 )
             {
              before(grammarAccess.getFinderAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:870:2: ( rule__Finder__NameAssignment_1 )
-            // InternalPersistenceDsl.g:870:3: rule__Finder__NameAssignment_1
+            // InternalPersistenceDsl.g:876:2: ( rule__Finder__NameAssignment_1 )
+            // InternalPersistenceDsl.g:876:3: rule__Finder__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Finder__NameAssignment_1();
@@ -2859,14 +2883,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__2"
-    // InternalPersistenceDsl.g:878:1: rule__Finder__Group__2 : rule__Finder__Group__2__Impl rule__Finder__Group__3 ;
+    // InternalPersistenceDsl.g:884:1: rule__Finder__Group__2 : rule__Finder__Group__2__Impl rule__Finder__Group__3 ;
     public final void rule__Finder__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:882:1: ( rule__Finder__Group__2__Impl rule__Finder__Group__3 )
-            // InternalPersistenceDsl.g:883:2: rule__Finder__Group__2__Impl rule__Finder__Group__3
+            // InternalPersistenceDsl.g:888:1: ( rule__Finder__Group__2__Impl rule__Finder__Group__3 )
+            // InternalPersistenceDsl.g:889:2: rule__Finder__Group__2__Impl rule__Finder__Group__3
             {
             pushFollow(FOLLOW_6);
             rule__Finder__Group__2__Impl();
@@ -2897,20 +2921,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__2__Impl"
-    // InternalPersistenceDsl.g:890:1: rule__Finder__Group__2__Impl : ( '{' ) ;
+    // InternalPersistenceDsl.g:896:1: rule__Finder__Group__2__Impl : ( '{' ) ;
     public final void rule__Finder__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:894:1: ( ( '{' ) )
-            // InternalPersistenceDsl.g:895:1: ( '{' )
+            // InternalPersistenceDsl.g:900:1: ( ( '{' ) )
+            // InternalPersistenceDsl.g:901:1: ( '{' )
             {
-            // InternalPersistenceDsl.g:895:1: ( '{' )
-            // InternalPersistenceDsl.g:896:2: '{'
+            // InternalPersistenceDsl.g:901:1: ( '{' )
+            // InternalPersistenceDsl.g:902:2: '{'
             {
              before(grammarAccess.getFinderAccess().getLeftCurlyBracketKeyword_2()); 
-            match(input,22,FOLLOW_2); 
+            match(input,23,FOLLOW_2); 
              after(grammarAccess.getFinderAccess().getLeftCurlyBracketKeyword_2()); 
 
             }
@@ -2934,14 +2958,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__3"
-    // InternalPersistenceDsl.g:905:1: rule__Finder__Group__3 : rule__Finder__Group__3__Impl rule__Finder__Group__4 ;
+    // InternalPersistenceDsl.g:911:1: rule__Finder__Group__3 : rule__Finder__Group__3__Impl rule__Finder__Group__4 ;
     public final void rule__Finder__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:909:1: ( rule__Finder__Group__3__Impl rule__Finder__Group__4 )
-            // InternalPersistenceDsl.g:910:2: rule__Finder__Group__3__Impl rule__Finder__Group__4
+            // InternalPersistenceDsl.g:915:1: ( rule__Finder__Group__3__Impl rule__Finder__Group__4 )
+            // InternalPersistenceDsl.g:916:2: rule__Finder__Group__3__Impl rule__Finder__Group__4
             {
             pushFollow(FOLLOW_7);
             rule__Finder__Group__3__Impl();
@@ -2972,24 +2996,24 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__3__Impl"
-    // InternalPersistenceDsl.g:917:1: rule__Finder__Group__3__Impl : ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) ) ;
+    // InternalPersistenceDsl.g:923:1: rule__Finder__Group__3__Impl : ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) ) ;
     public final void rule__Finder__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:921:1: ( ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) ) )
-            // InternalPersistenceDsl.g:922:1: ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) )
+            // InternalPersistenceDsl.g:927:1: ( ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) ) )
+            // InternalPersistenceDsl.g:928:1: ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) )
             {
-            // InternalPersistenceDsl.g:922:1: ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) )
-            // InternalPersistenceDsl.g:923:2: ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* )
+            // InternalPersistenceDsl.g:928:1: ( ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* ) )
+            // InternalPersistenceDsl.g:929:2: ( ( rule__Finder__MethodsAssignment_3 ) ) ( ( rule__Finder__MethodsAssignment_3 )* )
             {
-            // InternalPersistenceDsl.g:923:2: ( ( rule__Finder__MethodsAssignment_3 ) )
-            // InternalPersistenceDsl.g:924:3: ( rule__Finder__MethodsAssignment_3 )
+            // InternalPersistenceDsl.g:929:2: ( ( rule__Finder__MethodsAssignment_3 ) )
+            // InternalPersistenceDsl.g:930:3: ( rule__Finder__MethodsAssignment_3 )
             {
              before(grammarAccess.getFinderAccess().getMethodsAssignment_3()); 
-            // InternalPersistenceDsl.g:925:3: ( rule__Finder__MethodsAssignment_3 )
-            // InternalPersistenceDsl.g:925:4: rule__Finder__MethodsAssignment_3
+            // InternalPersistenceDsl.g:931:3: ( rule__Finder__MethodsAssignment_3 )
+            // InternalPersistenceDsl.g:931:4: rule__Finder__MethodsAssignment_3
             {
             pushFollow(FOLLOW_8);
             rule__Finder__MethodsAssignment_3();
@@ -3003,24 +3027,24 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
             }
 
-            // InternalPersistenceDsl.g:928:2: ( ( rule__Finder__MethodsAssignment_3 )* )
-            // InternalPersistenceDsl.g:929:3: ( rule__Finder__MethodsAssignment_3 )*
+            // InternalPersistenceDsl.g:934:2: ( ( rule__Finder__MethodsAssignment_3 )* )
+            // InternalPersistenceDsl.g:935:3: ( rule__Finder__MethodsAssignment_3 )*
             {
              before(grammarAccess.getFinderAccess().getMethodsAssignment_3()); 
-            // InternalPersistenceDsl.g:930:3: ( rule__Finder__MethodsAssignment_3 )*
+            // InternalPersistenceDsl.g:936:3: ( rule__Finder__MethodsAssignment_3 )*
             loop10:
             do {
                 int alt10=2;
                 int LA10_0 = input.LA(1);
 
-                if ( ((LA10_0>=RULE_DATE && LA10_0<=RULE_LIST)||(LA10_0>=RULE_TYPE_INT && LA10_0<=RULE_ID)||LA10_0==27) ) {
+                if ( ((LA10_0>=RULE_DATE && LA10_0<=RULE_LIST)||(LA10_0>=RULE_TYPE_INT && LA10_0<=RULE_ID)||LA10_0==28) ) {
                     alt10=1;
                 }
 
 
                 switch (alt10) {
             	case 1 :
-            	    // InternalPersistenceDsl.g:930:4: rule__Finder__MethodsAssignment_3
+            	    // InternalPersistenceDsl.g:936:4: rule__Finder__MethodsAssignment_3
             	    {
             	    pushFollow(FOLLOW_8);
             	    rule__Finder__MethodsAssignment_3();
@@ -3062,14 +3086,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__4"
-    // InternalPersistenceDsl.g:939:1: rule__Finder__Group__4 : rule__Finder__Group__4__Impl ;
+    // InternalPersistenceDsl.g:945:1: rule__Finder__Group__4 : rule__Finder__Group__4__Impl ;
     public final void rule__Finder__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:943:1: ( rule__Finder__Group__4__Impl )
-            // InternalPersistenceDsl.g:944:2: rule__Finder__Group__4__Impl
+            // InternalPersistenceDsl.g:949:1: ( rule__Finder__Group__4__Impl )
+            // InternalPersistenceDsl.g:950:2: rule__Finder__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Finder__Group__4__Impl();
@@ -3095,20 +3119,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__Group__4__Impl"
-    // InternalPersistenceDsl.g:950:1: rule__Finder__Group__4__Impl : ( '}' ) ;
+    // InternalPersistenceDsl.g:956:1: rule__Finder__Group__4__Impl : ( '}' ) ;
     public final void rule__Finder__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:954:1: ( ( '}' ) )
-            // InternalPersistenceDsl.g:955:1: ( '}' )
+            // InternalPersistenceDsl.g:960:1: ( ( '}' ) )
+            // InternalPersistenceDsl.g:961:1: ( '}' )
             {
-            // InternalPersistenceDsl.g:955:1: ( '}' )
-            // InternalPersistenceDsl.g:956:2: '}'
+            // InternalPersistenceDsl.g:961:1: ( '}' )
+            // InternalPersistenceDsl.g:962:2: '}'
             {
              before(grammarAccess.getFinderAccess().getRightCurlyBracketKeyword_4()); 
-            match(input,23,FOLLOW_2); 
+            match(input,24,FOLLOW_2); 
              after(grammarAccess.getFinderAccess().getRightCurlyBracketKeyword_4()); 
 
             }
@@ -3132,14 +3156,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__0"
-    // InternalPersistenceDsl.g:966:1: rule__MethodSimpleReturn__Group__0 : rule__MethodSimpleReturn__Group__0__Impl rule__MethodSimpleReturn__Group__1 ;
+    // InternalPersistenceDsl.g:972:1: rule__MethodSimpleReturn__Group__0 : rule__MethodSimpleReturn__Group__0__Impl rule__MethodSimpleReturn__Group__1 ;
     public final void rule__MethodSimpleReturn__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:970:1: ( rule__MethodSimpleReturn__Group__0__Impl rule__MethodSimpleReturn__Group__1 )
-            // InternalPersistenceDsl.g:971:2: rule__MethodSimpleReturn__Group__0__Impl rule__MethodSimpleReturn__Group__1
+            // InternalPersistenceDsl.g:976:1: ( rule__MethodSimpleReturn__Group__0__Impl rule__MethodSimpleReturn__Group__1 )
+            // InternalPersistenceDsl.g:977:2: rule__MethodSimpleReturn__Group__0__Impl rule__MethodSimpleReturn__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__MethodSimpleReturn__Group__0__Impl();
@@ -3170,21 +3194,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__0__Impl"
-    // InternalPersistenceDsl.g:978:1: rule__MethodSimpleReturn__Group__0__Impl : ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:984:1: rule__MethodSimpleReturn__Group__0__Impl : ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) ) ;
     public final void rule__MethodSimpleReturn__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:982:1: ( ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:983:1: ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:988:1: ( ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:989:1: ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:983:1: ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:984:2: ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 )
+            // InternalPersistenceDsl.g:989:1: ( ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:990:2: ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 )
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getReturnTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:985:2: ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 )
-            // InternalPersistenceDsl.g:985:3: rule__MethodSimpleReturn__ReturnTypeAssignment_0
+            // InternalPersistenceDsl.g:991:2: ( rule__MethodSimpleReturn__ReturnTypeAssignment_0 )
+            // InternalPersistenceDsl.g:991:3: rule__MethodSimpleReturn__ReturnTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__ReturnTypeAssignment_0();
@@ -3217,14 +3241,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__1"
-    // InternalPersistenceDsl.g:993:1: rule__MethodSimpleReturn__Group__1 : rule__MethodSimpleReturn__Group__1__Impl rule__MethodSimpleReturn__Group__2 ;
+    // InternalPersistenceDsl.g:999:1: rule__MethodSimpleReturn__Group__1 : rule__MethodSimpleReturn__Group__1__Impl rule__MethodSimpleReturn__Group__2 ;
     public final void rule__MethodSimpleReturn__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:997:1: ( rule__MethodSimpleReturn__Group__1__Impl rule__MethodSimpleReturn__Group__2 )
-            // InternalPersistenceDsl.g:998:2: rule__MethodSimpleReturn__Group__1__Impl rule__MethodSimpleReturn__Group__2
+            // InternalPersistenceDsl.g:1003:1: ( rule__MethodSimpleReturn__Group__1__Impl rule__MethodSimpleReturn__Group__2 )
+            // InternalPersistenceDsl.g:1004:2: rule__MethodSimpleReturn__Group__1__Impl rule__MethodSimpleReturn__Group__2
             {
             pushFollow(FOLLOW_9);
             rule__MethodSimpleReturn__Group__1__Impl();
@@ -3255,21 +3279,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__1__Impl"
-    // InternalPersistenceDsl.g:1005:1: rule__MethodSimpleReturn__Group__1__Impl : ( ( rule__MethodSimpleReturn__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:1011:1: rule__MethodSimpleReturn__Group__1__Impl : ( ( rule__MethodSimpleReturn__NameAssignment_1 ) ) ;
     public final void rule__MethodSimpleReturn__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1009:1: ( ( ( rule__MethodSimpleReturn__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:1010:1: ( ( rule__MethodSimpleReturn__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:1015:1: ( ( ( rule__MethodSimpleReturn__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:1016:1: ( ( rule__MethodSimpleReturn__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:1010:1: ( ( rule__MethodSimpleReturn__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:1011:2: ( rule__MethodSimpleReturn__NameAssignment_1 )
+            // InternalPersistenceDsl.g:1016:1: ( ( rule__MethodSimpleReturn__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:1017:2: ( rule__MethodSimpleReturn__NameAssignment_1 )
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:1012:2: ( rule__MethodSimpleReturn__NameAssignment_1 )
-            // InternalPersistenceDsl.g:1012:3: rule__MethodSimpleReturn__NameAssignment_1
+            // InternalPersistenceDsl.g:1018:2: ( rule__MethodSimpleReturn__NameAssignment_1 )
+            // InternalPersistenceDsl.g:1018:3: rule__MethodSimpleReturn__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__NameAssignment_1();
@@ -3302,14 +3326,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__2"
-    // InternalPersistenceDsl.g:1020:1: rule__MethodSimpleReturn__Group__2 : rule__MethodSimpleReturn__Group__2__Impl rule__MethodSimpleReturn__Group__3 ;
+    // InternalPersistenceDsl.g:1026:1: rule__MethodSimpleReturn__Group__2 : rule__MethodSimpleReturn__Group__2__Impl rule__MethodSimpleReturn__Group__3 ;
     public final void rule__MethodSimpleReturn__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1024:1: ( rule__MethodSimpleReturn__Group__2__Impl rule__MethodSimpleReturn__Group__3 )
-            // InternalPersistenceDsl.g:1025:2: rule__MethodSimpleReturn__Group__2__Impl rule__MethodSimpleReturn__Group__3
+            // InternalPersistenceDsl.g:1030:1: ( rule__MethodSimpleReturn__Group__2__Impl rule__MethodSimpleReturn__Group__3 )
+            // InternalPersistenceDsl.g:1031:2: rule__MethodSimpleReturn__Group__2__Impl rule__MethodSimpleReturn__Group__3
             {
             pushFollow(FOLLOW_10);
             rule__MethodSimpleReturn__Group__2__Impl();
@@ -3340,20 +3364,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__2__Impl"
-    // InternalPersistenceDsl.g:1032:1: rule__MethodSimpleReturn__Group__2__Impl : ( '(' ) ;
+    // InternalPersistenceDsl.g:1038:1: rule__MethodSimpleReturn__Group__2__Impl : ( '(' ) ;
     public final void rule__MethodSimpleReturn__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1036:1: ( ( '(' ) )
-            // InternalPersistenceDsl.g:1037:1: ( '(' )
+            // InternalPersistenceDsl.g:1042:1: ( ( '(' ) )
+            // InternalPersistenceDsl.g:1043:1: ( '(' )
             {
-            // InternalPersistenceDsl.g:1037:1: ( '(' )
-            // InternalPersistenceDsl.g:1038:2: '('
+            // InternalPersistenceDsl.g:1043:1: ( '(' )
+            // InternalPersistenceDsl.g:1044:2: '('
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getLeftParenthesisKeyword_2()); 
-            match(input,24,FOLLOW_2); 
+            match(input,25,FOLLOW_2); 
              after(grammarAccess.getMethodSimpleReturnAccess().getLeftParenthesisKeyword_2()); 
 
             }
@@ -3377,14 +3401,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__3"
-    // InternalPersistenceDsl.g:1047:1: rule__MethodSimpleReturn__Group__3 : rule__MethodSimpleReturn__Group__3__Impl rule__MethodSimpleReturn__Group__4 ;
+    // InternalPersistenceDsl.g:1053:1: rule__MethodSimpleReturn__Group__3 : rule__MethodSimpleReturn__Group__3__Impl rule__MethodSimpleReturn__Group__4 ;
     public final void rule__MethodSimpleReturn__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1051:1: ( rule__MethodSimpleReturn__Group__3__Impl rule__MethodSimpleReturn__Group__4 )
-            // InternalPersistenceDsl.g:1052:2: rule__MethodSimpleReturn__Group__3__Impl rule__MethodSimpleReturn__Group__4
+            // InternalPersistenceDsl.g:1057:1: ( rule__MethodSimpleReturn__Group__3__Impl rule__MethodSimpleReturn__Group__4 )
+            // InternalPersistenceDsl.g:1058:2: rule__MethodSimpleReturn__Group__3__Impl rule__MethodSimpleReturn__Group__4
             {
             pushFollow(FOLLOW_10);
             rule__MethodSimpleReturn__Group__3__Impl();
@@ -3415,20 +3439,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__3__Impl"
-    // InternalPersistenceDsl.g:1059:1: rule__MethodSimpleReturn__Group__3__Impl : ( ( rule__MethodSimpleReturn__Group_3__0 )? ) ;
+    // InternalPersistenceDsl.g:1065:1: rule__MethodSimpleReturn__Group__3__Impl : ( ( rule__MethodSimpleReturn__Group_3__0 )? ) ;
     public final void rule__MethodSimpleReturn__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1063:1: ( ( ( rule__MethodSimpleReturn__Group_3__0 )? ) )
-            // InternalPersistenceDsl.g:1064:1: ( ( rule__MethodSimpleReturn__Group_3__0 )? )
+            // InternalPersistenceDsl.g:1069:1: ( ( ( rule__MethodSimpleReturn__Group_3__0 )? ) )
+            // InternalPersistenceDsl.g:1070:1: ( ( rule__MethodSimpleReturn__Group_3__0 )? )
             {
-            // InternalPersistenceDsl.g:1064:1: ( ( rule__MethodSimpleReturn__Group_3__0 )? )
-            // InternalPersistenceDsl.g:1065:2: ( rule__MethodSimpleReturn__Group_3__0 )?
+            // InternalPersistenceDsl.g:1070:1: ( ( rule__MethodSimpleReturn__Group_3__0 )? )
+            // InternalPersistenceDsl.g:1071:2: ( rule__MethodSimpleReturn__Group_3__0 )?
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getGroup_3()); 
-            // InternalPersistenceDsl.g:1066:2: ( rule__MethodSimpleReturn__Group_3__0 )?
+            // InternalPersistenceDsl.g:1072:2: ( rule__MethodSimpleReturn__Group_3__0 )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -3437,7 +3461,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             }
             switch (alt11) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1066:3: rule__MethodSimpleReturn__Group_3__0
+                    // InternalPersistenceDsl.g:1072:3: rule__MethodSimpleReturn__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodSimpleReturn__Group_3__0();
@@ -3473,14 +3497,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__4"
-    // InternalPersistenceDsl.g:1074:1: rule__MethodSimpleReturn__Group__4 : rule__MethodSimpleReturn__Group__4__Impl rule__MethodSimpleReturn__Group__5 ;
+    // InternalPersistenceDsl.g:1080:1: rule__MethodSimpleReturn__Group__4 : rule__MethodSimpleReturn__Group__4__Impl rule__MethodSimpleReturn__Group__5 ;
     public final void rule__MethodSimpleReturn__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1078:1: ( rule__MethodSimpleReturn__Group__4__Impl rule__MethodSimpleReturn__Group__5 )
-            // InternalPersistenceDsl.g:1079:2: rule__MethodSimpleReturn__Group__4__Impl rule__MethodSimpleReturn__Group__5
+            // InternalPersistenceDsl.g:1084:1: ( rule__MethodSimpleReturn__Group__4__Impl rule__MethodSimpleReturn__Group__5 )
+            // InternalPersistenceDsl.g:1085:2: rule__MethodSimpleReturn__Group__4__Impl rule__MethodSimpleReturn__Group__5
             {
             pushFollow(FOLLOW_11);
             rule__MethodSimpleReturn__Group__4__Impl();
@@ -3511,20 +3535,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__4__Impl"
-    // InternalPersistenceDsl.g:1086:1: rule__MethodSimpleReturn__Group__4__Impl : ( ')' ) ;
+    // InternalPersistenceDsl.g:1092:1: rule__MethodSimpleReturn__Group__4__Impl : ( ')' ) ;
     public final void rule__MethodSimpleReturn__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1090:1: ( ( ')' ) )
-            // InternalPersistenceDsl.g:1091:1: ( ')' )
+            // InternalPersistenceDsl.g:1096:1: ( ( ')' ) )
+            // InternalPersistenceDsl.g:1097:1: ( ')' )
             {
-            // InternalPersistenceDsl.g:1091:1: ( ')' )
-            // InternalPersistenceDsl.g:1092:2: ')'
+            // InternalPersistenceDsl.g:1097:1: ( ')' )
+            // InternalPersistenceDsl.g:1098:2: ')'
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getRightParenthesisKeyword_4()); 
-            match(input,25,FOLLOW_2); 
+            match(input,26,FOLLOW_2); 
              after(grammarAccess.getMethodSimpleReturnAccess().getRightParenthesisKeyword_4()); 
 
             }
@@ -3548,14 +3572,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__5"
-    // InternalPersistenceDsl.g:1101:1: rule__MethodSimpleReturn__Group__5 : rule__MethodSimpleReturn__Group__5__Impl ;
+    // InternalPersistenceDsl.g:1107:1: rule__MethodSimpleReturn__Group__5 : rule__MethodSimpleReturn__Group__5__Impl ;
     public final void rule__MethodSimpleReturn__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1105:1: ( rule__MethodSimpleReturn__Group__5__Impl )
-            // InternalPersistenceDsl.g:1106:2: rule__MethodSimpleReturn__Group__5__Impl
+            // InternalPersistenceDsl.g:1111:1: ( rule__MethodSimpleReturn__Group__5__Impl )
+            // InternalPersistenceDsl.g:1112:2: rule__MethodSimpleReturn__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__Group__5__Impl();
@@ -3581,29 +3605,29 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group__5__Impl"
-    // InternalPersistenceDsl.g:1112:1: rule__MethodSimpleReturn__Group__5__Impl : ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? ) ;
+    // InternalPersistenceDsl.g:1118:1: rule__MethodSimpleReturn__Group__5__Impl : ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? ) ;
     public final void rule__MethodSimpleReturn__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1116:1: ( ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? ) )
-            // InternalPersistenceDsl.g:1117:1: ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? )
+            // InternalPersistenceDsl.g:1122:1: ( ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? ) )
+            // InternalPersistenceDsl.g:1123:1: ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? )
             {
-            // InternalPersistenceDsl.g:1117:1: ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? )
-            // InternalPersistenceDsl.g:1118:2: ( rule__MethodSimpleReturn__NullableAssignment_5 )?
+            // InternalPersistenceDsl.g:1123:1: ( ( rule__MethodSimpleReturn__NullableAssignment_5 )? )
+            // InternalPersistenceDsl.g:1124:2: ( rule__MethodSimpleReturn__NullableAssignment_5 )?
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getNullableAssignment_5()); 
-            // InternalPersistenceDsl.g:1119:2: ( rule__MethodSimpleReturn__NullableAssignment_5 )?
+            // InternalPersistenceDsl.g:1125:2: ( rule__MethodSimpleReturn__NullableAssignment_5 )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==30) ) {
+            if ( (LA12_0==31) ) {
                 alt12=1;
             }
             switch (alt12) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1119:3: rule__MethodSimpleReturn__NullableAssignment_5
+                    // InternalPersistenceDsl.g:1125:3: rule__MethodSimpleReturn__NullableAssignment_5
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodSimpleReturn__NullableAssignment_5();
@@ -3639,14 +3663,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3__0"
-    // InternalPersistenceDsl.g:1128:1: rule__MethodSimpleReturn__Group_3__0 : rule__MethodSimpleReturn__Group_3__0__Impl rule__MethodSimpleReturn__Group_3__1 ;
+    // InternalPersistenceDsl.g:1134:1: rule__MethodSimpleReturn__Group_3__0 : rule__MethodSimpleReturn__Group_3__0__Impl rule__MethodSimpleReturn__Group_3__1 ;
     public final void rule__MethodSimpleReturn__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1132:1: ( rule__MethodSimpleReturn__Group_3__0__Impl rule__MethodSimpleReturn__Group_3__1 )
-            // InternalPersistenceDsl.g:1133:2: rule__MethodSimpleReturn__Group_3__0__Impl rule__MethodSimpleReturn__Group_3__1
+            // InternalPersistenceDsl.g:1138:1: ( rule__MethodSimpleReturn__Group_3__0__Impl rule__MethodSimpleReturn__Group_3__1 )
+            // InternalPersistenceDsl.g:1139:2: rule__MethodSimpleReturn__Group_3__0__Impl rule__MethodSimpleReturn__Group_3__1
             {
             pushFollow(FOLLOW_12);
             rule__MethodSimpleReturn__Group_3__0__Impl();
@@ -3677,21 +3701,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3__0__Impl"
-    // InternalPersistenceDsl.g:1140:1: rule__MethodSimpleReturn__Group_3__0__Impl : ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) ) ;
+    // InternalPersistenceDsl.g:1146:1: rule__MethodSimpleReturn__Group_3__0__Impl : ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) ) ;
     public final void rule__MethodSimpleReturn__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1144:1: ( ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) ) )
-            // InternalPersistenceDsl.g:1145:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) )
+            // InternalPersistenceDsl.g:1150:1: ( ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) ) )
+            // InternalPersistenceDsl.g:1151:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) )
             {
-            // InternalPersistenceDsl.g:1145:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) )
-            // InternalPersistenceDsl.g:1146:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_0 )
+            // InternalPersistenceDsl.g:1151:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_0 ) )
+            // InternalPersistenceDsl.g:1152:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_0 )
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getParametersAssignment_3_0()); 
-            // InternalPersistenceDsl.g:1147:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_0 )
-            // InternalPersistenceDsl.g:1147:3: rule__MethodSimpleReturn__ParametersAssignment_3_0
+            // InternalPersistenceDsl.g:1153:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_0 )
+            // InternalPersistenceDsl.g:1153:3: rule__MethodSimpleReturn__ParametersAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__ParametersAssignment_3_0();
@@ -3724,14 +3748,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3__1"
-    // InternalPersistenceDsl.g:1155:1: rule__MethodSimpleReturn__Group_3__1 : rule__MethodSimpleReturn__Group_3__1__Impl ;
+    // InternalPersistenceDsl.g:1161:1: rule__MethodSimpleReturn__Group_3__1 : rule__MethodSimpleReturn__Group_3__1__Impl ;
     public final void rule__MethodSimpleReturn__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1159:1: ( rule__MethodSimpleReturn__Group_3__1__Impl )
-            // InternalPersistenceDsl.g:1160:2: rule__MethodSimpleReturn__Group_3__1__Impl
+            // InternalPersistenceDsl.g:1165:1: ( rule__MethodSimpleReturn__Group_3__1__Impl )
+            // InternalPersistenceDsl.g:1166:2: rule__MethodSimpleReturn__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__Group_3__1__Impl();
@@ -3757,33 +3781,33 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3__1__Impl"
-    // InternalPersistenceDsl.g:1166:1: rule__MethodSimpleReturn__Group_3__1__Impl : ( ( rule__MethodSimpleReturn__Group_3_1__0 )* ) ;
+    // InternalPersistenceDsl.g:1172:1: rule__MethodSimpleReturn__Group_3__1__Impl : ( ( rule__MethodSimpleReturn__Group_3_1__0 )* ) ;
     public final void rule__MethodSimpleReturn__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1170:1: ( ( ( rule__MethodSimpleReturn__Group_3_1__0 )* ) )
-            // InternalPersistenceDsl.g:1171:1: ( ( rule__MethodSimpleReturn__Group_3_1__0 )* )
+            // InternalPersistenceDsl.g:1176:1: ( ( ( rule__MethodSimpleReturn__Group_3_1__0 )* ) )
+            // InternalPersistenceDsl.g:1177:1: ( ( rule__MethodSimpleReturn__Group_3_1__0 )* )
             {
-            // InternalPersistenceDsl.g:1171:1: ( ( rule__MethodSimpleReturn__Group_3_1__0 )* )
-            // InternalPersistenceDsl.g:1172:2: ( rule__MethodSimpleReturn__Group_3_1__0 )*
+            // InternalPersistenceDsl.g:1177:1: ( ( rule__MethodSimpleReturn__Group_3_1__0 )* )
+            // InternalPersistenceDsl.g:1178:2: ( rule__MethodSimpleReturn__Group_3_1__0 )*
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getGroup_3_1()); 
-            // InternalPersistenceDsl.g:1173:2: ( rule__MethodSimpleReturn__Group_3_1__0 )*
+            // InternalPersistenceDsl.g:1179:2: ( rule__MethodSimpleReturn__Group_3_1__0 )*
             loop13:
             do {
                 int alt13=2;
                 int LA13_0 = input.LA(1);
 
-                if ( (LA13_0==26) ) {
+                if ( (LA13_0==27) ) {
                     alt13=1;
                 }
 
 
                 switch (alt13) {
             	case 1 :
-            	    // InternalPersistenceDsl.g:1173:3: rule__MethodSimpleReturn__Group_3_1__0
+            	    // InternalPersistenceDsl.g:1179:3: rule__MethodSimpleReturn__Group_3_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__MethodSimpleReturn__Group_3_1__0();
@@ -3822,14 +3846,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3_1__0"
-    // InternalPersistenceDsl.g:1182:1: rule__MethodSimpleReturn__Group_3_1__0 : rule__MethodSimpleReturn__Group_3_1__0__Impl rule__MethodSimpleReturn__Group_3_1__1 ;
+    // InternalPersistenceDsl.g:1188:1: rule__MethodSimpleReturn__Group_3_1__0 : rule__MethodSimpleReturn__Group_3_1__0__Impl rule__MethodSimpleReturn__Group_3_1__1 ;
     public final void rule__MethodSimpleReturn__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1186:1: ( rule__MethodSimpleReturn__Group_3_1__0__Impl rule__MethodSimpleReturn__Group_3_1__1 )
-            // InternalPersistenceDsl.g:1187:2: rule__MethodSimpleReturn__Group_3_1__0__Impl rule__MethodSimpleReturn__Group_3_1__1
+            // InternalPersistenceDsl.g:1192:1: ( rule__MethodSimpleReturn__Group_3_1__0__Impl rule__MethodSimpleReturn__Group_3_1__1 )
+            // InternalPersistenceDsl.g:1193:2: rule__MethodSimpleReturn__Group_3_1__0__Impl rule__MethodSimpleReturn__Group_3_1__1
             {
             pushFollow(FOLLOW_14);
             rule__MethodSimpleReturn__Group_3_1__0__Impl();
@@ -3860,20 +3884,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3_1__0__Impl"
-    // InternalPersistenceDsl.g:1194:1: rule__MethodSimpleReturn__Group_3_1__0__Impl : ( ',' ) ;
+    // InternalPersistenceDsl.g:1200:1: rule__MethodSimpleReturn__Group_3_1__0__Impl : ( ',' ) ;
     public final void rule__MethodSimpleReturn__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1198:1: ( ( ',' ) )
-            // InternalPersistenceDsl.g:1199:1: ( ',' )
+            // InternalPersistenceDsl.g:1204:1: ( ( ',' ) )
+            // InternalPersistenceDsl.g:1205:1: ( ',' )
             {
-            // InternalPersistenceDsl.g:1199:1: ( ',' )
-            // InternalPersistenceDsl.g:1200:2: ','
+            // InternalPersistenceDsl.g:1205:1: ( ',' )
+            // InternalPersistenceDsl.g:1206:2: ','
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getCommaKeyword_3_1_0()); 
-            match(input,26,FOLLOW_2); 
+            match(input,27,FOLLOW_2); 
              after(grammarAccess.getMethodSimpleReturnAccess().getCommaKeyword_3_1_0()); 
 
             }
@@ -3897,14 +3921,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3_1__1"
-    // InternalPersistenceDsl.g:1209:1: rule__MethodSimpleReturn__Group_3_1__1 : rule__MethodSimpleReturn__Group_3_1__1__Impl ;
+    // InternalPersistenceDsl.g:1215:1: rule__MethodSimpleReturn__Group_3_1__1 : rule__MethodSimpleReturn__Group_3_1__1__Impl ;
     public final void rule__MethodSimpleReturn__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1213:1: ( rule__MethodSimpleReturn__Group_3_1__1__Impl )
-            // InternalPersistenceDsl.g:1214:2: rule__MethodSimpleReturn__Group_3_1__1__Impl
+            // InternalPersistenceDsl.g:1219:1: ( rule__MethodSimpleReturn__Group_3_1__1__Impl )
+            // InternalPersistenceDsl.g:1220:2: rule__MethodSimpleReturn__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__Group_3_1__1__Impl();
@@ -3930,21 +3954,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__Group_3_1__1__Impl"
-    // InternalPersistenceDsl.g:1220:1: rule__MethodSimpleReturn__Group_3_1__1__Impl : ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) ) ;
+    // InternalPersistenceDsl.g:1226:1: rule__MethodSimpleReturn__Group_3_1__1__Impl : ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) ) ;
     public final void rule__MethodSimpleReturn__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1224:1: ( ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) ) )
-            // InternalPersistenceDsl.g:1225:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) )
+            // InternalPersistenceDsl.g:1230:1: ( ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) ) )
+            // InternalPersistenceDsl.g:1231:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) )
             {
-            // InternalPersistenceDsl.g:1225:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) )
-            // InternalPersistenceDsl.g:1226:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 )
+            // InternalPersistenceDsl.g:1231:1: ( ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 ) )
+            // InternalPersistenceDsl.g:1232:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 )
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getParametersAssignment_3_1_1()); 
-            // InternalPersistenceDsl.g:1227:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 )
-            // InternalPersistenceDsl.g:1227:3: rule__MethodSimpleReturn__ParametersAssignment_3_1_1
+            // InternalPersistenceDsl.g:1233:2: ( rule__MethodSimpleReturn__ParametersAssignment_3_1_1 )
+            // InternalPersistenceDsl.g:1233:3: rule__MethodSimpleReturn__ParametersAssignment_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodSimpleReturn__ParametersAssignment_3_1_1();
@@ -3977,14 +4001,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__0"
-    // InternalPersistenceDsl.g:1236:1: rule__MethodEntityReturn__Group__0 : rule__MethodEntityReturn__Group__0__Impl rule__MethodEntityReturn__Group__1 ;
+    // InternalPersistenceDsl.g:1242:1: rule__MethodEntityReturn__Group__0 : rule__MethodEntityReturn__Group__0__Impl rule__MethodEntityReturn__Group__1 ;
     public final void rule__MethodEntityReturn__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1240:1: ( rule__MethodEntityReturn__Group__0__Impl rule__MethodEntityReturn__Group__1 )
-            // InternalPersistenceDsl.g:1241:2: rule__MethodEntityReturn__Group__0__Impl rule__MethodEntityReturn__Group__1
+            // InternalPersistenceDsl.g:1246:1: ( rule__MethodEntityReturn__Group__0__Impl rule__MethodEntityReturn__Group__1 )
+            // InternalPersistenceDsl.g:1247:2: rule__MethodEntityReturn__Group__0__Impl rule__MethodEntityReturn__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__MethodEntityReturn__Group__0__Impl();
@@ -4015,21 +4039,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__0__Impl"
-    // InternalPersistenceDsl.g:1248:1: rule__MethodEntityReturn__Group__0__Impl : ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:1254:1: rule__MethodEntityReturn__Group__0__Impl : ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) ) ;
     public final void rule__MethodEntityReturn__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1252:1: ( ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:1253:1: ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:1258:1: ( ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:1259:1: ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:1253:1: ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:1254:2: ( rule__MethodEntityReturn__ReturnTypeAssignment_0 )
+            // InternalPersistenceDsl.g:1259:1: ( ( rule__MethodEntityReturn__ReturnTypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:1260:2: ( rule__MethodEntityReturn__ReturnTypeAssignment_0 )
             {
              before(grammarAccess.getMethodEntityReturnAccess().getReturnTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:1255:2: ( rule__MethodEntityReturn__ReturnTypeAssignment_0 )
-            // InternalPersistenceDsl.g:1255:3: rule__MethodEntityReturn__ReturnTypeAssignment_0
+            // InternalPersistenceDsl.g:1261:2: ( rule__MethodEntityReturn__ReturnTypeAssignment_0 )
+            // InternalPersistenceDsl.g:1261:3: rule__MethodEntityReturn__ReturnTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__ReturnTypeAssignment_0();
@@ -4062,14 +4086,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__1"
-    // InternalPersistenceDsl.g:1263:1: rule__MethodEntityReturn__Group__1 : rule__MethodEntityReturn__Group__1__Impl rule__MethodEntityReturn__Group__2 ;
+    // InternalPersistenceDsl.g:1269:1: rule__MethodEntityReturn__Group__1 : rule__MethodEntityReturn__Group__1__Impl rule__MethodEntityReturn__Group__2 ;
     public final void rule__MethodEntityReturn__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1267:1: ( rule__MethodEntityReturn__Group__1__Impl rule__MethodEntityReturn__Group__2 )
-            // InternalPersistenceDsl.g:1268:2: rule__MethodEntityReturn__Group__1__Impl rule__MethodEntityReturn__Group__2
+            // InternalPersistenceDsl.g:1273:1: ( rule__MethodEntityReturn__Group__1__Impl rule__MethodEntityReturn__Group__2 )
+            // InternalPersistenceDsl.g:1274:2: rule__MethodEntityReturn__Group__1__Impl rule__MethodEntityReturn__Group__2
             {
             pushFollow(FOLLOW_9);
             rule__MethodEntityReturn__Group__1__Impl();
@@ -4100,21 +4124,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__1__Impl"
-    // InternalPersistenceDsl.g:1275:1: rule__MethodEntityReturn__Group__1__Impl : ( ( rule__MethodEntityReturn__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:1281:1: rule__MethodEntityReturn__Group__1__Impl : ( ( rule__MethodEntityReturn__NameAssignment_1 ) ) ;
     public final void rule__MethodEntityReturn__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1279:1: ( ( ( rule__MethodEntityReturn__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:1280:1: ( ( rule__MethodEntityReturn__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:1285:1: ( ( ( rule__MethodEntityReturn__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:1286:1: ( ( rule__MethodEntityReturn__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:1280:1: ( ( rule__MethodEntityReturn__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:1281:2: ( rule__MethodEntityReturn__NameAssignment_1 )
+            // InternalPersistenceDsl.g:1286:1: ( ( rule__MethodEntityReturn__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:1287:2: ( rule__MethodEntityReturn__NameAssignment_1 )
             {
              before(grammarAccess.getMethodEntityReturnAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:1282:2: ( rule__MethodEntityReturn__NameAssignment_1 )
-            // InternalPersistenceDsl.g:1282:3: rule__MethodEntityReturn__NameAssignment_1
+            // InternalPersistenceDsl.g:1288:2: ( rule__MethodEntityReturn__NameAssignment_1 )
+            // InternalPersistenceDsl.g:1288:3: rule__MethodEntityReturn__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__NameAssignment_1();
@@ -4147,14 +4171,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__2"
-    // InternalPersistenceDsl.g:1290:1: rule__MethodEntityReturn__Group__2 : rule__MethodEntityReturn__Group__2__Impl rule__MethodEntityReturn__Group__3 ;
+    // InternalPersistenceDsl.g:1296:1: rule__MethodEntityReturn__Group__2 : rule__MethodEntityReturn__Group__2__Impl rule__MethodEntityReturn__Group__3 ;
     public final void rule__MethodEntityReturn__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1294:1: ( rule__MethodEntityReturn__Group__2__Impl rule__MethodEntityReturn__Group__3 )
-            // InternalPersistenceDsl.g:1295:2: rule__MethodEntityReturn__Group__2__Impl rule__MethodEntityReturn__Group__3
+            // InternalPersistenceDsl.g:1300:1: ( rule__MethodEntityReturn__Group__2__Impl rule__MethodEntityReturn__Group__3 )
+            // InternalPersistenceDsl.g:1301:2: rule__MethodEntityReturn__Group__2__Impl rule__MethodEntityReturn__Group__3
             {
             pushFollow(FOLLOW_10);
             rule__MethodEntityReturn__Group__2__Impl();
@@ -4185,20 +4209,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__2__Impl"
-    // InternalPersistenceDsl.g:1302:1: rule__MethodEntityReturn__Group__2__Impl : ( '(' ) ;
+    // InternalPersistenceDsl.g:1308:1: rule__MethodEntityReturn__Group__2__Impl : ( '(' ) ;
     public final void rule__MethodEntityReturn__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1306:1: ( ( '(' ) )
-            // InternalPersistenceDsl.g:1307:1: ( '(' )
+            // InternalPersistenceDsl.g:1312:1: ( ( '(' ) )
+            // InternalPersistenceDsl.g:1313:1: ( '(' )
             {
-            // InternalPersistenceDsl.g:1307:1: ( '(' )
-            // InternalPersistenceDsl.g:1308:2: '('
+            // InternalPersistenceDsl.g:1313:1: ( '(' )
+            // InternalPersistenceDsl.g:1314:2: '('
             {
              before(grammarAccess.getMethodEntityReturnAccess().getLeftParenthesisKeyword_2()); 
-            match(input,24,FOLLOW_2); 
+            match(input,25,FOLLOW_2); 
              after(grammarAccess.getMethodEntityReturnAccess().getLeftParenthesisKeyword_2()); 
 
             }
@@ -4222,14 +4246,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__3"
-    // InternalPersistenceDsl.g:1317:1: rule__MethodEntityReturn__Group__3 : rule__MethodEntityReturn__Group__3__Impl rule__MethodEntityReturn__Group__4 ;
+    // InternalPersistenceDsl.g:1323:1: rule__MethodEntityReturn__Group__3 : rule__MethodEntityReturn__Group__3__Impl rule__MethodEntityReturn__Group__4 ;
     public final void rule__MethodEntityReturn__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1321:1: ( rule__MethodEntityReturn__Group__3__Impl rule__MethodEntityReturn__Group__4 )
-            // InternalPersistenceDsl.g:1322:2: rule__MethodEntityReturn__Group__3__Impl rule__MethodEntityReturn__Group__4
+            // InternalPersistenceDsl.g:1327:1: ( rule__MethodEntityReturn__Group__3__Impl rule__MethodEntityReturn__Group__4 )
+            // InternalPersistenceDsl.g:1328:2: rule__MethodEntityReturn__Group__3__Impl rule__MethodEntityReturn__Group__4
             {
             pushFollow(FOLLOW_10);
             rule__MethodEntityReturn__Group__3__Impl();
@@ -4260,20 +4284,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__3__Impl"
-    // InternalPersistenceDsl.g:1329:1: rule__MethodEntityReturn__Group__3__Impl : ( ( rule__MethodEntityReturn__Group_3__0 )? ) ;
+    // InternalPersistenceDsl.g:1335:1: rule__MethodEntityReturn__Group__3__Impl : ( ( rule__MethodEntityReturn__Group_3__0 )? ) ;
     public final void rule__MethodEntityReturn__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1333:1: ( ( ( rule__MethodEntityReturn__Group_3__0 )? ) )
-            // InternalPersistenceDsl.g:1334:1: ( ( rule__MethodEntityReturn__Group_3__0 )? )
+            // InternalPersistenceDsl.g:1339:1: ( ( ( rule__MethodEntityReturn__Group_3__0 )? ) )
+            // InternalPersistenceDsl.g:1340:1: ( ( rule__MethodEntityReturn__Group_3__0 )? )
             {
-            // InternalPersistenceDsl.g:1334:1: ( ( rule__MethodEntityReturn__Group_3__0 )? )
-            // InternalPersistenceDsl.g:1335:2: ( rule__MethodEntityReturn__Group_3__0 )?
+            // InternalPersistenceDsl.g:1340:1: ( ( rule__MethodEntityReturn__Group_3__0 )? )
+            // InternalPersistenceDsl.g:1341:2: ( rule__MethodEntityReturn__Group_3__0 )?
             {
              before(grammarAccess.getMethodEntityReturnAccess().getGroup_3()); 
-            // InternalPersistenceDsl.g:1336:2: ( rule__MethodEntityReturn__Group_3__0 )?
+            // InternalPersistenceDsl.g:1342:2: ( rule__MethodEntityReturn__Group_3__0 )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -4282,7 +4306,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             }
             switch (alt14) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1336:3: rule__MethodEntityReturn__Group_3__0
+                    // InternalPersistenceDsl.g:1342:3: rule__MethodEntityReturn__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodEntityReturn__Group_3__0();
@@ -4318,14 +4342,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__4"
-    // InternalPersistenceDsl.g:1344:1: rule__MethodEntityReturn__Group__4 : rule__MethodEntityReturn__Group__4__Impl rule__MethodEntityReturn__Group__5 ;
+    // InternalPersistenceDsl.g:1350:1: rule__MethodEntityReturn__Group__4 : rule__MethodEntityReturn__Group__4__Impl rule__MethodEntityReturn__Group__5 ;
     public final void rule__MethodEntityReturn__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1348:1: ( rule__MethodEntityReturn__Group__4__Impl rule__MethodEntityReturn__Group__5 )
-            // InternalPersistenceDsl.g:1349:2: rule__MethodEntityReturn__Group__4__Impl rule__MethodEntityReturn__Group__5
+            // InternalPersistenceDsl.g:1354:1: ( rule__MethodEntityReturn__Group__4__Impl rule__MethodEntityReturn__Group__5 )
+            // InternalPersistenceDsl.g:1355:2: rule__MethodEntityReturn__Group__4__Impl rule__MethodEntityReturn__Group__5
             {
             pushFollow(FOLLOW_11);
             rule__MethodEntityReturn__Group__4__Impl();
@@ -4356,20 +4380,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__4__Impl"
-    // InternalPersistenceDsl.g:1356:1: rule__MethodEntityReturn__Group__4__Impl : ( ')' ) ;
+    // InternalPersistenceDsl.g:1362:1: rule__MethodEntityReturn__Group__4__Impl : ( ')' ) ;
     public final void rule__MethodEntityReturn__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1360:1: ( ( ')' ) )
-            // InternalPersistenceDsl.g:1361:1: ( ')' )
+            // InternalPersistenceDsl.g:1366:1: ( ( ')' ) )
+            // InternalPersistenceDsl.g:1367:1: ( ')' )
             {
-            // InternalPersistenceDsl.g:1361:1: ( ')' )
-            // InternalPersistenceDsl.g:1362:2: ')'
+            // InternalPersistenceDsl.g:1367:1: ( ')' )
+            // InternalPersistenceDsl.g:1368:2: ')'
             {
              before(grammarAccess.getMethodEntityReturnAccess().getRightParenthesisKeyword_4()); 
-            match(input,25,FOLLOW_2); 
+            match(input,26,FOLLOW_2); 
              after(grammarAccess.getMethodEntityReturnAccess().getRightParenthesisKeyword_4()); 
 
             }
@@ -4393,14 +4417,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__5"
-    // InternalPersistenceDsl.g:1371:1: rule__MethodEntityReturn__Group__5 : rule__MethodEntityReturn__Group__5__Impl ;
+    // InternalPersistenceDsl.g:1377:1: rule__MethodEntityReturn__Group__5 : rule__MethodEntityReturn__Group__5__Impl ;
     public final void rule__MethodEntityReturn__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1375:1: ( rule__MethodEntityReturn__Group__5__Impl )
-            // InternalPersistenceDsl.g:1376:2: rule__MethodEntityReturn__Group__5__Impl
+            // InternalPersistenceDsl.g:1381:1: ( rule__MethodEntityReturn__Group__5__Impl )
+            // InternalPersistenceDsl.g:1382:2: rule__MethodEntityReturn__Group__5__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__Group__5__Impl();
@@ -4426,29 +4450,29 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group__5__Impl"
-    // InternalPersistenceDsl.g:1382:1: rule__MethodEntityReturn__Group__5__Impl : ( ( rule__MethodEntityReturn__NullableAssignment_5 )? ) ;
+    // InternalPersistenceDsl.g:1388:1: rule__MethodEntityReturn__Group__5__Impl : ( ( rule__MethodEntityReturn__NullableAssignment_5 )? ) ;
     public final void rule__MethodEntityReturn__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1386:1: ( ( ( rule__MethodEntityReturn__NullableAssignment_5 )? ) )
-            // InternalPersistenceDsl.g:1387:1: ( ( rule__MethodEntityReturn__NullableAssignment_5 )? )
+            // InternalPersistenceDsl.g:1392:1: ( ( ( rule__MethodEntityReturn__NullableAssignment_5 )? ) )
+            // InternalPersistenceDsl.g:1393:1: ( ( rule__MethodEntityReturn__NullableAssignment_5 )? )
             {
-            // InternalPersistenceDsl.g:1387:1: ( ( rule__MethodEntityReturn__NullableAssignment_5 )? )
-            // InternalPersistenceDsl.g:1388:2: ( rule__MethodEntityReturn__NullableAssignment_5 )?
+            // InternalPersistenceDsl.g:1393:1: ( ( rule__MethodEntityReturn__NullableAssignment_5 )? )
+            // InternalPersistenceDsl.g:1394:2: ( rule__MethodEntityReturn__NullableAssignment_5 )?
             {
              before(grammarAccess.getMethodEntityReturnAccess().getNullableAssignment_5()); 
-            // InternalPersistenceDsl.g:1389:2: ( rule__MethodEntityReturn__NullableAssignment_5 )?
+            // InternalPersistenceDsl.g:1395:2: ( rule__MethodEntityReturn__NullableAssignment_5 )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
-            if ( (LA15_0==30) ) {
+            if ( (LA15_0==31) ) {
                 alt15=1;
             }
             switch (alt15) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1389:3: rule__MethodEntityReturn__NullableAssignment_5
+                    // InternalPersistenceDsl.g:1395:3: rule__MethodEntityReturn__NullableAssignment_5
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodEntityReturn__NullableAssignment_5();
@@ -4484,14 +4508,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3__0"
-    // InternalPersistenceDsl.g:1398:1: rule__MethodEntityReturn__Group_3__0 : rule__MethodEntityReturn__Group_3__0__Impl rule__MethodEntityReturn__Group_3__1 ;
+    // InternalPersistenceDsl.g:1404:1: rule__MethodEntityReturn__Group_3__0 : rule__MethodEntityReturn__Group_3__0__Impl rule__MethodEntityReturn__Group_3__1 ;
     public final void rule__MethodEntityReturn__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1402:1: ( rule__MethodEntityReturn__Group_3__0__Impl rule__MethodEntityReturn__Group_3__1 )
-            // InternalPersistenceDsl.g:1403:2: rule__MethodEntityReturn__Group_3__0__Impl rule__MethodEntityReturn__Group_3__1
+            // InternalPersistenceDsl.g:1408:1: ( rule__MethodEntityReturn__Group_3__0__Impl rule__MethodEntityReturn__Group_3__1 )
+            // InternalPersistenceDsl.g:1409:2: rule__MethodEntityReturn__Group_3__0__Impl rule__MethodEntityReturn__Group_3__1
             {
             pushFollow(FOLLOW_12);
             rule__MethodEntityReturn__Group_3__0__Impl();
@@ -4522,21 +4546,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3__0__Impl"
-    // InternalPersistenceDsl.g:1410:1: rule__MethodEntityReturn__Group_3__0__Impl : ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) ) ;
+    // InternalPersistenceDsl.g:1416:1: rule__MethodEntityReturn__Group_3__0__Impl : ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) ) ;
     public final void rule__MethodEntityReturn__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1414:1: ( ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) ) )
-            // InternalPersistenceDsl.g:1415:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) )
+            // InternalPersistenceDsl.g:1420:1: ( ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) ) )
+            // InternalPersistenceDsl.g:1421:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) )
             {
-            // InternalPersistenceDsl.g:1415:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) )
-            // InternalPersistenceDsl.g:1416:2: ( rule__MethodEntityReturn__ParametersAssignment_3_0 )
+            // InternalPersistenceDsl.g:1421:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_0 ) )
+            // InternalPersistenceDsl.g:1422:2: ( rule__MethodEntityReturn__ParametersAssignment_3_0 )
             {
              before(grammarAccess.getMethodEntityReturnAccess().getParametersAssignment_3_0()); 
-            // InternalPersistenceDsl.g:1417:2: ( rule__MethodEntityReturn__ParametersAssignment_3_0 )
-            // InternalPersistenceDsl.g:1417:3: rule__MethodEntityReturn__ParametersAssignment_3_0
+            // InternalPersistenceDsl.g:1423:2: ( rule__MethodEntityReturn__ParametersAssignment_3_0 )
+            // InternalPersistenceDsl.g:1423:3: rule__MethodEntityReturn__ParametersAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__ParametersAssignment_3_0();
@@ -4569,14 +4593,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3__1"
-    // InternalPersistenceDsl.g:1425:1: rule__MethodEntityReturn__Group_3__1 : rule__MethodEntityReturn__Group_3__1__Impl ;
+    // InternalPersistenceDsl.g:1431:1: rule__MethodEntityReturn__Group_3__1 : rule__MethodEntityReturn__Group_3__1__Impl ;
     public final void rule__MethodEntityReturn__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1429:1: ( rule__MethodEntityReturn__Group_3__1__Impl )
-            // InternalPersistenceDsl.g:1430:2: rule__MethodEntityReturn__Group_3__1__Impl
+            // InternalPersistenceDsl.g:1435:1: ( rule__MethodEntityReturn__Group_3__1__Impl )
+            // InternalPersistenceDsl.g:1436:2: rule__MethodEntityReturn__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__Group_3__1__Impl();
@@ -4602,33 +4626,33 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3__1__Impl"
-    // InternalPersistenceDsl.g:1436:1: rule__MethodEntityReturn__Group_3__1__Impl : ( ( rule__MethodEntityReturn__Group_3_1__0 )* ) ;
+    // InternalPersistenceDsl.g:1442:1: rule__MethodEntityReturn__Group_3__1__Impl : ( ( rule__MethodEntityReturn__Group_3_1__0 )* ) ;
     public final void rule__MethodEntityReturn__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1440:1: ( ( ( rule__MethodEntityReturn__Group_3_1__0 )* ) )
-            // InternalPersistenceDsl.g:1441:1: ( ( rule__MethodEntityReturn__Group_3_1__0 )* )
+            // InternalPersistenceDsl.g:1446:1: ( ( ( rule__MethodEntityReturn__Group_3_1__0 )* ) )
+            // InternalPersistenceDsl.g:1447:1: ( ( rule__MethodEntityReturn__Group_3_1__0 )* )
             {
-            // InternalPersistenceDsl.g:1441:1: ( ( rule__MethodEntityReturn__Group_3_1__0 )* )
-            // InternalPersistenceDsl.g:1442:2: ( rule__MethodEntityReturn__Group_3_1__0 )*
+            // InternalPersistenceDsl.g:1447:1: ( ( rule__MethodEntityReturn__Group_3_1__0 )* )
+            // InternalPersistenceDsl.g:1448:2: ( rule__MethodEntityReturn__Group_3_1__0 )*
             {
              before(grammarAccess.getMethodEntityReturnAccess().getGroup_3_1()); 
-            // InternalPersistenceDsl.g:1443:2: ( rule__MethodEntityReturn__Group_3_1__0 )*
+            // InternalPersistenceDsl.g:1449:2: ( rule__MethodEntityReturn__Group_3_1__0 )*
             loop16:
             do {
                 int alt16=2;
                 int LA16_0 = input.LA(1);
 
-                if ( (LA16_0==26) ) {
+                if ( (LA16_0==27) ) {
                     alt16=1;
                 }
 
 
                 switch (alt16) {
             	case 1 :
-            	    // InternalPersistenceDsl.g:1443:3: rule__MethodEntityReturn__Group_3_1__0
+            	    // InternalPersistenceDsl.g:1449:3: rule__MethodEntityReturn__Group_3_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__MethodEntityReturn__Group_3_1__0();
@@ -4667,14 +4691,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3_1__0"
-    // InternalPersistenceDsl.g:1452:1: rule__MethodEntityReturn__Group_3_1__0 : rule__MethodEntityReturn__Group_3_1__0__Impl rule__MethodEntityReturn__Group_3_1__1 ;
+    // InternalPersistenceDsl.g:1458:1: rule__MethodEntityReturn__Group_3_1__0 : rule__MethodEntityReturn__Group_3_1__0__Impl rule__MethodEntityReturn__Group_3_1__1 ;
     public final void rule__MethodEntityReturn__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1456:1: ( rule__MethodEntityReturn__Group_3_1__0__Impl rule__MethodEntityReturn__Group_3_1__1 )
-            // InternalPersistenceDsl.g:1457:2: rule__MethodEntityReturn__Group_3_1__0__Impl rule__MethodEntityReturn__Group_3_1__1
+            // InternalPersistenceDsl.g:1462:1: ( rule__MethodEntityReturn__Group_3_1__0__Impl rule__MethodEntityReturn__Group_3_1__1 )
+            // InternalPersistenceDsl.g:1463:2: rule__MethodEntityReturn__Group_3_1__0__Impl rule__MethodEntityReturn__Group_3_1__1
             {
             pushFollow(FOLLOW_14);
             rule__MethodEntityReturn__Group_3_1__0__Impl();
@@ -4705,20 +4729,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3_1__0__Impl"
-    // InternalPersistenceDsl.g:1464:1: rule__MethodEntityReturn__Group_3_1__0__Impl : ( ',' ) ;
+    // InternalPersistenceDsl.g:1470:1: rule__MethodEntityReturn__Group_3_1__0__Impl : ( ',' ) ;
     public final void rule__MethodEntityReturn__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1468:1: ( ( ',' ) )
-            // InternalPersistenceDsl.g:1469:1: ( ',' )
+            // InternalPersistenceDsl.g:1474:1: ( ( ',' ) )
+            // InternalPersistenceDsl.g:1475:1: ( ',' )
             {
-            // InternalPersistenceDsl.g:1469:1: ( ',' )
-            // InternalPersistenceDsl.g:1470:2: ','
+            // InternalPersistenceDsl.g:1475:1: ( ',' )
+            // InternalPersistenceDsl.g:1476:2: ','
             {
              before(grammarAccess.getMethodEntityReturnAccess().getCommaKeyword_3_1_0()); 
-            match(input,26,FOLLOW_2); 
+            match(input,27,FOLLOW_2); 
              after(grammarAccess.getMethodEntityReturnAccess().getCommaKeyword_3_1_0()); 
 
             }
@@ -4742,14 +4766,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3_1__1"
-    // InternalPersistenceDsl.g:1479:1: rule__MethodEntityReturn__Group_3_1__1 : rule__MethodEntityReturn__Group_3_1__1__Impl ;
+    // InternalPersistenceDsl.g:1485:1: rule__MethodEntityReturn__Group_3_1__1 : rule__MethodEntityReturn__Group_3_1__1__Impl ;
     public final void rule__MethodEntityReturn__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1483:1: ( rule__MethodEntityReturn__Group_3_1__1__Impl )
-            // InternalPersistenceDsl.g:1484:2: rule__MethodEntityReturn__Group_3_1__1__Impl
+            // InternalPersistenceDsl.g:1489:1: ( rule__MethodEntityReturn__Group_3_1__1__Impl )
+            // InternalPersistenceDsl.g:1490:2: rule__MethodEntityReturn__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__Group_3_1__1__Impl();
@@ -4775,21 +4799,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__Group_3_1__1__Impl"
-    // InternalPersistenceDsl.g:1490:1: rule__MethodEntityReturn__Group_3_1__1__Impl : ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) ) ;
+    // InternalPersistenceDsl.g:1496:1: rule__MethodEntityReturn__Group_3_1__1__Impl : ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) ) ;
     public final void rule__MethodEntityReturn__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1494:1: ( ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) ) )
-            // InternalPersistenceDsl.g:1495:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) )
+            // InternalPersistenceDsl.g:1500:1: ( ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) ) )
+            // InternalPersistenceDsl.g:1501:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) )
             {
-            // InternalPersistenceDsl.g:1495:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) )
-            // InternalPersistenceDsl.g:1496:2: ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 )
+            // InternalPersistenceDsl.g:1501:1: ( ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 ) )
+            // InternalPersistenceDsl.g:1502:2: ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 )
             {
              before(grammarAccess.getMethodEntityReturnAccess().getParametersAssignment_3_1_1()); 
-            // InternalPersistenceDsl.g:1497:2: ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 )
-            // InternalPersistenceDsl.g:1497:3: rule__MethodEntityReturn__ParametersAssignment_3_1_1
+            // InternalPersistenceDsl.g:1503:2: ( rule__MethodEntityReturn__ParametersAssignment_3_1_1 )
+            // InternalPersistenceDsl.g:1503:3: rule__MethodEntityReturn__ParametersAssignment_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodEntityReturn__ParametersAssignment_3_1_1();
@@ -4822,14 +4846,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__0"
-    // InternalPersistenceDsl.g:1506:1: rule__MethodDtoReturn__Group__0 : rule__MethodDtoReturn__Group__0__Impl rule__MethodDtoReturn__Group__1 ;
+    // InternalPersistenceDsl.g:1512:1: rule__MethodDtoReturn__Group__0 : rule__MethodDtoReturn__Group__0__Impl rule__MethodDtoReturn__Group__1 ;
     public final void rule__MethodDtoReturn__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1510:1: ( rule__MethodDtoReturn__Group__0__Impl rule__MethodDtoReturn__Group__1 )
-            // InternalPersistenceDsl.g:1511:2: rule__MethodDtoReturn__Group__0__Impl rule__MethodDtoReturn__Group__1
+            // InternalPersistenceDsl.g:1516:1: ( rule__MethodDtoReturn__Group__0__Impl rule__MethodDtoReturn__Group__1 )
+            // InternalPersistenceDsl.g:1517:2: rule__MethodDtoReturn__Group__0__Impl rule__MethodDtoReturn__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__MethodDtoReturn__Group__0__Impl();
@@ -4860,20 +4884,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__0__Impl"
-    // InternalPersistenceDsl.g:1518:1: rule__MethodDtoReturn__Group__0__Impl : ( '#' ) ;
+    // InternalPersistenceDsl.g:1524:1: rule__MethodDtoReturn__Group__0__Impl : ( '#' ) ;
     public final void rule__MethodDtoReturn__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1522:1: ( ( '#' ) )
-            // InternalPersistenceDsl.g:1523:1: ( '#' )
+            // InternalPersistenceDsl.g:1528:1: ( ( '#' ) )
+            // InternalPersistenceDsl.g:1529:1: ( '#' )
             {
-            // InternalPersistenceDsl.g:1523:1: ( '#' )
-            // InternalPersistenceDsl.g:1524:2: '#'
+            // InternalPersistenceDsl.g:1529:1: ( '#' )
+            // InternalPersistenceDsl.g:1530:2: '#'
             {
              before(grammarAccess.getMethodDtoReturnAccess().getNumberSignKeyword_0()); 
-            match(input,27,FOLLOW_2); 
+            match(input,28,FOLLOW_2); 
              after(grammarAccess.getMethodDtoReturnAccess().getNumberSignKeyword_0()); 
 
             }
@@ -4897,14 +4921,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__1"
-    // InternalPersistenceDsl.g:1533:1: rule__MethodDtoReturn__Group__1 : rule__MethodDtoReturn__Group__1__Impl rule__MethodDtoReturn__Group__2 ;
+    // InternalPersistenceDsl.g:1539:1: rule__MethodDtoReturn__Group__1 : rule__MethodDtoReturn__Group__1__Impl rule__MethodDtoReturn__Group__2 ;
     public final void rule__MethodDtoReturn__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1537:1: ( rule__MethodDtoReturn__Group__1__Impl rule__MethodDtoReturn__Group__2 )
-            // InternalPersistenceDsl.g:1538:2: rule__MethodDtoReturn__Group__1__Impl rule__MethodDtoReturn__Group__2
+            // InternalPersistenceDsl.g:1543:1: ( rule__MethodDtoReturn__Group__1__Impl rule__MethodDtoReturn__Group__2 )
+            // InternalPersistenceDsl.g:1544:2: rule__MethodDtoReturn__Group__1__Impl rule__MethodDtoReturn__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__MethodDtoReturn__Group__1__Impl();
@@ -4935,21 +4959,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__1__Impl"
-    // InternalPersistenceDsl.g:1545:1: rule__MethodDtoReturn__Group__1__Impl : ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:1551:1: rule__MethodDtoReturn__Group__1__Impl : ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) ) ;
     public final void rule__MethodDtoReturn__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1549:1: ( ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:1550:1: ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) )
+            // InternalPersistenceDsl.g:1555:1: ( ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:1556:1: ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:1550:1: ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) )
-            // InternalPersistenceDsl.g:1551:2: ( rule__MethodDtoReturn__ReturnTypeAssignment_1 )
+            // InternalPersistenceDsl.g:1556:1: ( ( rule__MethodDtoReturn__ReturnTypeAssignment_1 ) )
+            // InternalPersistenceDsl.g:1557:2: ( rule__MethodDtoReturn__ReturnTypeAssignment_1 )
             {
              before(grammarAccess.getMethodDtoReturnAccess().getReturnTypeAssignment_1()); 
-            // InternalPersistenceDsl.g:1552:2: ( rule__MethodDtoReturn__ReturnTypeAssignment_1 )
-            // InternalPersistenceDsl.g:1552:3: rule__MethodDtoReturn__ReturnTypeAssignment_1
+            // InternalPersistenceDsl.g:1558:2: ( rule__MethodDtoReturn__ReturnTypeAssignment_1 )
+            // InternalPersistenceDsl.g:1558:3: rule__MethodDtoReturn__ReturnTypeAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__ReturnTypeAssignment_1();
@@ -4982,14 +5006,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__2"
-    // InternalPersistenceDsl.g:1560:1: rule__MethodDtoReturn__Group__2 : rule__MethodDtoReturn__Group__2__Impl rule__MethodDtoReturn__Group__3 ;
+    // InternalPersistenceDsl.g:1566:1: rule__MethodDtoReturn__Group__2 : rule__MethodDtoReturn__Group__2__Impl rule__MethodDtoReturn__Group__3 ;
     public final void rule__MethodDtoReturn__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1564:1: ( rule__MethodDtoReturn__Group__2__Impl rule__MethodDtoReturn__Group__3 )
-            // InternalPersistenceDsl.g:1565:2: rule__MethodDtoReturn__Group__2__Impl rule__MethodDtoReturn__Group__3
+            // InternalPersistenceDsl.g:1570:1: ( rule__MethodDtoReturn__Group__2__Impl rule__MethodDtoReturn__Group__3 )
+            // InternalPersistenceDsl.g:1571:2: rule__MethodDtoReturn__Group__2__Impl rule__MethodDtoReturn__Group__3
             {
             pushFollow(FOLLOW_9);
             rule__MethodDtoReturn__Group__2__Impl();
@@ -5020,21 +5044,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__2__Impl"
-    // InternalPersistenceDsl.g:1572:1: rule__MethodDtoReturn__Group__2__Impl : ( ( rule__MethodDtoReturn__NameAssignment_2 ) ) ;
+    // InternalPersistenceDsl.g:1578:1: rule__MethodDtoReturn__Group__2__Impl : ( ( rule__MethodDtoReturn__NameAssignment_2 ) ) ;
     public final void rule__MethodDtoReturn__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1576:1: ( ( ( rule__MethodDtoReturn__NameAssignment_2 ) ) )
-            // InternalPersistenceDsl.g:1577:1: ( ( rule__MethodDtoReturn__NameAssignment_2 ) )
+            // InternalPersistenceDsl.g:1582:1: ( ( ( rule__MethodDtoReturn__NameAssignment_2 ) ) )
+            // InternalPersistenceDsl.g:1583:1: ( ( rule__MethodDtoReturn__NameAssignment_2 ) )
             {
-            // InternalPersistenceDsl.g:1577:1: ( ( rule__MethodDtoReturn__NameAssignment_2 ) )
-            // InternalPersistenceDsl.g:1578:2: ( rule__MethodDtoReturn__NameAssignment_2 )
+            // InternalPersistenceDsl.g:1583:1: ( ( rule__MethodDtoReturn__NameAssignment_2 ) )
+            // InternalPersistenceDsl.g:1584:2: ( rule__MethodDtoReturn__NameAssignment_2 )
             {
              before(grammarAccess.getMethodDtoReturnAccess().getNameAssignment_2()); 
-            // InternalPersistenceDsl.g:1579:2: ( rule__MethodDtoReturn__NameAssignment_2 )
-            // InternalPersistenceDsl.g:1579:3: rule__MethodDtoReturn__NameAssignment_2
+            // InternalPersistenceDsl.g:1585:2: ( rule__MethodDtoReturn__NameAssignment_2 )
+            // InternalPersistenceDsl.g:1585:3: rule__MethodDtoReturn__NameAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__NameAssignment_2();
@@ -5067,14 +5091,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__3"
-    // InternalPersistenceDsl.g:1587:1: rule__MethodDtoReturn__Group__3 : rule__MethodDtoReturn__Group__3__Impl rule__MethodDtoReturn__Group__4 ;
+    // InternalPersistenceDsl.g:1593:1: rule__MethodDtoReturn__Group__3 : rule__MethodDtoReturn__Group__3__Impl rule__MethodDtoReturn__Group__4 ;
     public final void rule__MethodDtoReturn__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1591:1: ( rule__MethodDtoReturn__Group__3__Impl rule__MethodDtoReturn__Group__4 )
-            // InternalPersistenceDsl.g:1592:2: rule__MethodDtoReturn__Group__3__Impl rule__MethodDtoReturn__Group__4
+            // InternalPersistenceDsl.g:1597:1: ( rule__MethodDtoReturn__Group__3__Impl rule__MethodDtoReturn__Group__4 )
+            // InternalPersistenceDsl.g:1598:2: rule__MethodDtoReturn__Group__3__Impl rule__MethodDtoReturn__Group__4
             {
             pushFollow(FOLLOW_10);
             rule__MethodDtoReturn__Group__3__Impl();
@@ -5105,20 +5129,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__3__Impl"
-    // InternalPersistenceDsl.g:1599:1: rule__MethodDtoReturn__Group__3__Impl : ( '(' ) ;
+    // InternalPersistenceDsl.g:1605:1: rule__MethodDtoReturn__Group__3__Impl : ( '(' ) ;
     public final void rule__MethodDtoReturn__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1603:1: ( ( '(' ) )
-            // InternalPersistenceDsl.g:1604:1: ( '(' )
+            // InternalPersistenceDsl.g:1609:1: ( ( '(' ) )
+            // InternalPersistenceDsl.g:1610:1: ( '(' )
             {
-            // InternalPersistenceDsl.g:1604:1: ( '(' )
-            // InternalPersistenceDsl.g:1605:2: '('
+            // InternalPersistenceDsl.g:1610:1: ( '(' )
+            // InternalPersistenceDsl.g:1611:2: '('
             {
              before(grammarAccess.getMethodDtoReturnAccess().getLeftParenthesisKeyword_3()); 
-            match(input,24,FOLLOW_2); 
+            match(input,25,FOLLOW_2); 
              after(grammarAccess.getMethodDtoReturnAccess().getLeftParenthesisKeyword_3()); 
 
             }
@@ -5142,14 +5166,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__4"
-    // InternalPersistenceDsl.g:1614:1: rule__MethodDtoReturn__Group__4 : rule__MethodDtoReturn__Group__4__Impl rule__MethodDtoReturn__Group__5 ;
+    // InternalPersistenceDsl.g:1620:1: rule__MethodDtoReturn__Group__4 : rule__MethodDtoReturn__Group__4__Impl rule__MethodDtoReturn__Group__5 ;
     public final void rule__MethodDtoReturn__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1618:1: ( rule__MethodDtoReturn__Group__4__Impl rule__MethodDtoReturn__Group__5 )
-            // InternalPersistenceDsl.g:1619:2: rule__MethodDtoReturn__Group__4__Impl rule__MethodDtoReturn__Group__5
+            // InternalPersistenceDsl.g:1624:1: ( rule__MethodDtoReturn__Group__4__Impl rule__MethodDtoReturn__Group__5 )
+            // InternalPersistenceDsl.g:1625:2: rule__MethodDtoReturn__Group__4__Impl rule__MethodDtoReturn__Group__5
             {
             pushFollow(FOLLOW_10);
             rule__MethodDtoReturn__Group__4__Impl();
@@ -5180,20 +5204,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__4__Impl"
-    // InternalPersistenceDsl.g:1626:1: rule__MethodDtoReturn__Group__4__Impl : ( ( rule__MethodDtoReturn__Group_4__0 )? ) ;
+    // InternalPersistenceDsl.g:1632:1: rule__MethodDtoReturn__Group__4__Impl : ( ( rule__MethodDtoReturn__Group_4__0 )? ) ;
     public final void rule__MethodDtoReturn__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1630:1: ( ( ( rule__MethodDtoReturn__Group_4__0 )? ) )
-            // InternalPersistenceDsl.g:1631:1: ( ( rule__MethodDtoReturn__Group_4__0 )? )
+            // InternalPersistenceDsl.g:1636:1: ( ( ( rule__MethodDtoReturn__Group_4__0 )? ) )
+            // InternalPersistenceDsl.g:1637:1: ( ( rule__MethodDtoReturn__Group_4__0 )? )
             {
-            // InternalPersistenceDsl.g:1631:1: ( ( rule__MethodDtoReturn__Group_4__0 )? )
-            // InternalPersistenceDsl.g:1632:2: ( rule__MethodDtoReturn__Group_4__0 )?
+            // InternalPersistenceDsl.g:1637:1: ( ( rule__MethodDtoReturn__Group_4__0 )? )
+            // InternalPersistenceDsl.g:1638:2: ( rule__MethodDtoReturn__Group_4__0 )?
             {
              before(grammarAccess.getMethodDtoReturnAccess().getGroup_4()); 
-            // InternalPersistenceDsl.g:1633:2: ( rule__MethodDtoReturn__Group_4__0 )?
+            // InternalPersistenceDsl.g:1639:2: ( rule__MethodDtoReturn__Group_4__0 )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -5202,7 +5226,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             }
             switch (alt17) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1633:3: rule__MethodDtoReturn__Group_4__0
+                    // InternalPersistenceDsl.g:1639:3: rule__MethodDtoReturn__Group_4__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodDtoReturn__Group_4__0();
@@ -5238,14 +5262,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__5"
-    // InternalPersistenceDsl.g:1641:1: rule__MethodDtoReturn__Group__5 : rule__MethodDtoReturn__Group__5__Impl rule__MethodDtoReturn__Group__6 ;
+    // InternalPersistenceDsl.g:1647:1: rule__MethodDtoReturn__Group__5 : rule__MethodDtoReturn__Group__5__Impl rule__MethodDtoReturn__Group__6 ;
     public final void rule__MethodDtoReturn__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1645:1: ( rule__MethodDtoReturn__Group__5__Impl rule__MethodDtoReturn__Group__6 )
-            // InternalPersistenceDsl.g:1646:2: rule__MethodDtoReturn__Group__5__Impl rule__MethodDtoReturn__Group__6
+            // InternalPersistenceDsl.g:1651:1: ( rule__MethodDtoReturn__Group__5__Impl rule__MethodDtoReturn__Group__6 )
+            // InternalPersistenceDsl.g:1652:2: rule__MethodDtoReturn__Group__5__Impl rule__MethodDtoReturn__Group__6
             {
             pushFollow(FOLLOW_11);
             rule__MethodDtoReturn__Group__5__Impl();
@@ -5276,20 +5300,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__5__Impl"
-    // InternalPersistenceDsl.g:1653:1: rule__MethodDtoReturn__Group__5__Impl : ( ')' ) ;
+    // InternalPersistenceDsl.g:1659:1: rule__MethodDtoReturn__Group__5__Impl : ( ')' ) ;
     public final void rule__MethodDtoReturn__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1657:1: ( ( ')' ) )
-            // InternalPersistenceDsl.g:1658:1: ( ')' )
+            // InternalPersistenceDsl.g:1663:1: ( ( ')' ) )
+            // InternalPersistenceDsl.g:1664:1: ( ')' )
             {
-            // InternalPersistenceDsl.g:1658:1: ( ')' )
-            // InternalPersistenceDsl.g:1659:2: ')'
+            // InternalPersistenceDsl.g:1664:1: ( ')' )
+            // InternalPersistenceDsl.g:1665:2: ')'
             {
              before(grammarAccess.getMethodDtoReturnAccess().getRightParenthesisKeyword_5()); 
-            match(input,25,FOLLOW_2); 
+            match(input,26,FOLLOW_2); 
              after(grammarAccess.getMethodDtoReturnAccess().getRightParenthesisKeyword_5()); 
 
             }
@@ -5313,14 +5337,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__6"
-    // InternalPersistenceDsl.g:1668:1: rule__MethodDtoReturn__Group__6 : rule__MethodDtoReturn__Group__6__Impl ;
+    // InternalPersistenceDsl.g:1674:1: rule__MethodDtoReturn__Group__6 : rule__MethodDtoReturn__Group__6__Impl ;
     public final void rule__MethodDtoReturn__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1672:1: ( rule__MethodDtoReturn__Group__6__Impl )
-            // InternalPersistenceDsl.g:1673:2: rule__MethodDtoReturn__Group__6__Impl
+            // InternalPersistenceDsl.g:1678:1: ( rule__MethodDtoReturn__Group__6__Impl )
+            // InternalPersistenceDsl.g:1679:2: rule__MethodDtoReturn__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__Group__6__Impl();
@@ -5346,29 +5370,29 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group__6__Impl"
-    // InternalPersistenceDsl.g:1679:1: rule__MethodDtoReturn__Group__6__Impl : ( ( rule__MethodDtoReturn__NullableAssignment_6 )? ) ;
+    // InternalPersistenceDsl.g:1685:1: rule__MethodDtoReturn__Group__6__Impl : ( ( rule__MethodDtoReturn__NullableAssignment_6 )? ) ;
     public final void rule__MethodDtoReturn__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1683:1: ( ( ( rule__MethodDtoReturn__NullableAssignment_6 )? ) )
-            // InternalPersistenceDsl.g:1684:1: ( ( rule__MethodDtoReturn__NullableAssignment_6 )? )
+            // InternalPersistenceDsl.g:1689:1: ( ( ( rule__MethodDtoReturn__NullableAssignment_6 )? ) )
+            // InternalPersistenceDsl.g:1690:1: ( ( rule__MethodDtoReturn__NullableAssignment_6 )? )
             {
-            // InternalPersistenceDsl.g:1684:1: ( ( rule__MethodDtoReturn__NullableAssignment_6 )? )
-            // InternalPersistenceDsl.g:1685:2: ( rule__MethodDtoReturn__NullableAssignment_6 )?
+            // InternalPersistenceDsl.g:1690:1: ( ( rule__MethodDtoReturn__NullableAssignment_6 )? )
+            // InternalPersistenceDsl.g:1691:2: ( rule__MethodDtoReturn__NullableAssignment_6 )?
             {
              before(grammarAccess.getMethodDtoReturnAccess().getNullableAssignment_6()); 
-            // InternalPersistenceDsl.g:1686:2: ( rule__MethodDtoReturn__NullableAssignment_6 )?
+            // InternalPersistenceDsl.g:1692:2: ( rule__MethodDtoReturn__NullableAssignment_6 )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==30) ) {
+            if ( (LA18_0==31) ) {
                 alt18=1;
             }
             switch (alt18) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1686:3: rule__MethodDtoReturn__NullableAssignment_6
+                    // InternalPersistenceDsl.g:1692:3: rule__MethodDtoReturn__NullableAssignment_6
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodDtoReturn__NullableAssignment_6();
@@ -5404,14 +5428,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4__0"
-    // InternalPersistenceDsl.g:1695:1: rule__MethodDtoReturn__Group_4__0 : rule__MethodDtoReturn__Group_4__0__Impl rule__MethodDtoReturn__Group_4__1 ;
+    // InternalPersistenceDsl.g:1701:1: rule__MethodDtoReturn__Group_4__0 : rule__MethodDtoReturn__Group_4__0__Impl rule__MethodDtoReturn__Group_4__1 ;
     public final void rule__MethodDtoReturn__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1699:1: ( rule__MethodDtoReturn__Group_4__0__Impl rule__MethodDtoReturn__Group_4__1 )
-            // InternalPersistenceDsl.g:1700:2: rule__MethodDtoReturn__Group_4__0__Impl rule__MethodDtoReturn__Group_4__1
+            // InternalPersistenceDsl.g:1705:1: ( rule__MethodDtoReturn__Group_4__0__Impl rule__MethodDtoReturn__Group_4__1 )
+            // InternalPersistenceDsl.g:1706:2: rule__MethodDtoReturn__Group_4__0__Impl rule__MethodDtoReturn__Group_4__1
             {
             pushFollow(FOLLOW_12);
             rule__MethodDtoReturn__Group_4__0__Impl();
@@ -5442,21 +5466,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4__0__Impl"
-    // InternalPersistenceDsl.g:1707:1: rule__MethodDtoReturn__Group_4__0__Impl : ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) ) ;
+    // InternalPersistenceDsl.g:1713:1: rule__MethodDtoReturn__Group_4__0__Impl : ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) ) ;
     public final void rule__MethodDtoReturn__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1711:1: ( ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) ) )
-            // InternalPersistenceDsl.g:1712:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) )
+            // InternalPersistenceDsl.g:1717:1: ( ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) ) )
+            // InternalPersistenceDsl.g:1718:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) )
             {
-            // InternalPersistenceDsl.g:1712:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) )
-            // InternalPersistenceDsl.g:1713:2: ( rule__MethodDtoReturn__ParametersAssignment_4_0 )
+            // InternalPersistenceDsl.g:1718:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_0 ) )
+            // InternalPersistenceDsl.g:1719:2: ( rule__MethodDtoReturn__ParametersAssignment_4_0 )
             {
              before(grammarAccess.getMethodDtoReturnAccess().getParametersAssignment_4_0()); 
-            // InternalPersistenceDsl.g:1714:2: ( rule__MethodDtoReturn__ParametersAssignment_4_0 )
-            // InternalPersistenceDsl.g:1714:3: rule__MethodDtoReturn__ParametersAssignment_4_0
+            // InternalPersistenceDsl.g:1720:2: ( rule__MethodDtoReturn__ParametersAssignment_4_0 )
+            // InternalPersistenceDsl.g:1720:3: rule__MethodDtoReturn__ParametersAssignment_4_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__ParametersAssignment_4_0();
@@ -5489,14 +5513,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4__1"
-    // InternalPersistenceDsl.g:1722:1: rule__MethodDtoReturn__Group_4__1 : rule__MethodDtoReturn__Group_4__1__Impl ;
+    // InternalPersistenceDsl.g:1728:1: rule__MethodDtoReturn__Group_4__1 : rule__MethodDtoReturn__Group_4__1__Impl ;
     public final void rule__MethodDtoReturn__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1726:1: ( rule__MethodDtoReturn__Group_4__1__Impl )
-            // InternalPersistenceDsl.g:1727:2: rule__MethodDtoReturn__Group_4__1__Impl
+            // InternalPersistenceDsl.g:1732:1: ( rule__MethodDtoReturn__Group_4__1__Impl )
+            // InternalPersistenceDsl.g:1733:2: rule__MethodDtoReturn__Group_4__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__Group_4__1__Impl();
@@ -5522,33 +5546,33 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4__1__Impl"
-    // InternalPersistenceDsl.g:1733:1: rule__MethodDtoReturn__Group_4__1__Impl : ( ( rule__MethodDtoReturn__Group_4_1__0 )* ) ;
+    // InternalPersistenceDsl.g:1739:1: rule__MethodDtoReturn__Group_4__1__Impl : ( ( rule__MethodDtoReturn__Group_4_1__0 )* ) ;
     public final void rule__MethodDtoReturn__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1737:1: ( ( ( rule__MethodDtoReturn__Group_4_1__0 )* ) )
-            // InternalPersistenceDsl.g:1738:1: ( ( rule__MethodDtoReturn__Group_4_1__0 )* )
+            // InternalPersistenceDsl.g:1743:1: ( ( ( rule__MethodDtoReturn__Group_4_1__0 )* ) )
+            // InternalPersistenceDsl.g:1744:1: ( ( rule__MethodDtoReturn__Group_4_1__0 )* )
             {
-            // InternalPersistenceDsl.g:1738:1: ( ( rule__MethodDtoReturn__Group_4_1__0 )* )
-            // InternalPersistenceDsl.g:1739:2: ( rule__MethodDtoReturn__Group_4_1__0 )*
+            // InternalPersistenceDsl.g:1744:1: ( ( rule__MethodDtoReturn__Group_4_1__0 )* )
+            // InternalPersistenceDsl.g:1745:2: ( rule__MethodDtoReturn__Group_4_1__0 )*
             {
              before(grammarAccess.getMethodDtoReturnAccess().getGroup_4_1()); 
-            // InternalPersistenceDsl.g:1740:2: ( rule__MethodDtoReturn__Group_4_1__0 )*
+            // InternalPersistenceDsl.g:1746:2: ( rule__MethodDtoReturn__Group_4_1__0 )*
             loop19:
             do {
                 int alt19=2;
                 int LA19_0 = input.LA(1);
 
-                if ( (LA19_0==26) ) {
+                if ( (LA19_0==27) ) {
                     alt19=1;
                 }
 
 
                 switch (alt19) {
             	case 1 :
-            	    // InternalPersistenceDsl.g:1740:3: rule__MethodDtoReturn__Group_4_1__0
+            	    // InternalPersistenceDsl.g:1746:3: rule__MethodDtoReturn__Group_4_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__MethodDtoReturn__Group_4_1__0();
@@ -5587,14 +5611,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4_1__0"
-    // InternalPersistenceDsl.g:1749:1: rule__MethodDtoReturn__Group_4_1__0 : rule__MethodDtoReturn__Group_4_1__0__Impl rule__MethodDtoReturn__Group_4_1__1 ;
+    // InternalPersistenceDsl.g:1755:1: rule__MethodDtoReturn__Group_4_1__0 : rule__MethodDtoReturn__Group_4_1__0__Impl rule__MethodDtoReturn__Group_4_1__1 ;
     public final void rule__MethodDtoReturn__Group_4_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1753:1: ( rule__MethodDtoReturn__Group_4_1__0__Impl rule__MethodDtoReturn__Group_4_1__1 )
-            // InternalPersistenceDsl.g:1754:2: rule__MethodDtoReturn__Group_4_1__0__Impl rule__MethodDtoReturn__Group_4_1__1
+            // InternalPersistenceDsl.g:1759:1: ( rule__MethodDtoReturn__Group_4_1__0__Impl rule__MethodDtoReturn__Group_4_1__1 )
+            // InternalPersistenceDsl.g:1760:2: rule__MethodDtoReturn__Group_4_1__0__Impl rule__MethodDtoReturn__Group_4_1__1
             {
             pushFollow(FOLLOW_14);
             rule__MethodDtoReturn__Group_4_1__0__Impl();
@@ -5625,20 +5649,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4_1__0__Impl"
-    // InternalPersistenceDsl.g:1761:1: rule__MethodDtoReturn__Group_4_1__0__Impl : ( ',' ) ;
+    // InternalPersistenceDsl.g:1767:1: rule__MethodDtoReturn__Group_4_1__0__Impl : ( ',' ) ;
     public final void rule__MethodDtoReturn__Group_4_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1765:1: ( ( ',' ) )
-            // InternalPersistenceDsl.g:1766:1: ( ',' )
+            // InternalPersistenceDsl.g:1771:1: ( ( ',' ) )
+            // InternalPersistenceDsl.g:1772:1: ( ',' )
             {
-            // InternalPersistenceDsl.g:1766:1: ( ',' )
-            // InternalPersistenceDsl.g:1767:2: ','
+            // InternalPersistenceDsl.g:1772:1: ( ',' )
+            // InternalPersistenceDsl.g:1773:2: ','
             {
              before(grammarAccess.getMethodDtoReturnAccess().getCommaKeyword_4_1_0()); 
-            match(input,26,FOLLOW_2); 
+            match(input,27,FOLLOW_2); 
              after(grammarAccess.getMethodDtoReturnAccess().getCommaKeyword_4_1_0()); 
 
             }
@@ -5662,14 +5686,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4_1__1"
-    // InternalPersistenceDsl.g:1776:1: rule__MethodDtoReturn__Group_4_1__1 : rule__MethodDtoReturn__Group_4_1__1__Impl ;
+    // InternalPersistenceDsl.g:1782:1: rule__MethodDtoReturn__Group_4_1__1 : rule__MethodDtoReturn__Group_4_1__1__Impl ;
     public final void rule__MethodDtoReturn__Group_4_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1780:1: ( rule__MethodDtoReturn__Group_4_1__1__Impl )
-            // InternalPersistenceDsl.g:1781:2: rule__MethodDtoReturn__Group_4_1__1__Impl
+            // InternalPersistenceDsl.g:1786:1: ( rule__MethodDtoReturn__Group_4_1__1__Impl )
+            // InternalPersistenceDsl.g:1787:2: rule__MethodDtoReturn__Group_4_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__Group_4_1__1__Impl();
@@ -5695,21 +5719,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__Group_4_1__1__Impl"
-    // InternalPersistenceDsl.g:1787:1: rule__MethodDtoReturn__Group_4_1__1__Impl : ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) ) ;
+    // InternalPersistenceDsl.g:1793:1: rule__MethodDtoReturn__Group_4_1__1__Impl : ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) ) ;
     public final void rule__MethodDtoReturn__Group_4_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1791:1: ( ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) ) )
-            // InternalPersistenceDsl.g:1792:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) )
+            // InternalPersistenceDsl.g:1797:1: ( ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) ) )
+            // InternalPersistenceDsl.g:1798:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) )
             {
-            // InternalPersistenceDsl.g:1792:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) )
-            // InternalPersistenceDsl.g:1793:2: ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 )
+            // InternalPersistenceDsl.g:1798:1: ( ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 ) )
+            // InternalPersistenceDsl.g:1799:2: ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 )
             {
              before(grammarAccess.getMethodDtoReturnAccess().getParametersAssignment_4_1_1()); 
-            // InternalPersistenceDsl.g:1794:2: ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 )
-            // InternalPersistenceDsl.g:1794:3: rule__MethodDtoReturn__ParametersAssignment_4_1_1
+            // InternalPersistenceDsl.g:1800:2: ( rule__MethodDtoReturn__ParametersAssignment_4_1_1 )
+            // InternalPersistenceDsl.g:1800:3: rule__MethodDtoReturn__ParametersAssignment_4_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodDtoReturn__ParametersAssignment_4_1_1();
@@ -5742,14 +5766,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__0"
-    // InternalPersistenceDsl.g:1803:1: rule__MethodCollectionReturn__Group__0 : rule__MethodCollectionReturn__Group__0__Impl rule__MethodCollectionReturn__Group__1 ;
+    // InternalPersistenceDsl.g:1809:1: rule__MethodCollectionReturn__Group__0 : rule__MethodCollectionReturn__Group__0__Impl rule__MethodCollectionReturn__Group__1 ;
     public final void rule__MethodCollectionReturn__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1807:1: ( rule__MethodCollectionReturn__Group__0__Impl rule__MethodCollectionReturn__Group__1 )
-            // InternalPersistenceDsl.g:1808:2: rule__MethodCollectionReturn__Group__0__Impl rule__MethodCollectionReturn__Group__1
+            // InternalPersistenceDsl.g:1813:1: ( rule__MethodCollectionReturn__Group__0__Impl rule__MethodCollectionReturn__Group__1 )
+            // InternalPersistenceDsl.g:1814:2: rule__MethodCollectionReturn__Group__0__Impl rule__MethodCollectionReturn__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__MethodCollectionReturn__Group__0__Impl();
@@ -5780,21 +5804,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__0__Impl"
-    // InternalPersistenceDsl.g:1815:1: rule__MethodCollectionReturn__Group__0__Impl : ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:1821:1: rule__MethodCollectionReturn__Group__0__Impl : ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) ) ;
     public final void rule__MethodCollectionReturn__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1819:1: ( ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:1820:1: ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:1825:1: ( ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:1826:1: ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:1820:1: ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:1821:2: ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 )
+            // InternalPersistenceDsl.g:1826:1: ( ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:1827:2: ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 )
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getReturnTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:1822:2: ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 )
-            // InternalPersistenceDsl.g:1822:3: rule__MethodCollectionReturn__ReturnTypeAssignment_0
+            // InternalPersistenceDsl.g:1828:2: ( rule__MethodCollectionReturn__ReturnTypeAssignment_0 )
+            // InternalPersistenceDsl.g:1828:3: rule__MethodCollectionReturn__ReturnTypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__ReturnTypeAssignment_0();
@@ -5827,14 +5851,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__1"
-    // InternalPersistenceDsl.g:1830:1: rule__MethodCollectionReturn__Group__1 : rule__MethodCollectionReturn__Group__1__Impl rule__MethodCollectionReturn__Group__2 ;
+    // InternalPersistenceDsl.g:1836:1: rule__MethodCollectionReturn__Group__1 : rule__MethodCollectionReturn__Group__1__Impl rule__MethodCollectionReturn__Group__2 ;
     public final void rule__MethodCollectionReturn__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1834:1: ( rule__MethodCollectionReturn__Group__1__Impl rule__MethodCollectionReturn__Group__2 )
-            // InternalPersistenceDsl.g:1835:2: rule__MethodCollectionReturn__Group__1__Impl rule__MethodCollectionReturn__Group__2
+            // InternalPersistenceDsl.g:1840:1: ( rule__MethodCollectionReturn__Group__1__Impl rule__MethodCollectionReturn__Group__2 )
+            // InternalPersistenceDsl.g:1841:2: rule__MethodCollectionReturn__Group__1__Impl rule__MethodCollectionReturn__Group__2
             {
             pushFollow(FOLLOW_9);
             rule__MethodCollectionReturn__Group__1__Impl();
@@ -5865,21 +5889,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__1__Impl"
-    // InternalPersistenceDsl.g:1842:1: rule__MethodCollectionReturn__Group__1__Impl : ( ( rule__MethodCollectionReturn__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:1848:1: rule__MethodCollectionReturn__Group__1__Impl : ( ( rule__MethodCollectionReturn__NameAssignment_1 ) ) ;
     public final void rule__MethodCollectionReturn__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1846:1: ( ( ( rule__MethodCollectionReturn__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:1847:1: ( ( rule__MethodCollectionReturn__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:1852:1: ( ( ( rule__MethodCollectionReturn__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:1853:1: ( ( rule__MethodCollectionReturn__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:1847:1: ( ( rule__MethodCollectionReturn__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:1848:2: ( rule__MethodCollectionReturn__NameAssignment_1 )
+            // InternalPersistenceDsl.g:1853:1: ( ( rule__MethodCollectionReturn__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:1854:2: ( rule__MethodCollectionReturn__NameAssignment_1 )
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:1849:2: ( rule__MethodCollectionReturn__NameAssignment_1 )
-            // InternalPersistenceDsl.g:1849:3: rule__MethodCollectionReturn__NameAssignment_1
+            // InternalPersistenceDsl.g:1855:2: ( rule__MethodCollectionReturn__NameAssignment_1 )
+            // InternalPersistenceDsl.g:1855:3: rule__MethodCollectionReturn__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__NameAssignment_1();
@@ -5912,14 +5936,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__2"
-    // InternalPersistenceDsl.g:1857:1: rule__MethodCollectionReturn__Group__2 : rule__MethodCollectionReturn__Group__2__Impl rule__MethodCollectionReturn__Group__3 ;
+    // InternalPersistenceDsl.g:1863:1: rule__MethodCollectionReturn__Group__2 : rule__MethodCollectionReturn__Group__2__Impl rule__MethodCollectionReturn__Group__3 ;
     public final void rule__MethodCollectionReturn__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1861:1: ( rule__MethodCollectionReturn__Group__2__Impl rule__MethodCollectionReturn__Group__3 )
-            // InternalPersistenceDsl.g:1862:2: rule__MethodCollectionReturn__Group__2__Impl rule__MethodCollectionReturn__Group__3
+            // InternalPersistenceDsl.g:1867:1: ( rule__MethodCollectionReturn__Group__2__Impl rule__MethodCollectionReturn__Group__3 )
+            // InternalPersistenceDsl.g:1868:2: rule__MethodCollectionReturn__Group__2__Impl rule__MethodCollectionReturn__Group__3
             {
             pushFollow(FOLLOW_10);
             rule__MethodCollectionReturn__Group__2__Impl();
@@ -5950,20 +5974,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__2__Impl"
-    // InternalPersistenceDsl.g:1869:1: rule__MethodCollectionReturn__Group__2__Impl : ( '(' ) ;
+    // InternalPersistenceDsl.g:1875:1: rule__MethodCollectionReturn__Group__2__Impl : ( '(' ) ;
     public final void rule__MethodCollectionReturn__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1873:1: ( ( '(' ) )
-            // InternalPersistenceDsl.g:1874:1: ( '(' )
+            // InternalPersistenceDsl.g:1879:1: ( ( '(' ) )
+            // InternalPersistenceDsl.g:1880:1: ( '(' )
             {
-            // InternalPersistenceDsl.g:1874:1: ( '(' )
-            // InternalPersistenceDsl.g:1875:2: '('
+            // InternalPersistenceDsl.g:1880:1: ( '(' )
+            // InternalPersistenceDsl.g:1881:2: '('
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getLeftParenthesisKeyword_2()); 
-            match(input,24,FOLLOW_2); 
+            match(input,25,FOLLOW_2); 
              after(grammarAccess.getMethodCollectionReturnAccess().getLeftParenthesisKeyword_2()); 
 
             }
@@ -5987,14 +6011,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__3"
-    // InternalPersistenceDsl.g:1884:1: rule__MethodCollectionReturn__Group__3 : rule__MethodCollectionReturn__Group__3__Impl rule__MethodCollectionReturn__Group__4 ;
+    // InternalPersistenceDsl.g:1890:1: rule__MethodCollectionReturn__Group__3 : rule__MethodCollectionReturn__Group__3__Impl rule__MethodCollectionReturn__Group__4 ;
     public final void rule__MethodCollectionReturn__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1888:1: ( rule__MethodCollectionReturn__Group__3__Impl rule__MethodCollectionReturn__Group__4 )
-            // InternalPersistenceDsl.g:1889:2: rule__MethodCollectionReturn__Group__3__Impl rule__MethodCollectionReturn__Group__4
+            // InternalPersistenceDsl.g:1894:1: ( rule__MethodCollectionReturn__Group__3__Impl rule__MethodCollectionReturn__Group__4 )
+            // InternalPersistenceDsl.g:1895:2: rule__MethodCollectionReturn__Group__3__Impl rule__MethodCollectionReturn__Group__4
             {
             pushFollow(FOLLOW_10);
             rule__MethodCollectionReturn__Group__3__Impl();
@@ -6025,20 +6049,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__3__Impl"
-    // InternalPersistenceDsl.g:1896:1: rule__MethodCollectionReturn__Group__3__Impl : ( ( rule__MethodCollectionReturn__Group_3__0 )? ) ;
+    // InternalPersistenceDsl.g:1902:1: rule__MethodCollectionReturn__Group__3__Impl : ( ( rule__MethodCollectionReturn__Group_3__0 )? ) ;
     public final void rule__MethodCollectionReturn__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1900:1: ( ( ( rule__MethodCollectionReturn__Group_3__0 )? ) )
-            // InternalPersistenceDsl.g:1901:1: ( ( rule__MethodCollectionReturn__Group_3__0 )? )
+            // InternalPersistenceDsl.g:1906:1: ( ( ( rule__MethodCollectionReturn__Group_3__0 )? ) )
+            // InternalPersistenceDsl.g:1907:1: ( ( rule__MethodCollectionReturn__Group_3__0 )? )
             {
-            // InternalPersistenceDsl.g:1901:1: ( ( rule__MethodCollectionReturn__Group_3__0 )? )
-            // InternalPersistenceDsl.g:1902:2: ( rule__MethodCollectionReturn__Group_3__0 )?
+            // InternalPersistenceDsl.g:1907:1: ( ( rule__MethodCollectionReturn__Group_3__0 )? )
+            // InternalPersistenceDsl.g:1908:2: ( rule__MethodCollectionReturn__Group_3__0 )?
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getGroup_3()); 
-            // InternalPersistenceDsl.g:1903:2: ( rule__MethodCollectionReturn__Group_3__0 )?
+            // InternalPersistenceDsl.g:1909:2: ( rule__MethodCollectionReturn__Group_3__0 )?
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -6047,7 +6071,7 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
             }
             switch (alt20) {
                 case 1 :
-                    // InternalPersistenceDsl.g:1903:3: rule__MethodCollectionReturn__Group_3__0
+                    // InternalPersistenceDsl.g:1909:3: rule__MethodCollectionReturn__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__MethodCollectionReturn__Group_3__0();
@@ -6083,14 +6107,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__4"
-    // InternalPersistenceDsl.g:1911:1: rule__MethodCollectionReturn__Group__4 : rule__MethodCollectionReturn__Group__4__Impl ;
+    // InternalPersistenceDsl.g:1917:1: rule__MethodCollectionReturn__Group__4 : rule__MethodCollectionReturn__Group__4__Impl ;
     public final void rule__MethodCollectionReturn__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1915:1: ( rule__MethodCollectionReturn__Group__4__Impl )
-            // InternalPersistenceDsl.g:1916:2: rule__MethodCollectionReturn__Group__4__Impl
+            // InternalPersistenceDsl.g:1921:1: ( rule__MethodCollectionReturn__Group__4__Impl )
+            // InternalPersistenceDsl.g:1922:2: rule__MethodCollectionReturn__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__Group__4__Impl();
@@ -6116,20 +6140,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group__4__Impl"
-    // InternalPersistenceDsl.g:1922:1: rule__MethodCollectionReturn__Group__4__Impl : ( ')' ) ;
+    // InternalPersistenceDsl.g:1928:1: rule__MethodCollectionReturn__Group__4__Impl : ( ')' ) ;
     public final void rule__MethodCollectionReturn__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1926:1: ( ( ')' ) )
-            // InternalPersistenceDsl.g:1927:1: ( ')' )
+            // InternalPersistenceDsl.g:1932:1: ( ( ')' ) )
+            // InternalPersistenceDsl.g:1933:1: ( ')' )
             {
-            // InternalPersistenceDsl.g:1927:1: ( ')' )
-            // InternalPersistenceDsl.g:1928:2: ')'
+            // InternalPersistenceDsl.g:1933:1: ( ')' )
+            // InternalPersistenceDsl.g:1934:2: ')'
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getRightParenthesisKeyword_4()); 
-            match(input,25,FOLLOW_2); 
+            match(input,26,FOLLOW_2); 
              after(grammarAccess.getMethodCollectionReturnAccess().getRightParenthesisKeyword_4()); 
 
             }
@@ -6153,14 +6177,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3__0"
-    // InternalPersistenceDsl.g:1938:1: rule__MethodCollectionReturn__Group_3__0 : rule__MethodCollectionReturn__Group_3__0__Impl rule__MethodCollectionReturn__Group_3__1 ;
+    // InternalPersistenceDsl.g:1944:1: rule__MethodCollectionReturn__Group_3__0 : rule__MethodCollectionReturn__Group_3__0__Impl rule__MethodCollectionReturn__Group_3__1 ;
     public final void rule__MethodCollectionReturn__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1942:1: ( rule__MethodCollectionReturn__Group_3__0__Impl rule__MethodCollectionReturn__Group_3__1 )
-            // InternalPersistenceDsl.g:1943:2: rule__MethodCollectionReturn__Group_3__0__Impl rule__MethodCollectionReturn__Group_3__1
+            // InternalPersistenceDsl.g:1948:1: ( rule__MethodCollectionReturn__Group_3__0__Impl rule__MethodCollectionReturn__Group_3__1 )
+            // InternalPersistenceDsl.g:1949:2: rule__MethodCollectionReturn__Group_3__0__Impl rule__MethodCollectionReturn__Group_3__1
             {
             pushFollow(FOLLOW_12);
             rule__MethodCollectionReturn__Group_3__0__Impl();
@@ -6191,21 +6215,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3__0__Impl"
-    // InternalPersistenceDsl.g:1950:1: rule__MethodCollectionReturn__Group_3__0__Impl : ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) ) ;
+    // InternalPersistenceDsl.g:1956:1: rule__MethodCollectionReturn__Group_3__0__Impl : ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) ) ;
     public final void rule__MethodCollectionReturn__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1954:1: ( ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) ) )
-            // InternalPersistenceDsl.g:1955:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) )
+            // InternalPersistenceDsl.g:1960:1: ( ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) ) )
+            // InternalPersistenceDsl.g:1961:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) )
             {
-            // InternalPersistenceDsl.g:1955:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) )
-            // InternalPersistenceDsl.g:1956:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_0 )
+            // InternalPersistenceDsl.g:1961:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_0 ) )
+            // InternalPersistenceDsl.g:1962:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_0 )
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getParametersAssignment_3_0()); 
-            // InternalPersistenceDsl.g:1957:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_0 )
-            // InternalPersistenceDsl.g:1957:3: rule__MethodCollectionReturn__ParametersAssignment_3_0
+            // InternalPersistenceDsl.g:1963:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_0 )
+            // InternalPersistenceDsl.g:1963:3: rule__MethodCollectionReturn__ParametersAssignment_3_0
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__ParametersAssignment_3_0();
@@ -6238,14 +6262,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3__1"
-    // InternalPersistenceDsl.g:1965:1: rule__MethodCollectionReturn__Group_3__1 : rule__MethodCollectionReturn__Group_3__1__Impl ;
+    // InternalPersistenceDsl.g:1971:1: rule__MethodCollectionReturn__Group_3__1 : rule__MethodCollectionReturn__Group_3__1__Impl ;
     public final void rule__MethodCollectionReturn__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1969:1: ( rule__MethodCollectionReturn__Group_3__1__Impl )
-            // InternalPersistenceDsl.g:1970:2: rule__MethodCollectionReturn__Group_3__1__Impl
+            // InternalPersistenceDsl.g:1975:1: ( rule__MethodCollectionReturn__Group_3__1__Impl )
+            // InternalPersistenceDsl.g:1976:2: rule__MethodCollectionReturn__Group_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__Group_3__1__Impl();
@@ -6271,33 +6295,33 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3__1__Impl"
-    // InternalPersistenceDsl.g:1976:1: rule__MethodCollectionReturn__Group_3__1__Impl : ( ( rule__MethodCollectionReturn__Group_3_1__0 )* ) ;
+    // InternalPersistenceDsl.g:1982:1: rule__MethodCollectionReturn__Group_3__1__Impl : ( ( rule__MethodCollectionReturn__Group_3_1__0 )* ) ;
     public final void rule__MethodCollectionReturn__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1980:1: ( ( ( rule__MethodCollectionReturn__Group_3_1__0 )* ) )
-            // InternalPersistenceDsl.g:1981:1: ( ( rule__MethodCollectionReturn__Group_3_1__0 )* )
+            // InternalPersistenceDsl.g:1986:1: ( ( ( rule__MethodCollectionReturn__Group_3_1__0 )* ) )
+            // InternalPersistenceDsl.g:1987:1: ( ( rule__MethodCollectionReturn__Group_3_1__0 )* )
             {
-            // InternalPersistenceDsl.g:1981:1: ( ( rule__MethodCollectionReturn__Group_3_1__0 )* )
-            // InternalPersistenceDsl.g:1982:2: ( rule__MethodCollectionReturn__Group_3_1__0 )*
+            // InternalPersistenceDsl.g:1987:1: ( ( rule__MethodCollectionReturn__Group_3_1__0 )* )
+            // InternalPersistenceDsl.g:1988:2: ( rule__MethodCollectionReturn__Group_3_1__0 )*
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getGroup_3_1()); 
-            // InternalPersistenceDsl.g:1983:2: ( rule__MethodCollectionReturn__Group_3_1__0 )*
+            // InternalPersistenceDsl.g:1989:2: ( rule__MethodCollectionReturn__Group_3_1__0 )*
             loop21:
             do {
                 int alt21=2;
                 int LA21_0 = input.LA(1);
 
-                if ( (LA21_0==26) ) {
+                if ( (LA21_0==27) ) {
                     alt21=1;
                 }
 
 
                 switch (alt21) {
             	case 1 :
-            	    // InternalPersistenceDsl.g:1983:3: rule__MethodCollectionReturn__Group_3_1__0
+            	    // InternalPersistenceDsl.g:1989:3: rule__MethodCollectionReturn__Group_3_1__0
             	    {
             	    pushFollow(FOLLOW_13);
             	    rule__MethodCollectionReturn__Group_3_1__0();
@@ -6336,14 +6360,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3_1__0"
-    // InternalPersistenceDsl.g:1992:1: rule__MethodCollectionReturn__Group_3_1__0 : rule__MethodCollectionReturn__Group_3_1__0__Impl rule__MethodCollectionReturn__Group_3_1__1 ;
+    // InternalPersistenceDsl.g:1998:1: rule__MethodCollectionReturn__Group_3_1__0 : rule__MethodCollectionReturn__Group_3_1__0__Impl rule__MethodCollectionReturn__Group_3_1__1 ;
     public final void rule__MethodCollectionReturn__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:1996:1: ( rule__MethodCollectionReturn__Group_3_1__0__Impl rule__MethodCollectionReturn__Group_3_1__1 )
-            // InternalPersistenceDsl.g:1997:2: rule__MethodCollectionReturn__Group_3_1__0__Impl rule__MethodCollectionReturn__Group_3_1__1
+            // InternalPersistenceDsl.g:2002:1: ( rule__MethodCollectionReturn__Group_3_1__0__Impl rule__MethodCollectionReturn__Group_3_1__1 )
+            // InternalPersistenceDsl.g:2003:2: rule__MethodCollectionReturn__Group_3_1__0__Impl rule__MethodCollectionReturn__Group_3_1__1
             {
             pushFollow(FOLLOW_14);
             rule__MethodCollectionReturn__Group_3_1__0__Impl();
@@ -6374,20 +6398,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3_1__0__Impl"
-    // InternalPersistenceDsl.g:2004:1: rule__MethodCollectionReturn__Group_3_1__0__Impl : ( ',' ) ;
+    // InternalPersistenceDsl.g:2010:1: rule__MethodCollectionReturn__Group_3_1__0__Impl : ( ',' ) ;
     public final void rule__MethodCollectionReturn__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2008:1: ( ( ',' ) )
-            // InternalPersistenceDsl.g:2009:1: ( ',' )
+            // InternalPersistenceDsl.g:2014:1: ( ( ',' ) )
+            // InternalPersistenceDsl.g:2015:1: ( ',' )
             {
-            // InternalPersistenceDsl.g:2009:1: ( ',' )
-            // InternalPersistenceDsl.g:2010:2: ','
+            // InternalPersistenceDsl.g:2015:1: ( ',' )
+            // InternalPersistenceDsl.g:2016:2: ','
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getCommaKeyword_3_1_0()); 
-            match(input,26,FOLLOW_2); 
+            match(input,27,FOLLOW_2); 
              after(grammarAccess.getMethodCollectionReturnAccess().getCommaKeyword_3_1_0()); 
 
             }
@@ -6411,14 +6435,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3_1__1"
-    // InternalPersistenceDsl.g:2019:1: rule__MethodCollectionReturn__Group_3_1__1 : rule__MethodCollectionReturn__Group_3_1__1__Impl ;
+    // InternalPersistenceDsl.g:2025:1: rule__MethodCollectionReturn__Group_3_1__1 : rule__MethodCollectionReturn__Group_3_1__1__Impl ;
     public final void rule__MethodCollectionReturn__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2023:1: ( rule__MethodCollectionReturn__Group_3_1__1__Impl )
-            // InternalPersistenceDsl.g:2024:2: rule__MethodCollectionReturn__Group_3_1__1__Impl
+            // InternalPersistenceDsl.g:2029:1: ( rule__MethodCollectionReturn__Group_3_1__1__Impl )
+            // InternalPersistenceDsl.g:2030:2: rule__MethodCollectionReturn__Group_3_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__Group_3_1__1__Impl();
@@ -6444,21 +6468,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__Group_3_1__1__Impl"
-    // InternalPersistenceDsl.g:2030:1: rule__MethodCollectionReturn__Group_3_1__1__Impl : ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) ) ;
+    // InternalPersistenceDsl.g:2036:1: rule__MethodCollectionReturn__Group_3_1__1__Impl : ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) ) ;
     public final void rule__MethodCollectionReturn__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2034:1: ( ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) ) )
-            // InternalPersistenceDsl.g:2035:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) )
+            // InternalPersistenceDsl.g:2040:1: ( ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) ) )
+            // InternalPersistenceDsl.g:2041:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) )
             {
-            // InternalPersistenceDsl.g:2035:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) )
-            // InternalPersistenceDsl.g:2036:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 )
+            // InternalPersistenceDsl.g:2041:1: ( ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 ) )
+            // InternalPersistenceDsl.g:2042:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 )
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getParametersAssignment_3_1_1()); 
-            // InternalPersistenceDsl.g:2037:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 )
-            // InternalPersistenceDsl.g:2037:3: rule__MethodCollectionReturn__ParametersAssignment_3_1_1
+            // InternalPersistenceDsl.g:2043:2: ( rule__MethodCollectionReturn__ParametersAssignment_3_1_1 )
+            // InternalPersistenceDsl.g:2043:3: rule__MethodCollectionReturn__ParametersAssignment_3_1_1
             {
             pushFollow(FOLLOW_2);
             rule__MethodCollectionReturn__ParametersAssignment_3_1_1();
@@ -6491,14 +6515,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__0"
-    // InternalPersistenceDsl.g:2046:1: rule__EntityReturnTypeCollection__Group__0 : rule__EntityReturnTypeCollection__Group__0__Impl rule__EntityReturnTypeCollection__Group__1 ;
+    // InternalPersistenceDsl.g:2052:1: rule__EntityReturnTypeCollection__Group__0 : rule__EntityReturnTypeCollection__Group__0__Impl rule__EntityReturnTypeCollection__Group__1 ;
     public final void rule__EntityReturnTypeCollection__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2050:1: ( rule__EntityReturnTypeCollection__Group__0__Impl rule__EntityReturnTypeCollection__Group__1 )
-            // InternalPersistenceDsl.g:2051:2: rule__EntityReturnTypeCollection__Group__0__Impl rule__EntityReturnTypeCollection__Group__1
+            // InternalPersistenceDsl.g:2056:1: ( rule__EntityReturnTypeCollection__Group__0__Impl rule__EntityReturnTypeCollection__Group__1 )
+            // InternalPersistenceDsl.g:2057:2: rule__EntityReturnTypeCollection__Group__0__Impl rule__EntityReturnTypeCollection__Group__1
             {
             pushFollow(FOLLOW_15);
             rule__EntityReturnTypeCollection__Group__0__Impl();
@@ -6529,17 +6553,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__0__Impl"
-    // InternalPersistenceDsl.g:2058:1: rule__EntityReturnTypeCollection__Group__0__Impl : ( RULE_LIST ) ;
+    // InternalPersistenceDsl.g:2064:1: rule__EntityReturnTypeCollection__Group__0__Impl : ( RULE_LIST ) ;
     public final void rule__EntityReturnTypeCollection__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2062:1: ( ( RULE_LIST ) )
-            // InternalPersistenceDsl.g:2063:1: ( RULE_LIST )
+            // InternalPersistenceDsl.g:2068:1: ( ( RULE_LIST ) )
+            // InternalPersistenceDsl.g:2069:1: ( RULE_LIST )
             {
-            // InternalPersistenceDsl.g:2063:1: ( RULE_LIST )
-            // InternalPersistenceDsl.g:2064:2: RULE_LIST
+            // InternalPersistenceDsl.g:2069:1: ( RULE_LIST )
+            // InternalPersistenceDsl.g:2070:2: RULE_LIST
             {
              before(grammarAccess.getEntityReturnTypeCollectionAccess().getLISTTerminalRuleCall_0()); 
             match(input,RULE_LIST,FOLLOW_2); 
@@ -6566,14 +6590,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__1"
-    // InternalPersistenceDsl.g:2073:1: rule__EntityReturnTypeCollection__Group__1 : rule__EntityReturnTypeCollection__Group__1__Impl rule__EntityReturnTypeCollection__Group__2 ;
+    // InternalPersistenceDsl.g:2079:1: rule__EntityReturnTypeCollection__Group__1 : rule__EntityReturnTypeCollection__Group__1__Impl rule__EntityReturnTypeCollection__Group__2 ;
     public final void rule__EntityReturnTypeCollection__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2077:1: ( rule__EntityReturnTypeCollection__Group__1__Impl rule__EntityReturnTypeCollection__Group__2 )
-            // InternalPersistenceDsl.g:2078:2: rule__EntityReturnTypeCollection__Group__1__Impl rule__EntityReturnTypeCollection__Group__2
+            // InternalPersistenceDsl.g:2083:1: ( rule__EntityReturnTypeCollection__Group__1__Impl rule__EntityReturnTypeCollection__Group__2 )
+            // InternalPersistenceDsl.g:2084:2: rule__EntityReturnTypeCollection__Group__1__Impl rule__EntityReturnTypeCollection__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__EntityReturnTypeCollection__Group__1__Impl();
@@ -6604,20 +6628,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__1__Impl"
-    // InternalPersistenceDsl.g:2085:1: rule__EntityReturnTypeCollection__Group__1__Impl : ( '<' ) ;
+    // InternalPersistenceDsl.g:2091:1: rule__EntityReturnTypeCollection__Group__1__Impl : ( '<' ) ;
     public final void rule__EntityReturnTypeCollection__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2089:1: ( ( '<' ) )
-            // InternalPersistenceDsl.g:2090:1: ( '<' )
+            // InternalPersistenceDsl.g:2095:1: ( ( '<' ) )
+            // InternalPersistenceDsl.g:2096:1: ( '<' )
             {
-            // InternalPersistenceDsl.g:2090:1: ( '<' )
-            // InternalPersistenceDsl.g:2091:2: '<'
+            // InternalPersistenceDsl.g:2096:1: ( '<' )
+            // InternalPersistenceDsl.g:2097:2: '<'
             {
              before(grammarAccess.getEntityReturnTypeCollectionAccess().getLessThanSignKeyword_1()); 
-            match(input,28,FOLLOW_2); 
+            match(input,29,FOLLOW_2); 
              after(grammarAccess.getEntityReturnTypeCollectionAccess().getLessThanSignKeyword_1()); 
 
             }
@@ -6641,14 +6665,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__2"
-    // InternalPersistenceDsl.g:2100:1: rule__EntityReturnTypeCollection__Group__2 : rule__EntityReturnTypeCollection__Group__2__Impl rule__EntityReturnTypeCollection__Group__3 ;
+    // InternalPersistenceDsl.g:2106:1: rule__EntityReturnTypeCollection__Group__2 : rule__EntityReturnTypeCollection__Group__2__Impl rule__EntityReturnTypeCollection__Group__3 ;
     public final void rule__EntityReturnTypeCollection__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2104:1: ( rule__EntityReturnTypeCollection__Group__2__Impl rule__EntityReturnTypeCollection__Group__3 )
-            // InternalPersistenceDsl.g:2105:2: rule__EntityReturnTypeCollection__Group__2__Impl rule__EntityReturnTypeCollection__Group__3
+            // InternalPersistenceDsl.g:2110:1: ( rule__EntityReturnTypeCollection__Group__2__Impl rule__EntityReturnTypeCollection__Group__3 )
+            // InternalPersistenceDsl.g:2111:2: rule__EntityReturnTypeCollection__Group__2__Impl rule__EntityReturnTypeCollection__Group__3
             {
             pushFollow(FOLLOW_16);
             rule__EntityReturnTypeCollection__Group__2__Impl();
@@ -6679,21 +6703,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__2__Impl"
-    // InternalPersistenceDsl.g:2112:1: rule__EntityReturnTypeCollection__Group__2__Impl : ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) ) ;
+    // InternalPersistenceDsl.g:2118:1: rule__EntityReturnTypeCollection__Group__2__Impl : ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) ) ;
     public final void rule__EntityReturnTypeCollection__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2116:1: ( ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) ) )
-            // InternalPersistenceDsl.g:2117:1: ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2122:1: ( ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) ) )
+            // InternalPersistenceDsl.g:2123:1: ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) )
             {
-            // InternalPersistenceDsl.g:2117:1: ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) )
-            // InternalPersistenceDsl.g:2118:2: ( rule__EntityReturnTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2123:1: ( ( rule__EntityReturnTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2124:2: ( rule__EntityReturnTypeCollection__TypeAssignment_2 )
             {
              before(grammarAccess.getEntityReturnTypeCollectionAccess().getTypeAssignment_2()); 
-            // InternalPersistenceDsl.g:2119:2: ( rule__EntityReturnTypeCollection__TypeAssignment_2 )
-            // InternalPersistenceDsl.g:2119:3: rule__EntityReturnTypeCollection__TypeAssignment_2
+            // InternalPersistenceDsl.g:2125:2: ( rule__EntityReturnTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2125:3: rule__EntityReturnTypeCollection__TypeAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__EntityReturnTypeCollection__TypeAssignment_2();
@@ -6726,14 +6750,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__3"
-    // InternalPersistenceDsl.g:2127:1: rule__EntityReturnTypeCollection__Group__3 : rule__EntityReturnTypeCollection__Group__3__Impl ;
+    // InternalPersistenceDsl.g:2133:1: rule__EntityReturnTypeCollection__Group__3 : rule__EntityReturnTypeCollection__Group__3__Impl ;
     public final void rule__EntityReturnTypeCollection__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2131:1: ( rule__EntityReturnTypeCollection__Group__3__Impl )
-            // InternalPersistenceDsl.g:2132:2: rule__EntityReturnTypeCollection__Group__3__Impl
+            // InternalPersistenceDsl.g:2137:1: ( rule__EntityReturnTypeCollection__Group__3__Impl )
+            // InternalPersistenceDsl.g:2138:2: rule__EntityReturnTypeCollection__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__EntityReturnTypeCollection__Group__3__Impl();
@@ -6759,20 +6783,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__Group__3__Impl"
-    // InternalPersistenceDsl.g:2138:1: rule__EntityReturnTypeCollection__Group__3__Impl : ( '>' ) ;
+    // InternalPersistenceDsl.g:2144:1: rule__EntityReturnTypeCollection__Group__3__Impl : ( '>' ) ;
     public final void rule__EntityReturnTypeCollection__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2142:1: ( ( '>' ) )
-            // InternalPersistenceDsl.g:2143:1: ( '>' )
+            // InternalPersistenceDsl.g:2148:1: ( ( '>' ) )
+            // InternalPersistenceDsl.g:2149:1: ( '>' )
             {
-            // InternalPersistenceDsl.g:2143:1: ( '>' )
-            // InternalPersistenceDsl.g:2144:2: '>'
+            // InternalPersistenceDsl.g:2149:1: ( '>' )
+            // InternalPersistenceDsl.g:2150:2: '>'
             {
              before(grammarAccess.getEntityReturnTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
-            match(input,29,FOLLOW_2); 
+            match(input,30,FOLLOW_2); 
              after(grammarAccess.getEntityReturnTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
 
             }
@@ -6796,14 +6820,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__0"
-    // InternalPersistenceDsl.g:2154:1: rule__DtoReturnTypeCollection__Group__0 : rule__DtoReturnTypeCollection__Group__0__Impl rule__DtoReturnTypeCollection__Group__1 ;
+    // InternalPersistenceDsl.g:2160:1: rule__DtoReturnTypeCollection__Group__0 : rule__DtoReturnTypeCollection__Group__0__Impl rule__DtoReturnTypeCollection__Group__1 ;
     public final void rule__DtoReturnTypeCollection__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2158:1: ( rule__DtoReturnTypeCollection__Group__0__Impl rule__DtoReturnTypeCollection__Group__1 )
-            // InternalPersistenceDsl.g:2159:2: rule__DtoReturnTypeCollection__Group__0__Impl rule__DtoReturnTypeCollection__Group__1
+            // InternalPersistenceDsl.g:2164:1: ( rule__DtoReturnTypeCollection__Group__0__Impl rule__DtoReturnTypeCollection__Group__1 )
+            // InternalPersistenceDsl.g:2165:2: rule__DtoReturnTypeCollection__Group__0__Impl rule__DtoReturnTypeCollection__Group__1
             {
             pushFollow(FOLLOW_15);
             rule__DtoReturnTypeCollection__Group__0__Impl();
@@ -6834,17 +6858,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__0__Impl"
-    // InternalPersistenceDsl.g:2166:1: rule__DtoReturnTypeCollection__Group__0__Impl : ( RULE_LIST ) ;
+    // InternalPersistenceDsl.g:2172:1: rule__DtoReturnTypeCollection__Group__0__Impl : ( RULE_LIST ) ;
     public final void rule__DtoReturnTypeCollection__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2170:1: ( ( RULE_LIST ) )
-            // InternalPersistenceDsl.g:2171:1: ( RULE_LIST )
+            // InternalPersistenceDsl.g:2176:1: ( ( RULE_LIST ) )
+            // InternalPersistenceDsl.g:2177:1: ( RULE_LIST )
             {
-            // InternalPersistenceDsl.g:2171:1: ( RULE_LIST )
-            // InternalPersistenceDsl.g:2172:2: RULE_LIST
+            // InternalPersistenceDsl.g:2177:1: ( RULE_LIST )
+            // InternalPersistenceDsl.g:2178:2: RULE_LIST
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getLISTTerminalRuleCall_0()); 
             match(input,RULE_LIST,FOLLOW_2); 
@@ -6871,14 +6895,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__1"
-    // InternalPersistenceDsl.g:2181:1: rule__DtoReturnTypeCollection__Group__1 : rule__DtoReturnTypeCollection__Group__1__Impl rule__DtoReturnTypeCollection__Group__2 ;
+    // InternalPersistenceDsl.g:2187:1: rule__DtoReturnTypeCollection__Group__1 : rule__DtoReturnTypeCollection__Group__1__Impl rule__DtoReturnTypeCollection__Group__2 ;
     public final void rule__DtoReturnTypeCollection__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2185:1: ( rule__DtoReturnTypeCollection__Group__1__Impl rule__DtoReturnTypeCollection__Group__2 )
-            // InternalPersistenceDsl.g:2186:2: rule__DtoReturnTypeCollection__Group__1__Impl rule__DtoReturnTypeCollection__Group__2
+            // InternalPersistenceDsl.g:2191:1: ( rule__DtoReturnTypeCollection__Group__1__Impl rule__DtoReturnTypeCollection__Group__2 )
+            // InternalPersistenceDsl.g:2192:2: rule__DtoReturnTypeCollection__Group__1__Impl rule__DtoReturnTypeCollection__Group__2
             {
             pushFollow(FOLLOW_17);
             rule__DtoReturnTypeCollection__Group__1__Impl();
@@ -6909,20 +6933,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__1__Impl"
-    // InternalPersistenceDsl.g:2193:1: rule__DtoReturnTypeCollection__Group__1__Impl : ( '<' ) ;
+    // InternalPersistenceDsl.g:2199:1: rule__DtoReturnTypeCollection__Group__1__Impl : ( '<' ) ;
     public final void rule__DtoReturnTypeCollection__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2197:1: ( ( '<' ) )
-            // InternalPersistenceDsl.g:2198:1: ( '<' )
+            // InternalPersistenceDsl.g:2203:1: ( ( '<' ) )
+            // InternalPersistenceDsl.g:2204:1: ( '<' )
             {
-            // InternalPersistenceDsl.g:2198:1: ( '<' )
-            // InternalPersistenceDsl.g:2199:2: '<'
+            // InternalPersistenceDsl.g:2204:1: ( '<' )
+            // InternalPersistenceDsl.g:2205:2: '<'
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getLessThanSignKeyword_1()); 
-            match(input,28,FOLLOW_2); 
+            match(input,29,FOLLOW_2); 
              after(grammarAccess.getDtoReturnTypeCollectionAccess().getLessThanSignKeyword_1()); 
 
             }
@@ -6946,14 +6970,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__2"
-    // InternalPersistenceDsl.g:2208:1: rule__DtoReturnTypeCollection__Group__2 : rule__DtoReturnTypeCollection__Group__2__Impl rule__DtoReturnTypeCollection__Group__3 ;
+    // InternalPersistenceDsl.g:2214:1: rule__DtoReturnTypeCollection__Group__2 : rule__DtoReturnTypeCollection__Group__2__Impl rule__DtoReturnTypeCollection__Group__3 ;
     public final void rule__DtoReturnTypeCollection__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2212:1: ( rule__DtoReturnTypeCollection__Group__2__Impl rule__DtoReturnTypeCollection__Group__3 )
-            // InternalPersistenceDsl.g:2213:2: rule__DtoReturnTypeCollection__Group__2__Impl rule__DtoReturnTypeCollection__Group__3
+            // InternalPersistenceDsl.g:2218:1: ( rule__DtoReturnTypeCollection__Group__2__Impl rule__DtoReturnTypeCollection__Group__3 )
+            // InternalPersistenceDsl.g:2219:2: rule__DtoReturnTypeCollection__Group__2__Impl rule__DtoReturnTypeCollection__Group__3
             {
             pushFollow(FOLLOW_4);
             rule__DtoReturnTypeCollection__Group__2__Impl();
@@ -6984,20 +7008,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__2__Impl"
-    // InternalPersistenceDsl.g:2220:1: rule__DtoReturnTypeCollection__Group__2__Impl : ( '#' ) ;
+    // InternalPersistenceDsl.g:2226:1: rule__DtoReturnTypeCollection__Group__2__Impl : ( '#' ) ;
     public final void rule__DtoReturnTypeCollection__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2224:1: ( ( '#' ) )
-            // InternalPersistenceDsl.g:2225:1: ( '#' )
+            // InternalPersistenceDsl.g:2230:1: ( ( '#' ) )
+            // InternalPersistenceDsl.g:2231:1: ( '#' )
             {
-            // InternalPersistenceDsl.g:2225:1: ( '#' )
-            // InternalPersistenceDsl.g:2226:2: '#'
+            // InternalPersistenceDsl.g:2231:1: ( '#' )
+            // InternalPersistenceDsl.g:2232:2: '#'
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getNumberSignKeyword_2()); 
-            match(input,27,FOLLOW_2); 
+            match(input,28,FOLLOW_2); 
              after(grammarAccess.getDtoReturnTypeCollectionAccess().getNumberSignKeyword_2()); 
 
             }
@@ -7021,14 +7045,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__3"
-    // InternalPersistenceDsl.g:2235:1: rule__DtoReturnTypeCollection__Group__3 : rule__DtoReturnTypeCollection__Group__3__Impl rule__DtoReturnTypeCollection__Group__4 ;
+    // InternalPersistenceDsl.g:2241:1: rule__DtoReturnTypeCollection__Group__3 : rule__DtoReturnTypeCollection__Group__3__Impl rule__DtoReturnTypeCollection__Group__4 ;
     public final void rule__DtoReturnTypeCollection__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2239:1: ( rule__DtoReturnTypeCollection__Group__3__Impl rule__DtoReturnTypeCollection__Group__4 )
-            // InternalPersistenceDsl.g:2240:2: rule__DtoReturnTypeCollection__Group__3__Impl rule__DtoReturnTypeCollection__Group__4
+            // InternalPersistenceDsl.g:2245:1: ( rule__DtoReturnTypeCollection__Group__3__Impl rule__DtoReturnTypeCollection__Group__4 )
+            // InternalPersistenceDsl.g:2246:2: rule__DtoReturnTypeCollection__Group__3__Impl rule__DtoReturnTypeCollection__Group__4
             {
             pushFollow(FOLLOW_16);
             rule__DtoReturnTypeCollection__Group__3__Impl();
@@ -7059,21 +7083,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__3__Impl"
-    // InternalPersistenceDsl.g:2247:1: rule__DtoReturnTypeCollection__Group__3__Impl : ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) ) ;
+    // InternalPersistenceDsl.g:2253:1: rule__DtoReturnTypeCollection__Group__3__Impl : ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) ) ;
     public final void rule__DtoReturnTypeCollection__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2251:1: ( ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) ) )
-            // InternalPersistenceDsl.g:2252:1: ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) )
+            // InternalPersistenceDsl.g:2257:1: ( ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) ) )
+            // InternalPersistenceDsl.g:2258:1: ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) )
             {
-            // InternalPersistenceDsl.g:2252:1: ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) )
-            // InternalPersistenceDsl.g:2253:2: ( rule__DtoReturnTypeCollection__TypeAssignment_3 )
+            // InternalPersistenceDsl.g:2258:1: ( ( rule__DtoReturnTypeCollection__TypeAssignment_3 ) )
+            // InternalPersistenceDsl.g:2259:2: ( rule__DtoReturnTypeCollection__TypeAssignment_3 )
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getTypeAssignment_3()); 
-            // InternalPersistenceDsl.g:2254:2: ( rule__DtoReturnTypeCollection__TypeAssignment_3 )
-            // InternalPersistenceDsl.g:2254:3: rule__DtoReturnTypeCollection__TypeAssignment_3
+            // InternalPersistenceDsl.g:2260:2: ( rule__DtoReturnTypeCollection__TypeAssignment_3 )
+            // InternalPersistenceDsl.g:2260:3: rule__DtoReturnTypeCollection__TypeAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__DtoReturnTypeCollection__TypeAssignment_3();
@@ -7106,14 +7130,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__4"
-    // InternalPersistenceDsl.g:2262:1: rule__DtoReturnTypeCollection__Group__4 : rule__DtoReturnTypeCollection__Group__4__Impl ;
+    // InternalPersistenceDsl.g:2268:1: rule__DtoReturnTypeCollection__Group__4 : rule__DtoReturnTypeCollection__Group__4__Impl ;
     public final void rule__DtoReturnTypeCollection__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2266:1: ( rule__DtoReturnTypeCollection__Group__4__Impl )
-            // InternalPersistenceDsl.g:2267:2: rule__DtoReturnTypeCollection__Group__4__Impl
+            // InternalPersistenceDsl.g:2272:1: ( rule__DtoReturnTypeCollection__Group__4__Impl )
+            // InternalPersistenceDsl.g:2273:2: rule__DtoReturnTypeCollection__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DtoReturnTypeCollection__Group__4__Impl();
@@ -7139,20 +7163,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__Group__4__Impl"
-    // InternalPersistenceDsl.g:2273:1: rule__DtoReturnTypeCollection__Group__4__Impl : ( '>' ) ;
+    // InternalPersistenceDsl.g:2279:1: rule__DtoReturnTypeCollection__Group__4__Impl : ( '>' ) ;
     public final void rule__DtoReturnTypeCollection__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2277:1: ( ( '>' ) )
-            // InternalPersistenceDsl.g:2278:1: ( '>' )
+            // InternalPersistenceDsl.g:2283:1: ( ( '>' ) )
+            // InternalPersistenceDsl.g:2284:1: ( '>' )
             {
-            // InternalPersistenceDsl.g:2278:1: ( '>' )
-            // InternalPersistenceDsl.g:2279:2: '>'
+            // InternalPersistenceDsl.g:2284:1: ( '>' )
+            // InternalPersistenceDsl.g:2285:2: '>'
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getGreaterThanSignKeyword_4()); 
-            match(input,29,FOLLOW_2); 
+            match(input,30,FOLLOW_2); 
              after(grammarAccess.getDtoReturnTypeCollectionAccess().getGreaterThanSignKeyword_4()); 
 
             }
@@ -7176,14 +7200,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__0"
-    // InternalPersistenceDsl.g:2289:1: rule__SimpleReturnTypeCollection__Group__0 : rule__SimpleReturnTypeCollection__Group__0__Impl rule__SimpleReturnTypeCollection__Group__1 ;
+    // InternalPersistenceDsl.g:2295:1: rule__SimpleReturnTypeCollection__Group__0 : rule__SimpleReturnTypeCollection__Group__0__Impl rule__SimpleReturnTypeCollection__Group__1 ;
     public final void rule__SimpleReturnTypeCollection__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2293:1: ( rule__SimpleReturnTypeCollection__Group__0__Impl rule__SimpleReturnTypeCollection__Group__1 )
-            // InternalPersistenceDsl.g:2294:2: rule__SimpleReturnTypeCollection__Group__0__Impl rule__SimpleReturnTypeCollection__Group__1
+            // InternalPersistenceDsl.g:2299:1: ( rule__SimpleReturnTypeCollection__Group__0__Impl rule__SimpleReturnTypeCollection__Group__1 )
+            // InternalPersistenceDsl.g:2300:2: rule__SimpleReturnTypeCollection__Group__0__Impl rule__SimpleReturnTypeCollection__Group__1
             {
             pushFollow(FOLLOW_15);
             rule__SimpleReturnTypeCollection__Group__0__Impl();
@@ -7214,17 +7238,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__0__Impl"
-    // InternalPersistenceDsl.g:2301:1: rule__SimpleReturnTypeCollection__Group__0__Impl : ( RULE_LIST ) ;
+    // InternalPersistenceDsl.g:2307:1: rule__SimpleReturnTypeCollection__Group__0__Impl : ( RULE_LIST ) ;
     public final void rule__SimpleReturnTypeCollection__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2305:1: ( ( RULE_LIST ) )
-            // InternalPersistenceDsl.g:2306:1: ( RULE_LIST )
+            // InternalPersistenceDsl.g:2311:1: ( ( RULE_LIST ) )
+            // InternalPersistenceDsl.g:2312:1: ( RULE_LIST )
             {
-            // InternalPersistenceDsl.g:2306:1: ( RULE_LIST )
-            // InternalPersistenceDsl.g:2307:2: RULE_LIST
+            // InternalPersistenceDsl.g:2312:1: ( RULE_LIST )
+            // InternalPersistenceDsl.g:2313:2: RULE_LIST
             {
              before(grammarAccess.getSimpleReturnTypeCollectionAccess().getLISTTerminalRuleCall_0()); 
             match(input,RULE_LIST,FOLLOW_2); 
@@ -7251,14 +7275,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__1"
-    // InternalPersistenceDsl.g:2316:1: rule__SimpleReturnTypeCollection__Group__1 : rule__SimpleReturnTypeCollection__Group__1__Impl rule__SimpleReturnTypeCollection__Group__2 ;
+    // InternalPersistenceDsl.g:2322:1: rule__SimpleReturnTypeCollection__Group__1 : rule__SimpleReturnTypeCollection__Group__1__Impl rule__SimpleReturnTypeCollection__Group__2 ;
     public final void rule__SimpleReturnTypeCollection__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2320:1: ( rule__SimpleReturnTypeCollection__Group__1__Impl rule__SimpleReturnTypeCollection__Group__2 )
-            // InternalPersistenceDsl.g:2321:2: rule__SimpleReturnTypeCollection__Group__1__Impl rule__SimpleReturnTypeCollection__Group__2
+            // InternalPersistenceDsl.g:2326:1: ( rule__SimpleReturnTypeCollection__Group__1__Impl rule__SimpleReturnTypeCollection__Group__2 )
+            // InternalPersistenceDsl.g:2327:2: rule__SimpleReturnTypeCollection__Group__1__Impl rule__SimpleReturnTypeCollection__Group__2
             {
             pushFollow(FOLLOW_18);
             rule__SimpleReturnTypeCollection__Group__1__Impl();
@@ -7289,20 +7313,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__1__Impl"
-    // InternalPersistenceDsl.g:2328:1: rule__SimpleReturnTypeCollection__Group__1__Impl : ( '<' ) ;
+    // InternalPersistenceDsl.g:2334:1: rule__SimpleReturnTypeCollection__Group__1__Impl : ( '<' ) ;
     public final void rule__SimpleReturnTypeCollection__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2332:1: ( ( '<' ) )
-            // InternalPersistenceDsl.g:2333:1: ( '<' )
+            // InternalPersistenceDsl.g:2338:1: ( ( '<' ) )
+            // InternalPersistenceDsl.g:2339:1: ( '<' )
             {
-            // InternalPersistenceDsl.g:2333:1: ( '<' )
-            // InternalPersistenceDsl.g:2334:2: '<'
+            // InternalPersistenceDsl.g:2339:1: ( '<' )
+            // InternalPersistenceDsl.g:2340:2: '<'
             {
              before(grammarAccess.getSimpleReturnTypeCollectionAccess().getLessThanSignKeyword_1()); 
-            match(input,28,FOLLOW_2); 
+            match(input,29,FOLLOW_2); 
              after(grammarAccess.getSimpleReturnTypeCollectionAccess().getLessThanSignKeyword_1()); 
 
             }
@@ -7326,14 +7350,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__2"
-    // InternalPersistenceDsl.g:2343:1: rule__SimpleReturnTypeCollection__Group__2 : rule__SimpleReturnTypeCollection__Group__2__Impl rule__SimpleReturnTypeCollection__Group__3 ;
+    // InternalPersistenceDsl.g:2349:1: rule__SimpleReturnTypeCollection__Group__2 : rule__SimpleReturnTypeCollection__Group__2__Impl rule__SimpleReturnTypeCollection__Group__3 ;
     public final void rule__SimpleReturnTypeCollection__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2347:1: ( rule__SimpleReturnTypeCollection__Group__2__Impl rule__SimpleReturnTypeCollection__Group__3 )
-            // InternalPersistenceDsl.g:2348:2: rule__SimpleReturnTypeCollection__Group__2__Impl rule__SimpleReturnTypeCollection__Group__3
+            // InternalPersistenceDsl.g:2353:1: ( rule__SimpleReturnTypeCollection__Group__2__Impl rule__SimpleReturnTypeCollection__Group__3 )
+            // InternalPersistenceDsl.g:2354:2: rule__SimpleReturnTypeCollection__Group__2__Impl rule__SimpleReturnTypeCollection__Group__3
             {
             pushFollow(FOLLOW_16);
             rule__SimpleReturnTypeCollection__Group__2__Impl();
@@ -7364,21 +7388,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__2__Impl"
-    // InternalPersistenceDsl.g:2355:1: rule__SimpleReturnTypeCollection__Group__2__Impl : ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) ) ;
+    // InternalPersistenceDsl.g:2361:1: rule__SimpleReturnTypeCollection__Group__2__Impl : ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) ) ;
     public final void rule__SimpleReturnTypeCollection__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2359:1: ( ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) ) )
-            // InternalPersistenceDsl.g:2360:1: ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2365:1: ( ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) ) )
+            // InternalPersistenceDsl.g:2366:1: ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) )
             {
-            // InternalPersistenceDsl.g:2360:1: ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) )
-            // InternalPersistenceDsl.g:2361:2: ( rule__SimpleReturnTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2366:1: ( ( rule__SimpleReturnTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2367:2: ( rule__SimpleReturnTypeCollection__TypeAssignment_2 )
             {
              before(grammarAccess.getSimpleReturnTypeCollectionAccess().getTypeAssignment_2()); 
-            // InternalPersistenceDsl.g:2362:2: ( rule__SimpleReturnTypeCollection__TypeAssignment_2 )
-            // InternalPersistenceDsl.g:2362:3: rule__SimpleReturnTypeCollection__TypeAssignment_2
+            // InternalPersistenceDsl.g:2368:2: ( rule__SimpleReturnTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2368:3: rule__SimpleReturnTypeCollection__TypeAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__SimpleReturnTypeCollection__TypeAssignment_2();
@@ -7411,14 +7435,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__3"
-    // InternalPersistenceDsl.g:2370:1: rule__SimpleReturnTypeCollection__Group__3 : rule__SimpleReturnTypeCollection__Group__3__Impl ;
+    // InternalPersistenceDsl.g:2376:1: rule__SimpleReturnTypeCollection__Group__3 : rule__SimpleReturnTypeCollection__Group__3__Impl ;
     public final void rule__SimpleReturnTypeCollection__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2374:1: ( rule__SimpleReturnTypeCollection__Group__3__Impl )
-            // InternalPersistenceDsl.g:2375:2: rule__SimpleReturnTypeCollection__Group__3__Impl
+            // InternalPersistenceDsl.g:2380:1: ( rule__SimpleReturnTypeCollection__Group__3__Impl )
+            // InternalPersistenceDsl.g:2381:2: rule__SimpleReturnTypeCollection__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SimpleReturnTypeCollection__Group__3__Impl();
@@ -7444,20 +7468,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__Group__3__Impl"
-    // InternalPersistenceDsl.g:2381:1: rule__SimpleReturnTypeCollection__Group__3__Impl : ( '>' ) ;
+    // InternalPersistenceDsl.g:2387:1: rule__SimpleReturnTypeCollection__Group__3__Impl : ( '>' ) ;
     public final void rule__SimpleReturnTypeCollection__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2385:1: ( ( '>' ) )
-            // InternalPersistenceDsl.g:2386:1: ( '>' )
+            // InternalPersistenceDsl.g:2391:1: ( ( '>' ) )
+            // InternalPersistenceDsl.g:2392:1: ( '>' )
             {
-            // InternalPersistenceDsl.g:2386:1: ( '>' )
-            // InternalPersistenceDsl.g:2387:2: '>'
+            // InternalPersistenceDsl.g:2392:1: ( '>' )
+            // InternalPersistenceDsl.g:2393:2: '>'
             {
              before(grammarAccess.getSimpleReturnTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
-            match(input,29,FOLLOW_2); 
+            match(input,30,FOLLOW_2); 
              after(grammarAccess.getSimpleReturnTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
 
             }
@@ -7481,14 +7505,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__0"
-    // InternalPersistenceDsl.g:2397:1: rule__AllModelTypeCollection__Group__0 : rule__AllModelTypeCollection__Group__0__Impl rule__AllModelTypeCollection__Group__1 ;
+    // InternalPersistenceDsl.g:2403:1: rule__AllModelTypeCollection__Group__0 : rule__AllModelTypeCollection__Group__0__Impl rule__AllModelTypeCollection__Group__1 ;
     public final void rule__AllModelTypeCollection__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2401:1: ( rule__AllModelTypeCollection__Group__0__Impl rule__AllModelTypeCollection__Group__1 )
-            // InternalPersistenceDsl.g:2402:2: rule__AllModelTypeCollection__Group__0__Impl rule__AllModelTypeCollection__Group__1
+            // InternalPersistenceDsl.g:2407:1: ( rule__AllModelTypeCollection__Group__0__Impl rule__AllModelTypeCollection__Group__1 )
+            // InternalPersistenceDsl.g:2408:2: rule__AllModelTypeCollection__Group__0__Impl rule__AllModelTypeCollection__Group__1
             {
             pushFollow(FOLLOW_15);
             rule__AllModelTypeCollection__Group__0__Impl();
@@ -7519,21 +7543,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__0__Impl"
-    // InternalPersistenceDsl.g:2409:1: rule__AllModelTypeCollection__Group__0__Impl : ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:2415:1: rule__AllModelTypeCollection__Group__0__Impl : ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) ) ;
     public final void rule__AllModelTypeCollection__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2413:1: ( ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:2414:1: ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) )
+            // InternalPersistenceDsl.g:2419:1: ( ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:2420:1: ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:2414:1: ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) )
-            // InternalPersistenceDsl.g:2415:2: ( rule__AllModelTypeCollection__CollectionAssignment_0 )
+            // InternalPersistenceDsl.g:2420:1: ( ( rule__AllModelTypeCollection__CollectionAssignment_0 ) )
+            // InternalPersistenceDsl.g:2421:2: ( rule__AllModelTypeCollection__CollectionAssignment_0 )
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getCollectionAssignment_0()); 
-            // InternalPersistenceDsl.g:2416:2: ( rule__AllModelTypeCollection__CollectionAssignment_0 )
-            // InternalPersistenceDsl.g:2416:3: rule__AllModelTypeCollection__CollectionAssignment_0
+            // InternalPersistenceDsl.g:2422:2: ( rule__AllModelTypeCollection__CollectionAssignment_0 )
+            // InternalPersistenceDsl.g:2422:3: rule__AllModelTypeCollection__CollectionAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__AllModelTypeCollection__CollectionAssignment_0();
@@ -7566,14 +7590,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__1"
-    // InternalPersistenceDsl.g:2424:1: rule__AllModelTypeCollection__Group__1 : rule__AllModelTypeCollection__Group__1__Impl rule__AllModelTypeCollection__Group__2 ;
+    // InternalPersistenceDsl.g:2430:1: rule__AllModelTypeCollection__Group__1 : rule__AllModelTypeCollection__Group__1__Impl rule__AllModelTypeCollection__Group__2 ;
     public final void rule__AllModelTypeCollection__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2428:1: ( rule__AllModelTypeCollection__Group__1__Impl rule__AllModelTypeCollection__Group__2 )
-            // InternalPersistenceDsl.g:2429:2: rule__AllModelTypeCollection__Group__1__Impl rule__AllModelTypeCollection__Group__2
+            // InternalPersistenceDsl.g:2434:1: ( rule__AllModelTypeCollection__Group__1__Impl rule__AllModelTypeCollection__Group__2 )
+            // InternalPersistenceDsl.g:2435:2: rule__AllModelTypeCollection__Group__1__Impl rule__AllModelTypeCollection__Group__2
             {
             pushFollow(FOLLOW_4);
             rule__AllModelTypeCollection__Group__1__Impl();
@@ -7604,20 +7628,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__1__Impl"
-    // InternalPersistenceDsl.g:2436:1: rule__AllModelTypeCollection__Group__1__Impl : ( '<' ) ;
+    // InternalPersistenceDsl.g:2442:1: rule__AllModelTypeCollection__Group__1__Impl : ( '<' ) ;
     public final void rule__AllModelTypeCollection__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2440:1: ( ( '<' ) )
-            // InternalPersistenceDsl.g:2441:1: ( '<' )
+            // InternalPersistenceDsl.g:2446:1: ( ( '<' ) )
+            // InternalPersistenceDsl.g:2447:1: ( '<' )
             {
-            // InternalPersistenceDsl.g:2441:1: ( '<' )
-            // InternalPersistenceDsl.g:2442:2: '<'
+            // InternalPersistenceDsl.g:2447:1: ( '<' )
+            // InternalPersistenceDsl.g:2448:2: '<'
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getLessThanSignKeyword_1()); 
-            match(input,28,FOLLOW_2); 
+            match(input,29,FOLLOW_2); 
              after(grammarAccess.getAllModelTypeCollectionAccess().getLessThanSignKeyword_1()); 
 
             }
@@ -7641,14 +7665,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__2"
-    // InternalPersistenceDsl.g:2451:1: rule__AllModelTypeCollection__Group__2 : rule__AllModelTypeCollection__Group__2__Impl rule__AllModelTypeCollection__Group__3 ;
+    // InternalPersistenceDsl.g:2457:1: rule__AllModelTypeCollection__Group__2 : rule__AllModelTypeCollection__Group__2__Impl rule__AllModelTypeCollection__Group__3 ;
     public final void rule__AllModelTypeCollection__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2455:1: ( rule__AllModelTypeCollection__Group__2__Impl rule__AllModelTypeCollection__Group__3 )
-            // InternalPersistenceDsl.g:2456:2: rule__AllModelTypeCollection__Group__2__Impl rule__AllModelTypeCollection__Group__3
+            // InternalPersistenceDsl.g:2461:1: ( rule__AllModelTypeCollection__Group__2__Impl rule__AllModelTypeCollection__Group__3 )
+            // InternalPersistenceDsl.g:2462:2: rule__AllModelTypeCollection__Group__2__Impl rule__AllModelTypeCollection__Group__3
             {
             pushFollow(FOLLOW_16);
             rule__AllModelTypeCollection__Group__2__Impl();
@@ -7679,21 +7703,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__2__Impl"
-    // InternalPersistenceDsl.g:2463:1: rule__AllModelTypeCollection__Group__2__Impl : ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) ) ;
+    // InternalPersistenceDsl.g:2469:1: rule__AllModelTypeCollection__Group__2__Impl : ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) ) ;
     public final void rule__AllModelTypeCollection__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2467:1: ( ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) ) )
-            // InternalPersistenceDsl.g:2468:1: ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2473:1: ( ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) ) )
+            // InternalPersistenceDsl.g:2474:1: ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) )
             {
-            // InternalPersistenceDsl.g:2468:1: ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) )
-            // InternalPersistenceDsl.g:2469:2: ( rule__AllModelTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2474:1: ( ( rule__AllModelTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2475:2: ( rule__AllModelTypeCollection__TypeAssignment_2 )
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getTypeAssignment_2()); 
-            // InternalPersistenceDsl.g:2470:2: ( rule__AllModelTypeCollection__TypeAssignment_2 )
-            // InternalPersistenceDsl.g:2470:3: rule__AllModelTypeCollection__TypeAssignment_2
+            // InternalPersistenceDsl.g:2476:2: ( rule__AllModelTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2476:3: rule__AllModelTypeCollection__TypeAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__AllModelTypeCollection__TypeAssignment_2();
@@ -7726,14 +7750,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__3"
-    // InternalPersistenceDsl.g:2478:1: rule__AllModelTypeCollection__Group__3 : rule__AllModelTypeCollection__Group__3__Impl ;
+    // InternalPersistenceDsl.g:2484:1: rule__AllModelTypeCollection__Group__3 : rule__AllModelTypeCollection__Group__3__Impl ;
     public final void rule__AllModelTypeCollection__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2482:1: ( rule__AllModelTypeCollection__Group__3__Impl )
-            // InternalPersistenceDsl.g:2483:2: rule__AllModelTypeCollection__Group__3__Impl
+            // InternalPersistenceDsl.g:2488:1: ( rule__AllModelTypeCollection__Group__3__Impl )
+            // InternalPersistenceDsl.g:2489:2: rule__AllModelTypeCollection__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AllModelTypeCollection__Group__3__Impl();
@@ -7759,20 +7783,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__Group__3__Impl"
-    // InternalPersistenceDsl.g:2489:1: rule__AllModelTypeCollection__Group__3__Impl : ( '>' ) ;
+    // InternalPersistenceDsl.g:2495:1: rule__AllModelTypeCollection__Group__3__Impl : ( '>' ) ;
     public final void rule__AllModelTypeCollection__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2493:1: ( ( '>' ) )
-            // InternalPersistenceDsl.g:2494:1: ( '>' )
+            // InternalPersistenceDsl.g:2499:1: ( ( '>' ) )
+            // InternalPersistenceDsl.g:2500:1: ( '>' )
             {
-            // InternalPersistenceDsl.g:2494:1: ( '>' )
-            // InternalPersistenceDsl.g:2495:2: '>'
+            // InternalPersistenceDsl.g:2500:1: ( '>' )
+            // InternalPersistenceDsl.g:2501:2: '>'
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
-            match(input,29,FOLLOW_2); 
+            match(input,30,FOLLOW_2); 
              after(grammarAccess.getAllModelTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
 
             }
@@ -7796,14 +7820,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__0"
-    // InternalPersistenceDsl.g:2505:1: rule__SimpleTypeCollection__Group__0 : rule__SimpleTypeCollection__Group__0__Impl rule__SimpleTypeCollection__Group__1 ;
+    // InternalPersistenceDsl.g:2511:1: rule__SimpleTypeCollection__Group__0 : rule__SimpleTypeCollection__Group__0__Impl rule__SimpleTypeCollection__Group__1 ;
     public final void rule__SimpleTypeCollection__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2509:1: ( rule__SimpleTypeCollection__Group__0__Impl rule__SimpleTypeCollection__Group__1 )
-            // InternalPersistenceDsl.g:2510:2: rule__SimpleTypeCollection__Group__0__Impl rule__SimpleTypeCollection__Group__1
+            // InternalPersistenceDsl.g:2515:1: ( rule__SimpleTypeCollection__Group__0__Impl rule__SimpleTypeCollection__Group__1 )
+            // InternalPersistenceDsl.g:2516:2: rule__SimpleTypeCollection__Group__0__Impl rule__SimpleTypeCollection__Group__1
             {
             pushFollow(FOLLOW_15);
             rule__SimpleTypeCollection__Group__0__Impl();
@@ -7834,21 +7858,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__0__Impl"
-    // InternalPersistenceDsl.g:2517:1: rule__SimpleTypeCollection__Group__0__Impl : ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:2523:1: rule__SimpleTypeCollection__Group__0__Impl : ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) ) ;
     public final void rule__SimpleTypeCollection__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2521:1: ( ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:2522:1: ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) )
+            // InternalPersistenceDsl.g:2527:1: ( ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:2528:1: ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:2522:1: ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) )
-            // InternalPersistenceDsl.g:2523:2: ( rule__SimpleTypeCollection__CollectionAssignment_0 )
+            // InternalPersistenceDsl.g:2528:1: ( ( rule__SimpleTypeCollection__CollectionAssignment_0 ) )
+            // InternalPersistenceDsl.g:2529:2: ( rule__SimpleTypeCollection__CollectionAssignment_0 )
             {
              before(grammarAccess.getSimpleTypeCollectionAccess().getCollectionAssignment_0()); 
-            // InternalPersistenceDsl.g:2524:2: ( rule__SimpleTypeCollection__CollectionAssignment_0 )
-            // InternalPersistenceDsl.g:2524:3: rule__SimpleTypeCollection__CollectionAssignment_0
+            // InternalPersistenceDsl.g:2530:2: ( rule__SimpleTypeCollection__CollectionAssignment_0 )
+            // InternalPersistenceDsl.g:2530:3: rule__SimpleTypeCollection__CollectionAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__SimpleTypeCollection__CollectionAssignment_0();
@@ -7881,14 +7905,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__1"
-    // InternalPersistenceDsl.g:2532:1: rule__SimpleTypeCollection__Group__1 : rule__SimpleTypeCollection__Group__1__Impl rule__SimpleTypeCollection__Group__2 ;
+    // InternalPersistenceDsl.g:2538:1: rule__SimpleTypeCollection__Group__1 : rule__SimpleTypeCollection__Group__1__Impl rule__SimpleTypeCollection__Group__2 ;
     public final void rule__SimpleTypeCollection__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2536:1: ( rule__SimpleTypeCollection__Group__1__Impl rule__SimpleTypeCollection__Group__2 )
-            // InternalPersistenceDsl.g:2537:2: rule__SimpleTypeCollection__Group__1__Impl rule__SimpleTypeCollection__Group__2
+            // InternalPersistenceDsl.g:2542:1: ( rule__SimpleTypeCollection__Group__1__Impl rule__SimpleTypeCollection__Group__2 )
+            // InternalPersistenceDsl.g:2543:2: rule__SimpleTypeCollection__Group__1__Impl rule__SimpleTypeCollection__Group__2
             {
             pushFollow(FOLLOW_18);
             rule__SimpleTypeCollection__Group__1__Impl();
@@ -7919,20 +7943,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__1__Impl"
-    // InternalPersistenceDsl.g:2544:1: rule__SimpleTypeCollection__Group__1__Impl : ( '<' ) ;
+    // InternalPersistenceDsl.g:2550:1: rule__SimpleTypeCollection__Group__1__Impl : ( '<' ) ;
     public final void rule__SimpleTypeCollection__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2548:1: ( ( '<' ) )
-            // InternalPersistenceDsl.g:2549:1: ( '<' )
+            // InternalPersistenceDsl.g:2554:1: ( ( '<' ) )
+            // InternalPersistenceDsl.g:2555:1: ( '<' )
             {
-            // InternalPersistenceDsl.g:2549:1: ( '<' )
-            // InternalPersistenceDsl.g:2550:2: '<'
+            // InternalPersistenceDsl.g:2555:1: ( '<' )
+            // InternalPersistenceDsl.g:2556:2: '<'
             {
              before(grammarAccess.getSimpleTypeCollectionAccess().getLessThanSignKeyword_1()); 
-            match(input,28,FOLLOW_2); 
+            match(input,29,FOLLOW_2); 
              after(grammarAccess.getSimpleTypeCollectionAccess().getLessThanSignKeyword_1()); 
 
             }
@@ -7956,14 +7980,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__2"
-    // InternalPersistenceDsl.g:2559:1: rule__SimpleTypeCollection__Group__2 : rule__SimpleTypeCollection__Group__2__Impl rule__SimpleTypeCollection__Group__3 ;
+    // InternalPersistenceDsl.g:2565:1: rule__SimpleTypeCollection__Group__2 : rule__SimpleTypeCollection__Group__2__Impl rule__SimpleTypeCollection__Group__3 ;
     public final void rule__SimpleTypeCollection__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2563:1: ( rule__SimpleTypeCollection__Group__2__Impl rule__SimpleTypeCollection__Group__3 )
-            // InternalPersistenceDsl.g:2564:2: rule__SimpleTypeCollection__Group__2__Impl rule__SimpleTypeCollection__Group__3
+            // InternalPersistenceDsl.g:2569:1: ( rule__SimpleTypeCollection__Group__2__Impl rule__SimpleTypeCollection__Group__3 )
+            // InternalPersistenceDsl.g:2570:2: rule__SimpleTypeCollection__Group__2__Impl rule__SimpleTypeCollection__Group__3
             {
             pushFollow(FOLLOW_16);
             rule__SimpleTypeCollection__Group__2__Impl();
@@ -7994,21 +8018,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__2__Impl"
-    // InternalPersistenceDsl.g:2571:1: rule__SimpleTypeCollection__Group__2__Impl : ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) ) ;
+    // InternalPersistenceDsl.g:2577:1: rule__SimpleTypeCollection__Group__2__Impl : ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) ) ;
     public final void rule__SimpleTypeCollection__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2575:1: ( ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) ) )
-            // InternalPersistenceDsl.g:2576:1: ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2581:1: ( ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) ) )
+            // InternalPersistenceDsl.g:2582:1: ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) )
             {
-            // InternalPersistenceDsl.g:2576:1: ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) )
-            // InternalPersistenceDsl.g:2577:2: ( rule__SimpleTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2582:1: ( ( rule__SimpleTypeCollection__TypeAssignment_2 ) )
+            // InternalPersistenceDsl.g:2583:2: ( rule__SimpleTypeCollection__TypeAssignment_2 )
             {
              before(grammarAccess.getSimpleTypeCollectionAccess().getTypeAssignment_2()); 
-            // InternalPersistenceDsl.g:2578:2: ( rule__SimpleTypeCollection__TypeAssignment_2 )
-            // InternalPersistenceDsl.g:2578:3: rule__SimpleTypeCollection__TypeAssignment_2
+            // InternalPersistenceDsl.g:2584:2: ( rule__SimpleTypeCollection__TypeAssignment_2 )
+            // InternalPersistenceDsl.g:2584:3: rule__SimpleTypeCollection__TypeAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__SimpleTypeCollection__TypeAssignment_2();
@@ -8041,14 +8065,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__3"
-    // InternalPersistenceDsl.g:2586:1: rule__SimpleTypeCollection__Group__3 : rule__SimpleTypeCollection__Group__3__Impl ;
+    // InternalPersistenceDsl.g:2592:1: rule__SimpleTypeCollection__Group__3 : rule__SimpleTypeCollection__Group__3__Impl ;
     public final void rule__SimpleTypeCollection__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2590:1: ( rule__SimpleTypeCollection__Group__3__Impl )
-            // InternalPersistenceDsl.g:2591:2: rule__SimpleTypeCollection__Group__3__Impl
+            // InternalPersistenceDsl.g:2596:1: ( rule__SimpleTypeCollection__Group__3__Impl )
+            // InternalPersistenceDsl.g:2597:2: rule__SimpleTypeCollection__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SimpleTypeCollection__Group__3__Impl();
@@ -8074,20 +8098,20 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__Group__3__Impl"
-    // InternalPersistenceDsl.g:2597:1: rule__SimpleTypeCollection__Group__3__Impl : ( '>' ) ;
+    // InternalPersistenceDsl.g:2603:1: rule__SimpleTypeCollection__Group__3__Impl : ( '>' ) ;
     public final void rule__SimpleTypeCollection__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2601:1: ( ( '>' ) )
-            // InternalPersistenceDsl.g:2602:1: ( '>' )
+            // InternalPersistenceDsl.g:2607:1: ( ( '>' ) )
+            // InternalPersistenceDsl.g:2608:1: ( '>' )
             {
-            // InternalPersistenceDsl.g:2602:1: ( '>' )
-            // InternalPersistenceDsl.g:2603:2: '>'
+            // InternalPersistenceDsl.g:2608:1: ( '>' )
+            // InternalPersistenceDsl.g:2609:2: '>'
             {
              before(grammarAccess.getSimpleTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
-            match(input,29,FOLLOW_2); 
+            match(input,30,FOLLOW_2); 
              after(grammarAccess.getSimpleTypeCollectionAccess().getGreaterThanSignKeyword_3()); 
 
             }
@@ -8111,14 +8135,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeVariable__Group__0"
-    // InternalPersistenceDsl.g:2613:1: rule__DefAllModelTypeVariable__Group__0 : rule__DefAllModelTypeVariable__Group__0__Impl rule__DefAllModelTypeVariable__Group__1 ;
+    // InternalPersistenceDsl.g:2619:1: rule__DefAllModelTypeVariable__Group__0 : rule__DefAllModelTypeVariable__Group__0__Impl rule__DefAllModelTypeVariable__Group__1 ;
     public final void rule__DefAllModelTypeVariable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2617:1: ( rule__DefAllModelTypeVariable__Group__0__Impl rule__DefAllModelTypeVariable__Group__1 )
-            // InternalPersistenceDsl.g:2618:2: rule__DefAllModelTypeVariable__Group__0__Impl rule__DefAllModelTypeVariable__Group__1
+            // InternalPersistenceDsl.g:2623:1: ( rule__DefAllModelTypeVariable__Group__0__Impl rule__DefAllModelTypeVariable__Group__1 )
+            // InternalPersistenceDsl.g:2624:2: rule__DefAllModelTypeVariable__Group__0__Impl rule__DefAllModelTypeVariable__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__DefAllModelTypeVariable__Group__0__Impl();
@@ -8149,21 +8173,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeVariable__Group__0__Impl"
-    // InternalPersistenceDsl.g:2625:1: rule__DefAllModelTypeVariable__Group__0__Impl : ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:2631:1: rule__DefAllModelTypeVariable__Group__0__Impl : ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) ) ;
     public final void rule__DefAllModelTypeVariable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2629:1: ( ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:2630:1: ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2635:1: ( ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:2636:1: ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:2630:1: ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:2631:2: ( rule__DefAllModelTypeVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2636:1: ( ( rule__DefAllModelTypeVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2637:2: ( rule__DefAllModelTypeVariable__TypeAssignment_0 )
             {
              before(grammarAccess.getDefAllModelTypeVariableAccess().getTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:2632:2: ( rule__DefAllModelTypeVariable__TypeAssignment_0 )
-            // InternalPersistenceDsl.g:2632:3: rule__DefAllModelTypeVariable__TypeAssignment_0
+            // InternalPersistenceDsl.g:2638:2: ( rule__DefAllModelTypeVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2638:3: rule__DefAllModelTypeVariable__TypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__DefAllModelTypeVariable__TypeAssignment_0();
@@ -8196,14 +8220,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeVariable__Group__1"
-    // InternalPersistenceDsl.g:2640:1: rule__DefAllModelTypeVariable__Group__1 : rule__DefAllModelTypeVariable__Group__1__Impl ;
+    // InternalPersistenceDsl.g:2646:1: rule__DefAllModelTypeVariable__Group__1 : rule__DefAllModelTypeVariable__Group__1__Impl ;
     public final void rule__DefAllModelTypeVariable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2644:1: ( rule__DefAllModelTypeVariable__Group__1__Impl )
-            // InternalPersistenceDsl.g:2645:2: rule__DefAllModelTypeVariable__Group__1__Impl
+            // InternalPersistenceDsl.g:2650:1: ( rule__DefAllModelTypeVariable__Group__1__Impl )
+            // InternalPersistenceDsl.g:2651:2: rule__DefAllModelTypeVariable__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DefAllModelTypeVariable__Group__1__Impl();
@@ -8229,21 +8253,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeVariable__Group__1__Impl"
-    // InternalPersistenceDsl.g:2651:1: rule__DefAllModelTypeVariable__Group__1__Impl : ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:2657:1: rule__DefAllModelTypeVariable__Group__1__Impl : ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) ) ;
     public final void rule__DefAllModelTypeVariable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2655:1: ( ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:2656:1: ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2661:1: ( ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:2662:1: ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:2656:1: ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:2657:2: ( rule__DefAllModelTypeVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2662:1: ( ( rule__DefAllModelTypeVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2663:2: ( rule__DefAllModelTypeVariable__NameAssignment_1 )
             {
              before(grammarAccess.getDefAllModelTypeVariableAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:2658:2: ( rule__DefAllModelTypeVariable__NameAssignment_1 )
-            // InternalPersistenceDsl.g:2658:3: rule__DefAllModelTypeVariable__NameAssignment_1
+            // InternalPersistenceDsl.g:2664:2: ( rule__DefAllModelTypeVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2664:3: rule__DefAllModelTypeVariable__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DefAllModelTypeVariable__NameAssignment_1();
@@ -8276,14 +8300,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleVariable__Group__0"
-    // InternalPersistenceDsl.g:2667:1: rule__DefSimpleVariable__Group__0 : rule__DefSimpleVariable__Group__0__Impl rule__DefSimpleVariable__Group__1 ;
+    // InternalPersistenceDsl.g:2673:1: rule__DefSimpleVariable__Group__0 : rule__DefSimpleVariable__Group__0__Impl rule__DefSimpleVariable__Group__1 ;
     public final void rule__DefSimpleVariable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2671:1: ( rule__DefSimpleVariable__Group__0__Impl rule__DefSimpleVariable__Group__1 )
-            // InternalPersistenceDsl.g:2672:2: rule__DefSimpleVariable__Group__0__Impl rule__DefSimpleVariable__Group__1
+            // InternalPersistenceDsl.g:2677:1: ( rule__DefSimpleVariable__Group__0__Impl rule__DefSimpleVariable__Group__1 )
+            // InternalPersistenceDsl.g:2678:2: rule__DefSimpleVariable__Group__0__Impl rule__DefSimpleVariable__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__DefSimpleVariable__Group__0__Impl();
@@ -8314,21 +8338,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleVariable__Group__0__Impl"
-    // InternalPersistenceDsl.g:2679:1: rule__DefSimpleVariable__Group__0__Impl : ( ( rule__DefSimpleVariable__TypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:2685:1: rule__DefSimpleVariable__Group__0__Impl : ( ( rule__DefSimpleVariable__TypeAssignment_0 ) ) ;
     public final void rule__DefSimpleVariable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2683:1: ( ( ( rule__DefSimpleVariable__TypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:2684:1: ( ( rule__DefSimpleVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2689:1: ( ( ( rule__DefSimpleVariable__TypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:2690:1: ( ( rule__DefSimpleVariable__TypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:2684:1: ( ( rule__DefSimpleVariable__TypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:2685:2: ( rule__DefSimpleVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2690:1: ( ( rule__DefSimpleVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2691:2: ( rule__DefSimpleVariable__TypeAssignment_0 )
             {
              before(grammarAccess.getDefSimpleVariableAccess().getTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:2686:2: ( rule__DefSimpleVariable__TypeAssignment_0 )
-            // InternalPersistenceDsl.g:2686:3: rule__DefSimpleVariable__TypeAssignment_0
+            // InternalPersistenceDsl.g:2692:2: ( rule__DefSimpleVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2692:3: rule__DefSimpleVariable__TypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__DefSimpleVariable__TypeAssignment_0();
@@ -8361,14 +8385,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleVariable__Group__1"
-    // InternalPersistenceDsl.g:2694:1: rule__DefSimpleVariable__Group__1 : rule__DefSimpleVariable__Group__1__Impl ;
+    // InternalPersistenceDsl.g:2700:1: rule__DefSimpleVariable__Group__1 : rule__DefSimpleVariable__Group__1__Impl ;
     public final void rule__DefSimpleVariable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2698:1: ( rule__DefSimpleVariable__Group__1__Impl )
-            // InternalPersistenceDsl.g:2699:2: rule__DefSimpleVariable__Group__1__Impl
+            // InternalPersistenceDsl.g:2704:1: ( rule__DefSimpleVariable__Group__1__Impl )
+            // InternalPersistenceDsl.g:2705:2: rule__DefSimpleVariable__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DefSimpleVariable__Group__1__Impl();
@@ -8394,21 +8418,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleVariable__Group__1__Impl"
-    // InternalPersistenceDsl.g:2705:1: rule__DefSimpleVariable__Group__1__Impl : ( ( rule__DefSimpleVariable__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:2711:1: rule__DefSimpleVariable__Group__1__Impl : ( ( rule__DefSimpleVariable__NameAssignment_1 ) ) ;
     public final void rule__DefSimpleVariable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2709:1: ( ( ( rule__DefSimpleVariable__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:2710:1: ( ( rule__DefSimpleVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2715:1: ( ( ( rule__DefSimpleVariable__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:2716:1: ( ( rule__DefSimpleVariable__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:2710:1: ( ( rule__DefSimpleVariable__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:2711:2: ( rule__DefSimpleVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2716:1: ( ( rule__DefSimpleVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2717:2: ( rule__DefSimpleVariable__NameAssignment_1 )
             {
              before(grammarAccess.getDefSimpleVariableAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:2712:2: ( rule__DefSimpleVariable__NameAssignment_1 )
-            // InternalPersistenceDsl.g:2712:3: rule__DefSimpleVariable__NameAssignment_1
+            // InternalPersistenceDsl.g:2718:2: ( rule__DefSimpleVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2718:3: rule__DefSimpleVariable__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DefSimpleVariable__NameAssignment_1();
@@ -8441,14 +8465,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeCollectionVariable__Group__0"
-    // InternalPersistenceDsl.g:2721:1: rule__DefAllModelTypeCollectionVariable__Group__0 : rule__DefAllModelTypeCollectionVariable__Group__0__Impl rule__DefAllModelTypeCollectionVariable__Group__1 ;
+    // InternalPersistenceDsl.g:2727:1: rule__DefAllModelTypeCollectionVariable__Group__0 : rule__DefAllModelTypeCollectionVariable__Group__0__Impl rule__DefAllModelTypeCollectionVariable__Group__1 ;
     public final void rule__DefAllModelTypeCollectionVariable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2725:1: ( rule__DefAllModelTypeCollectionVariable__Group__0__Impl rule__DefAllModelTypeCollectionVariable__Group__1 )
-            // InternalPersistenceDsl.g:2726:2: rule__DefAllModelTypeCollectionVariable__Group__0__Impl rule__DefAllModelTypeCollectionVariable__Group__1
+            // InternalPersistenceDsl.g:2731:1: ( rule__DefAllModelTypeCollectionVariable__Group__0__Impl rule__DefAllModelTypeCollectionVariable__Group__1 )
+            // InternalPersistenceDsl.g:2732:2: rule__DefAllModelTypeCollectionVariable__Group__0__Impl rule__DefAllModelTypeCollectionVariable__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__DefAllModelTypeCollectionVariable__Group__0__Impl();
@@ -8479,21 +8503,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeCollectionVariable__Group__0__Impl"
-    // InternalPersistenceDsl.g:2733:1: rule__DefAllModelTypeCollectionVariable__Group__0__Impl : ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:2739:1: rule__DefAllModelTypeCollectionVariable__Group__0__Impl : ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) ) ;
     public final void rule__DefAllModelTypeCollectionVariable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2737:1: ( ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:2738:1: ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2743:1: ( ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:2744:1: ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:2738:1: ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:2739:2: ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2744:1: ( ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2745:2: ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 )
             {
              before(grammarAccess.getDefAllModelTypeCollectionVariableAccess().getTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:2740:2: ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 )
-            // InternalPersistenceDsl.g:2740:3: rule__DefAllModelTypeCollectionVariable__TypeAssignment_0
+            // InternalPersistenceDsl.g:2746:2: ( rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2746:3: rule__DefAllModelTypeCollectionVariable__TypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__DefAllModelTypeCollectionVariable__TypeAssignment_0();
@@ -8526,14 +8550,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeCollectionVariable__Group__1"
-    // InternalPersistenceDsl.g:2748:1: rule__DefAllModelTypeCollectionVariable__Group__1 : rule__DefAllModelTypeCollectionVariable__Group__1__Impl ;
+    // InternalPersistenceDsl.g:2754:1: rule__DefAllModelTypeCollectionVariable__Group__1 : rule__DefAllModelTypeCollectionVariable__Group__1__Impl ;
     public final void rule__DefAllModelTypeCollectionVariable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2752:1: ( rule__DefAllModelTypeCollectionVariable__Group__1__Impl )
-            // InternalPersistenceDsl.g:2753:2: rule__DefAllModelTypeCollectionVariable__Group__1__Impl
+            // InternalPersistenceDsl.g:2758:1: ( rule__DefAllModelTypeCollectionVariable__Group__1__Impl )
+            // InternalPersistenceDsl.g:2759:2: rule__DefAllModelTypeCollectionVariable__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DefAllModelTypeCollectionVariable__Group__1__Impl();
@@ -8559,21 +8583,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeCollectionVariable__Group__1__Impl"
-    // InternalPersistenceDsl.g:2759:1: rule__DefAllModelTypeCollectionVariable__Group__1__Impl : ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:2765:1: rule__DefAllModelTypeCollectionVariable__Group__1__Impl : ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) ) ;
     public final void rule__DefAllModelTypeCollectionVariable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2763:1: ( ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:2764:1: ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2769:1: ( ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:2770:1: ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:2764:1: ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:2765:2: ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2770:1: ( ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2771:2: ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 )
             {
              before(grammarAccess.getDefAllModelTypeCollectionVariableAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:2766:2: ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 )
-            // InternalPersistenceDsl.g:2766:3: rule__DefAllModelTypeCollectionVariable__NameAssignment_1
+            // InternalPersistenceDsl.g:2772:2: ( rule__DefAllModelTypeCollectionVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2772:3: rule__DefAllModelTypeCollectionVariable__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DefAllModelTypeCollectionVariable__NameAssignment_1();
@@ -8606,14 +8630,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleTypeCollectionVariable__Group__0"
-    // InternalPersistenceDsl.g:2775:1: rule__DefSimpleTypeCollectionVariable__Group__0 : rule__DefSimpleTypeCollectionVariable__Group__0__Impl rule__DefSimpleTypeCollectionVariable__Group__1 ;
+    // InternalPersistenceDsl.g:2781:1: rule__DefSimpleTypeCollectionVariable__Group__0 : rule__DefSimpleTypeCollectionVariable__Group__0__Impl rule__DefSimpleTypeCollectionVariable__Group__1 ;
     public final void rule__DefSimpleTypeCollectionVariable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2779:1: ( rule__DefSimpleTypeCollectionVariable__Group__0__Impl rule__DefSimpleTypeCollectionVariable__Group__1 )
-            // InternalPersistenceDsl.g:2780:2: rule__DefSimpleTypeCollectionVariable__Group__0__Impl rule__DefSimpleTypeCollectionVariable__Group__1
+            // InternalPersistenceDsl.g:2785:1: ( rule__DefSimpleTypeCollectionVariable__Group__0__Impl rule__DefSimpleTypeCollectionVariable__Group__1 )
+            // InternalPersistenceDsl.g:2786:2: rule__DefSimpleTypeCollectionVariable__Group__0__Impl rule__DefSimpleTypeCollectionVariable__Group__1
             {
             pushFollow(FOLLOW_4);
             rule__DefSimpleTypeCollectionVariable__Group__0__Impl();
@@ -8644,21 +8668,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleTypeCollectionVariable__Group__0__Impl"
-    // InternalPersistenceDsl.g:2787:1: rule__DefSimpleTypeCollectionVariable__Group__0__Impl : ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) ) ;
+    // InternalPersistenceDsl.g:2793:1: rule__DefSimpleTypeCollectionVariable__Group__0__Impl : ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) ) ;
     public final void rule__DefSimpleTypeCollectionVariable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2791:1: ( ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) ) )
-            // InternalPersistenceDsl.g:2792:1: ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2797:1: ( ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) ) )
+            // InternalPersistenceDsl.g:2798:1: ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) )
             {
-            // InternalPersistenceDsl.g:2792:1: ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) )
-            // InternalPersistenceDsl.g:2793:2: ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2798:1: ( ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 ) )
+            // InternalPersistenceDsl.g:2799:2: ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 )
             {
              before(grammarAccess.getDefSimpleTypeCollectionVariableAccess().getTypeAssignment_0()); 
-            // InternalPersistenceDsl.g:2794:2: ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 )
-            // InternalPersistenceDsl.g:2794:3: rule__DefSimpleTypeCollectionVariable__TypeAssignment_0
+            // InternalPersistenceDsl.g:2800:2: ( rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 )
+            // InternalPersistenceDsl.g:2800:3: rule__DefSimpleTypeCollectionVariable__TypeAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__DefSimpleTypeCollectionVariable__TypeAssignment_0();
@@ -8691,14 +8715,14 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleTypeCollectionVariable__Group__1"
-    // InternalPersistenceDsl.g:2802:1: rule__DefSimpleTypeCollectionVariable__Group__1 : rule__DefSimpleTypeCollectionVariable__Group__1__Impl ;
+    // InternalPersistenceDsl.g:2808:1: rule__DefSimpleTypeCollectionVariable__Group__1 : rule__DefSimpleTypeCollectionVariable__Group__1__Impl ;
     public final void rule__DefSimpleTypeCollectionVariable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2806:1: ( rule__DefSimpleTypeCollectionVariable__Group__1__Impl )
-            // InternalPersistenceDsl.g:2807:2: rule__DefSimpleTypeCollectionVariable__Group__1__Impl
+            // InternalPersistenceDsl.g:2812:1: ( rule__DefSimpleTypeCollectionVariable__Group__1__Impl )
+            // InternalPersistenceDsl.g:2813:2: rule__DefSimpleTypeCollectionVariable__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DefSimpleTypeCollectionVariable__Group__1__Impl();
@@ -8724,21 +8748,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleTypeCollectionVariable__Group__1__Impl"
-    // InternalPersistenceDsl.g:2813:1: rule__DefSimpleTypeCollectionVariable__Group__1__Impl : ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) ) ;
+    // InternalPersistenceDsl.g:2819:1: rule__DefSimpleTypeCollectionVariable__Group__1__Impl : ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) ) ;
     public final void rule__DefSimpleTypeCollectionVariable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2817:1: ( ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) ) )
-            // InternalPersistenceDsl.g:2818:1: ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2823:1: ( ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) ) )
+            // InternalPersistenceDsl.g:2824:1: ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) )
             {
-            // InternalPersistenceDsl.g:2818:1: ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) )
-            // InternalPersistenceDsl.g:2819:2: ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2824:1: ( ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 ) )
+            // InternalPersistenceDsl.g:2825:2: ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 )
             {
              before(grammarAccess.getDefSimpleTypeCollectionVariableAccess().getNameAssignment_1()); 
-            // InternalPersistenceDsl.g:2820:2: ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 )
-            // InternalPersistenceDsl.g:2820:3: rule__DefSimpleTypeCollectionVariable__NameAssignment_1
+            // InternalPersistenceDsl.g:2826:2: ( rule__DefSimpleTypeCollectionVariable__NameAssignment_1 )
+            // InternalPersistenceDsl.g:2826:3: rule__DefSimpleTypeCollectionVariable__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DefSimpleTypeCollectionVariable__NameAssignment_1();
@@ -8771,17 +8795,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Model__FinderAssignment"
-    // InternalPersistenceDsl.g:2829:1: rule__Model__FinderAssignment : ( ruleFinder ) ;
+    // InternalPersistenceDsl.g:2835:1: rule__Model__FinderAssignment : ( ruleFinder ) ;
     public final void rule__Model__FinderAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2833:1: ( ( ruleFinder ) )
-            // InternalPersistenceDsl.g:2834:2: ( ruleFinder )
+            // InternalPersistenceDsl.g:2839:1: ( ( ruleFinder ) )
+            // InternalPersistenceDsl.g:2840:2: ( ruleFinder )
             {
-            // InternalPersistenceDsl.g:2834:2: ( ruleFinder )
-            // InternalPersistenceDsl.g:2835:3: ruleFinder
+            // InternalPersistenceDsl.g:2840:2: ( ruleFinder )
+            // InternalPersistenceDsl.g:2841:3: ruleFinder
             {
              before(grammarAccess.getModelAccess().getFinderFinderParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -8812,17 +8836,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__NameAssignment_1"
-    // InternalPersistenceDsl.g:2844:1: rule__Finder__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:2850:1: rule__Finder__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Finder__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2848:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:2849:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:2854:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:2855:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:2849:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:2850:3: RULE_ID
+            // InternalPersistenceDsl.g:2855:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:2856:3: RULE_ID
             {
              before(grammarAccess.getFinderAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -8849,17 +8873,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__Finder__MethodsAssignment_3"
-    // InternalPersistenceDsl.g:2859:1: rule__Finder__MethodsAssignment_3 : ( ruleFinderMethod ) ;
+    // InternalPersistenceDsl.g:2865:1: rule__Finder__MethodsAssignment_3 : ( ruleFinderMethod ) ;
     public final void rule__Finder__MethodsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2863:1: ( ( ruleFinderMethod ) )
-            // InternalPersistenceDsl.g:2864:2: ( ruleFinderMethod )
+            // InternalPersistenceDsl.g:2869:1: ( ( ruleFinderMethod ) )
+            // InternalPersistenceDsl.g:2870:2: ( ruleFinderMethod )
             {
-            // InternalPersistenceDsl.g:2864:2: ( ruleFinderMethod )
-            // InternalPersistenceDsl.g:2865:3: ruleFinderMethod
+            // InternalPersistenceDsl.g:2870:2: ( ruleFinderMethod )
+            // InternalPersistenceDsl.g:2871:3: ruleFinderMethod
             {
              before(grammarAccess.getFinderAccess().getMethodsFinderMethodParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -8890,17 +8914,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__ReturnTypeAssignment_0"
-    // InternalPersistenceDsl.g:2874:1: rule__MethodSimpleReturn__ReturnTypeAssignment_0 : ( ruleType ) ;
+    // InternalPersistenceDsl.g:2880:1: rule__MethodSimpleReturn__ReturnTypeAssignment_0 : ( ruleType ) ;
     public final void rule__MethodSimpleReturn__ReturnTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2878:1: ( ( ruleType ) )
-            // InternalPersistenceDsl.g:2879:2: ( ruleType )
+            // InternalPersistenceDsl.g:2884:1: ( ( ruleType ) )
+            // InternalPersistenceDsl.g:2885:2: ( ruleType )
             {
-            // InternalPersistenceDsl.g:2879:2: ( ruleType )
-            // InternalPersistenceDsl.g:2880:3: ruleType
+            // InternalPersistenceDsl.g:2885:2: ( ruleType )
+            // InternalPersistenceDsl.g:2886:3: ruleType
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getReturnTypeTypeParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -8931,17 +8955,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__NameAssignment_1"
-    // InternalPersistenceDsl.g:2889:1: rule__MethodSimpleReturn__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:2895:1: rule__MethodSimpleReturn__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__MethodSimpleReturn__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2893:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:2894:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:2899:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:2900:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:2894:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:2895:3: RULE_ID
+            // InternalPersistenceDsl.g:2900:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:2901:3: RULE_ID
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -8968,17 +8992,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__ParametersAssignment_3_0"
-    // InternalPersistenceDsl.g:2904:1: rule__MethodSimpleReturn__ParametersAssignment_3_0 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:2910:1: rule__MethodSimpleReturn__ParametersAssignment_3_0 : ( ruleDefVariable ) ;
     public final void rule__MethodSimpleReturn__ParametersAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2908:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:2909:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:2914:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:2915:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:2909:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:2910:3: ruleDefVariable
+            // InternalPersistenceDsl.g:2915:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:2916:3: ruleDefVariable
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getParametersDefVariableParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -9009,17 +9033,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__ParametersAssignment_3_1_1"
-    // InternalPersistenceDsl.g:2919:1: rule__MethodSimpleReturn__ParametersAssignment_3_1_1 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:2925:1: rule__MethodSimpleReturn__ParametersAssignment_3_1_1 : ( ruleDefVariable ) ;
     public final void rule__MethodSimpleReturn__ParametersAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2923:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:2924:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:2929:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:2930:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:2924:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:2925:3: ruleDefVariable
+            // InternalPersistenceDsl.g:2930:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:2931:3: ruleDefVariable
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getParametersDefVariableParserRuleCall_3_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -9050,24 +9074,24 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodSimpleReturn__NullableAssignment_5"
-    // InternalPersistenceDsl.g:2934:1: rule__MethodSimpleReturn__NullableAssignment_5 : ( ( 'non-null' ) ) ;
+    // InternalPersistenceDsl.g:2940:1: rule__MethodSimpleReturn__NullableAssignment_5 : ( ( 'non-null' ) ) ;
     public final void rule__MethodSimpleReturn__NullableAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2938:1: ( ( ( 'non-null' ) ) )
-            // InternalPersistenceDsl.g:2939:2: ( ( 'non-null' ) )
+            // InternalPersistenceDsl.g:2944:1: ( ( ( 'non-null' ) ) )
+            // InternalPersistenceDsl.g:2945:2: ( ( 'non-null' ) )
             {
-            // InternalPersistenceDsl.g:2939:2: ( ( 'non-null' ) )
-            // InternalPersistenceDsl.g:2940:3: ( 'non-null' )
-            {
-             before(grammarAccess.getMethodSimpleReturnAccess().getNullableNonNullKeyword_5_0()); 
-            // InternalPersistenceDsl.g:2941:3: ( 'non-null' )
-            // InternalPersistenceDsl.g:2942:4: 'non-null'
+            // InternalPersistenceDsl.g:2945:2: ( ( 'non-null' ) )
+            // InternalPersistenceDsl.g:2946:3: ( 'non-null' )
             {
              before(grammarAccess.getMethodSimpleReturnAccess().getNullableNonNullKeyword_5_0()); 
-            match(input,30,FOLLOW_2); 
+            // InternalPersistenceDsl.g:2947:3: ( 'non-null' )
+            // InternalPersistenceDsl.g:2948:4: 'non-null'
+            {
+             before(grammarAccess.getMethodSimpleReturnAccess().getNullableNonNullKeyword_5_0()); 
+            match(input,31,FOLLOW_2); 
              after(grammarAccess.getMethodSimpleReturnAccess().getNullableNonNullKeyword_5_0()); 
 
             }
@@ -9095,21 +9119,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__ReturnTypeAssignment_0"
-    // InternalPersistenceDsl.g:2953:1: rule__MethodEntityReturn__ReturnTypeAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalPersistenceDsl.g:2959:1: rule__MethodEntityReturn__ReturnTypeAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__MethodEntityReturn__ReturnTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2957:1: ( ( ( RULE_ID ) ) )
-            // InternalPersistenceDsl.g:2958:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:2963:1: ( ( ( RULE_ID ) ) )
+            // InternalPersistenceDsl.g:2964:2: ( ( RULE_ID ) )
             {
-            // InternalPersistenceDsl.g:2958:2: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:2959:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:2964:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:2965:3: ( RULE_ID )
             {
              before(grammarAccess.getMethodEntityReturnAccess().getReturnTypeEntityCrossReference_0_0()); 
-            // InternalPersistenceDsl.g:2960:3: ( RULE_ID )
-            // InternalPersistenceDsl.g:2961:4: RULE_ID
+            // InternalPersistenceDsl.g:2966:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:2967:4: RULE_ID
             {
              before(grammarAccess.getMethodEntityReturnAccess().getReturnTypeEntityIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9140,17 +9164,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__NameAssignment_1"
-    // InternalPersistenceDsl.g:2972:1: rule__MethodEntityReturn__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:2978:1: rule__MethodEntityReturn__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__MethodEntityReturn__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2976:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:2977:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:2982:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:2983:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:2977:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:2978:3: RULE_ID
+            // InternalPersistenceDsl.g:2983:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:2984:3: RULE_ID
             {
              before(grammarAccess.getMethodEntityReturnAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9177,17 +9201,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__ParametersAssignment_3_0"
-    // InternalPersistenceDsl.g:2987:1: rule__MethodEntityReturn__ParametersAssignment_3_0 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:2993:1: rule__MethodEntityReturn__ParametersAssignment_3_0 : ( ruleDefVariable ) ;
     public final void rule__MethodEntityReturn__ParametersAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:2991:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:2992:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:2997:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:2998:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:2992:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:2993:3: ruleDefVariable
+            // InternalPersistenceDsl.g:2998:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:2999:3: ruleDefVariable
             {
              before(grammarAccess.getMethodEntityReturnAccess().getParametersDefVariableParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -9218,17 +9242,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__ParametersAssignment_3_1_1"
-    // InternalPersistenceDsl.g:3002:1: rule__MethodEntityReturn__ParametersAssignment_3_1_1 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:3008:1: rule__MethodEntityReturn__ParametersAssignment_3_1_1 : ( ruleDefVariable ) ;
     public final void rule__MethodEntityReturn__ParametersAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3006:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:3007:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3012:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:3013:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:3007:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:3008:3: ruleDefVariable
+            // InternalPersistenceDsl.g:3013:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3014:3: ruleDefVariable
             {
              before(grammarAccess.getMethodEntityReturnAccess().getParametersDefVariableParserRuleCall_3_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -9259,24 +9283,24 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodEntityReturn__NullableAssignment_5"
-    // InternalPersistenceDsl.g:3017:1: rule__MethodEntityReturn__NullableAssignment_5 : ( ( 'non-null' ) ) ;
+    // InternalPersistenceDsl.g:3023:1: rule__MethodEntityReturn__NullableAssignment_5 : ( ( 'non-null' ) ) ;
     public final void rule__MethodEntityReturn__NullableAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3021:1: ( ( ( 'non-null' ) ) )
-            // InternalPersistenceDsl.g:3022:2: ( ( 'non-null' ) )
+            // InternalPersistenceDsl.g:3027:1: ( ( ( 'non-null' ) ) )
+            // InternalPersistenceDsl.g:3028:2: ( ( 'non-null' ) )
             {
-            // InternalPersistenceDsl.g:3022:2: ( ( 'non-null' ) )
-            // InternalPersistenceDsl.g:3023:3: ( 'non-null' )
-            {
-             before(grammarAccess.getMethodEntityReturnAccess().getNullableNonNullKeyword_5_0()); 
-            // InternalPersistenceDsl.g:3024:3: ( 'non-null' )
-            // InternalPersistenceDsl.g:3025:4: 'non-null'
+            // InternalPersistenceDsl.g:3028:2: ( ( 'non-null' ) )
+            // InternalPersistenceDsl.g:3029:3: ( 'non-null' )
             {
              before(grammarAccess.getMethodEntityReturnAccess().getNullableNonNullKeyword_5_0()); 
-            match(input,30,FOLLOW_2); 
+            // InternalPersistenceDsl.g:3030:3: ( 'non-null' )
+            // InternalPersistenceDsl.g:3031:4: 'non-null'
+            {
+             before(grammarAccess.getMethodEntityReturnAccess().getNullableNonNullKeyword_5_0()); 
+            match(input,31,FOLLOW_2); 
              after(grammarAccess.getMethodEntityReturnAccess().getNullableNonNullKeyword_5_0()); 
 
             }
@@ -9304,21 +9328,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__ReturnTypeAssignment_1"
-    // InternalPersistenceDsl.g:3036:1: rule__MethodDtoReturn__ReturnTypeAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalPersistenceDsl.g:3042:1: rule__MethodDtoReturn__ReturnTypeAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__MethodDtoReturn__ReturnTypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3040:1: ( ( ( RULE_ID ) ) )
-            // InternalPersistenceDsl.g:3041:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3046:1: ( ( ( RULE_ID ) ) )
+            // InternalPersistenceDsl.g:3047:2: ( ( RULE_ID ) )
             {
-            // InternalPersistenceDsl.g:3041:2: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3042:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3047:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3048:3: ( RULE_ID )
             {
              before(grammarAccess.getMethodDtoReturnAccess().getReturnTypeDtoCrossReference_1_0()); 
-            // InternalPersistenceDsl.g:3043:3: ( RULE_ID )
-            // InternalPersistenceDsl.g:3044:4: RULE_ID
+            // InternalPersistenceDsl.g:3049:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3050:4: RULE_ID
             {
              before(grammarAccess.getMethodDtoReturnAccess().getReturnTypeDtoIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9349,17 +9373,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__NameAssignment_2"
-    // InternalPersistenceDsl.g:3055:1: rule__MethodDtoReturn__NameAssignment_2 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:3061:1: rule__MethodDtoReturn__NameAssignment_2 : ( RULE_ID ) ;
     public final void rule__MethodDtoReturn__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3059:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3060:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3065:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3066:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:3060:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:3061:3: RULE_ID
+            // InternalPersistenceDsl.g:3066:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3067:3: RULE_ID
             {
              before(grammarAccess.getMethodDtoReturnAccess().getNameIDTerminalRuleCall_2_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9386,17 +9410,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__ParametersAssignment_4_0"
-    // InternalPersistenceDsl.g:3070:1: rule__MethodDtoReturn__ParametersAssignment_4_0 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:3076:1: rule__MethodDtoReturn__ParametersAssignment_4_0 : ( ruleDefVariable ) ;
     public final void rule__MethodDtoReturn__ParametersAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3074:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:3075:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3080:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:3081:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:3075:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:3076:3: ruleDefVariable
+            // InternalPersistenceDsl.g:3081:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3082:3: ruleDefVariable
             {
              before(grammarAccess.getMethodDtoReturnAccess().getParametersDefVariableParserRuleCall_4_0_0()); 
             pushFollow(FOLLOW_2);
@@ -9427,17 +9451,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__ParametersAssignment_4_1_1"
-    // InternalPersistenceDsl.g:3085:1: rule__MethodDtoReturn__ParametersAssignment_4_1_1 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:3091:1: rule__MethodDtoReturn__ParametersAssignment_4_1_1 : ( ruleDefVariable ) ;
     public final void rule__MethodDtoReturn__ParametersAssignment_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3089:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:3090:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3095:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:3096:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:3090:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:3091:3: ruleDefVariable
+            // InternalPersistenceDsl.g:3096:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3097:3: ruleDefVariable
             {
              before(grammarAccess.getMethodDtoReturnAccess().getParametersDefVariableParserRuleCall_4_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -9468,24 +9492,24 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodDtoReturn__NullableAssignment_6"
-    // InternalPersistenceDsl.g:3100:1: rule__MethodDtoReturn__NullableAssignment_6 : ( ( 'non-null' ) ) ;
+    // InternalPersistenceDsl.g:3106:1: rule__MethodDtoReturn__NullableAssignment_6 : ( ( 'non-null' ) ) ;
     public final void rule__MethodDtoReturn__NullableAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3104:1: ( ( ( 'non-null' ) ) )
-            // InternalPersistenceDsl.g:3105:2: ( ( 'non-null' ) )
+            // InternalPersistenceDsl.g:3110:1: ( ( ( 'non-null' ) ) )
+            // InternalPersistenceDsl.g:3111:2: ( ( 'non-null' ) )
             {
-            // InternalPersistenceDsl.g:3105:2: ( ( 'non-null' ) )
-            // InternalPersistenceDsl.g:3106:3: ( 'non-null' )
-            {
-             before(grammarAccess.getMethodDtoReturnAccess().getNullableNonNullKeyword_6_0()); 
-            // InternalPersistenceDsl.g:3107:3: ( 'non-null' )
-            // InternalPersistenceDsl.g:3108:4: 'non-null'
+            // InternalPersistenceDsl.g:3111:2: ( ( 'non-null' ) )
+            // InternalPersistenceDsl.g:3112:3: ( 'non-null' )
             {
              before(grammarAccess.getMethodDtoReturnAccess().getNullableNonNullKeyword_6_0()); 
-            match(input,30,FOLLOW_2); 
+            // InternalPersistenceDsl.g:3113:3: ( 'non-null' )
+            // InternalPersistenceDsl.g:3114:4: 'non-null'
+            {
+             before(grammarAccess.getMethodDtoReturnAccess().getNullableNonNullKeyword_6_0()); 
+            match(input,31,FOLLOW_2); 
              after(grammarAccess.getMethodDtoReturnAccess().getNullableNonNullKeyword_6_0()); 
 
             }
@@ -9513,17 +9537,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__ReturnTypeAssignment_0"
-    // InternalPersistenceDsl.g:3119:1: rule__MethodCollectionReturn__ReturnTypeAssignment_0 : ( ruleCollectionReturnType ) ;
+    // InternalPersistenceDsl.g:3125:1: rule__MethodCollectionReturn__ReturnTypeAssignment_0 : ( ruleCollectionReturnType ) ;
     public final void rule__MethodCollectionReturn__ReturnTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3123:1: ( ( ruleCollectionReturnType ) )
-            // InternalPersistenceDsl.g:3124:2: ( ruleCollectionReturnType )
+            // InternalPersistenceDsl.g:3129:1: ( ( ruleCollectionReturnType ) )
+            // InternalPersistenceDsl.g:3130:2: ( ruleCollectionReturnType )
             {
-            // InternalPersistenceDsl.g:3124:2: ( ruleCollectionReturnType )
-            // InternalPersistenceDsl.g:3125:3: ruleCollectionReturnType
+            // InternalPersistenceDsl.g:3130:2: ( ruleCollectionReturnType )
+            // InternalPersistenceDsl.g:3131:3: ruleCollectionReturnType
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getReturnTypeCollectionReturnTypeParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -9554,17 +9578,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__NameAssignment_1"
-    // InternalPersistenceDsl.g:3134:1: rule__MethodCollectionReturn__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:3140:1: rule__MethodCollectionReturn__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__MethodCollectionReturn__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3138:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3139:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3144:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3145:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:3139:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:3140:3: RULE_ID
+            // InternalPersistenceDsl.g:3145:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3146:3: RULE_ID
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9591,17 +9615,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__ParametersAssignment_3_0"
-    // InternalPersistenceDsl.g:3149:1: rule__MethodCollectionReturn__ParametersAssignment_3_0 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:3155:1: rule__MethodCollectionReturn__ParametersAssignment_3_0 : ( ruleDefVariable ) ;
     public final void rule__MethodCollectionReturn__ParametersAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3153:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:3154:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3159:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:3160:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:3154:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:3155:3: ruleDefVariable
+            // InternalPersistenceDsl.g:3160:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3161:3: ruleDefVariable
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getParametersDefVariableParserRuleCall_3_0_0()); 
             pushFollow(FOLLOW_2);
@@ -9632,17 +9656,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__MethodCollectionReturn__ParametersAssignment_3_1_1"
-    // InternalPersistenceDsl.g:3164:1: rule__MethodCollectionReturn__ParametersAssignment_3_1_1 : ( ruleDefVariable ) ;
+    // InternalPersistenceDsl.g:3170:1: rule__MethodCollectionReturn__ParametersAssignment_3_1_1 : ( ruleDefVariable ) ;
     public final void rule__MethodCollectionReturn__ParametersAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3168:1: ( ( ruleDefVariable ) )
-            // InternalPersistenceDsl.g:3169:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3174:1: ( ( ruleDefVariable ) )
+            // InternalPersistenceDsl.g:3175:2: ( ruleDefVariable )
             {
-            // InternalPersistenceDsl.g:3169:2: ( ruleDefVariable )
-            // InternalPersistenceDsl.g:3170:3: ruleDefVariable
+            // InternalPersistenceDsl.g:3175:2: ( ruleDefVariable )
+            // InternalPersistenceDsl.g:3176:3: ruleDefVariable
             {
              before(grammarAccess.getMethodCollectionReturnAccess().getParametersDefVariableParserRuleCall_3_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -9673,21 +9697,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__EntityReturnTypeCollection__TypeAssignment_2"
-    // InternalPersistenceDsl.g:3179:1: rule__EntityReturnTypeCollection__TypeAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalPersistenceDsl.g:3185:1: rule__EntityReturnTypeCollection__TypeAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__EntityReturnTypeCollection__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3183:1: ( ( ( RULE_ID ) ) )
-            // InternalPersistenceDsl.g:3184:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3189:1: ( ( ( RULE_ID ) ) )
+            // InternalPersistenceDsl.g:3190:2: ( ( RULE_ID ) )
             {
-            // InternalPersistenceDsl.g:3184:2: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3185:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3190:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3191:3: ( RULE_ID )
             {
              before(grammarAccess.getEntityReturnTypeCollectionAccess().getTypeEntityCrossReference_2_0()); 
-            // InternalPersistenceDsl.g:3186:3: ( RULE_ID )
-            // InternalPersistenceDsl.g:3187:4: RULE_ID
+            // InternalPersistenceDsl.g:3192:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3193:4: RULE_ID
             {
              before(grammarAccess.getEntityReturnTypeCollectionAccess().getTypeEntityIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9718,21 +9742,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DtoReturnTypeCollection__TypeAssignment_3"
-    // InternalPersistenceDsl.g:3198:1: rule__DtoReturnTypeCollection__TypeAssignment_3 : ( ( RULE_ID ) ) ;
+    // InternalPersistenceDsl.g:3204:1: rule__DtoReturnTypeCollection__TypeAssignment_3 : ( ( RULE_ID ) ) ;
     public final void rule__DtoReturnTypeCollection__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3202:1: ( ( ( RULE_ID ) ) )
-            // InternalPersistenceDsl.g:3203:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3208:1: ( ( ( RULE_ID ) ) )
+            // InternalPersistenceDsl.g:3209:2: ( ( RULE_ID ) )
             {
-            // InternalPersistenceDsl.g:3203:2: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3204:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3209:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3210:3: ( RULE_ID )
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getTypeDtoCrossReference_3_0()); 
-            // InternalPersistenceDsl.g:3205:3: ( RULE_ID )
-            // InternalPersistenceDsl.g:3206:4: RULE_ID
+            // InternalPersistenceDsl.g:3211:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3212:4: RULE_ID
             {
              before(grammarAccess.getDtoReturnTypeCollectionAccess().getTypeDtoIDTerminalRuleCall_3_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9763,17 +9787,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleReturnTypeCollection__TypeAssignment_2"
-    // InternalPersistenceDsl.g:3217:1: rule__SimpleReturnTypeCollection__TypeAssignment_2 : ( ruleType ) ;
+    // InternalPersistenceDsl.g:3223:1: rule__SimpleReturnTypeCollection__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__SimpleReturnTypeCollection__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3221:1: ( ( ruleType ) )
-            // InternalPersistenceDsl.g:3222:2: ( ruleType )
+            // InternalPersistenceDsl.g:3227:1: ( ( ruleType ) )
+            // InternalPersistenceDsl.g:3228:2: ( ruleType )
             {
-            // InternalPersistenceDsl.g:3222:2: ( ruleType )
-            // InternalPersistenceDsl.g:3223:3: ruleType
+            // InternalPersistenceDsl.g:3228:2: ( ruleType )
+            // InternalPersistenceDsl.g:3229:3: ruleType
             {
              before(grammarAccess.getSimpleReturnTypeCollectionAccess().getTypeTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -9804,21 +9828,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__CollectionAssignment_0"
-    // InternalPersistenceDsl.g:3232:1: rule__AllModelTypeCollection__CollectionAssignment_0 : ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) ) ;
+    // InternalPersistenceDsl.g:3238:1: rule__AllModelTypeCollection__CollectionAssignment_0 : ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) ) ;
     public final void rule__AllModelTypeCollection__CollectionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3236:1: ( ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) ) )
-            // InternalPersistenceDsl.g:3237:2: ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) )
+            // InternalPersistenceDsl.g:3242:1: ( ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) ) )
+            // InternalPersistenceDsl.g:3243:2: ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) )
             {
-            // InternalPersistenceDsl.g:3237:2: ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) )
-            // InternalPersistenceDsl.g:3238:3: ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 )
+            // InternalPersistenceDsl.g:3243:2: ( ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 ) )
+            // InternalPersistenceDsl.g:3244:3: ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 )
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getCollectionAlternatives_0_0()); 
-            // InternalPersistenceDsl.g:3239:3: ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 )
-            // InternalPersistenceDsl.g:3239:4: rule__AllModelTypeCollection__CollectionAlternatives_0_0
+            // InternalPersistenceDsl.g:3245:3: ( rule__AllModelTypeCollection__CollectionAlternatives_0_0 )
+            // InternalPersistenceDsl.g:3245:4: rule__AllModelTypeCollection__CollectionAlternatives_0_0
             {
             pushFollow(FOLLOW_2);
             rule__AllModelTypeCollection__CollectionAlternatives_0_0();
@@ -9851,21 +9875,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__AllModelTypeCollection__TypeAssignment_2"
-    // InternalPersistenceDsl.g:3247:1: rule__AllModelTypeCollection__TypeAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalPersistenceDsl.g:3253:1: rule__AllModelTypeCollection__TypeAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__AllModelTypeCollection__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3251:1: ( ( ( RULE_ID ) ) )
-            // InternalPersistenceDsl.g:3252:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3257:1: ( ( ( RULE_ID ) ) )
+            // InternalPersistenceDsl.g:3258:2: ( ( RULE_ID ) )
             {
-            // InternalPersistenceDsl.g:3252:2: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3253:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3258:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3259:3: ( RULE_ID )
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getTypeAllModelTypeCrossReference_2_0()); 
-            // InternalPersistenceDsl.g:3254:3: ( RULE_ID )
-            // InternalPersistenceDsl.g:3255:4: RULE_ID
+            // InternalPersistenceDsl.g:3260:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3261:4: RULE_ID
             {
              before(grammarAccess.getAllModelTypeCollectionAccess().getTypeAllModelTypeIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -9896,21 +9920,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__CollectionAssignment_0"
-    // InternalPersistenceDsl.g:3266:1: rule__SimpleTypeCollection__CollectionAssignment_0 : ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) ) ;
+    // InternalPersistenceDsl.g:3272:1: rule__SimpleTypeCollection__CollectionAssignment_0 : ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) ) ;
     public final void rule__SimpleTypeCollection__CollectionAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3270:1: ( ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) ) )
-            // InternalPersistenceDsl.g:3271:2: ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) )
+            // InternalPersistenceDsl.g:3276:1: ( ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) ) )
+            // InternalPersistenceDsl.g:3277:2: ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) )
             {
-            // InternalPersistenceDsl.g:3271:2: ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) )
-            // InternalPersistenceDsl.g:3272:3: ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 )
+            // InternalPersistenceDsl.g:3277:2: ( ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 ) )
+            // InternalPersistenceDsl.g:3278:3: ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 )
             {
              before(grammarAccess.getSimpleTypeCollectionAccess().getCollectionAlternatives_0_0()); 
-            // InternalPersistenceDsl.g:3273:3: ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 )
-            // InternalPersistenceDsl.g:3273:4: rule__SimpleTypeCollection__CollectionAlternatives_0_0
+            // InternalPersistenceDsl.g:3279:3: ( rule__SimpleTypeCollection__CollectionAlternatives_0_0 )
+            // InternalPersistenceDsl.g:3279:4: rule__SimpleTypeCollection__CollectionAlternatives_0_0
             {
             pushFollow(FOLLOW_2);
             rule__SimpleTypeCollection__CollectionAlternatives_0_0();
@@ -9943,17 +9967,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__SimpleTypeCollection__TypeAssignment_2"
-    // InternalPersistenceDsl.g:3281:1: rule__SimpleTypeCollection__TypeAssignment_2 : ( ruleType ) ;
+    // InternalPersistenceDsl.g:3287:1: rule__SimpleTypeCollection__TypeAssignment_2 : ( ruleType ) ;
     public final void rule__SimpleTypeCollection__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3285:1: ( ( ruleType ) )
-            // InternalPersistenceDsl.g:3286:2: ( ruleType )
+            // InternalPersistenceDsl.g:3291:1: ( ( ruleType ) )
+            // InternalPersistenceDsl.g:3292:2: ( ruleType )
             {
-            // InternalPersistenceDsl.g:3286:2: ( ruleType )
-            // InternalPersistenceDsl.g:3287:3: ruleType
+            // InternalPersistenceDsl.g:3292:2: ( ruleType )
+            // InternalPersistenceDsl.g:3293:3: ruleType
             {
              before(grammarAccess.getSimpleTypeCollectionAccess().getTypeTypeParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -9984,21 +10008,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeVariable__TypeAssignment_0"
-    // InternalPersistenceDsl.g:3296:1: rule__DefAllModelTypeVariable__TypeAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalPersistenceDsl.g:3302:1: rule__DefAllModelTypeVariable__TypeAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__DefAllModelTypeVariable__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3300:1: ( ( ( RULE_ID ) ) )
-            // InternalPersistenceDsl.g:3301:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3306:1: ( ( ( RULE_ID ) ) )
+            // InternalPersistenceDsl.g:3307:2: ( ( RULE_ID ) )
             {
-            // InternalPersistenceDsl.g:3301:2: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3302:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3307:2: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3308:3: ( RULE_ID )
             {
              before(grammarAccess.getDefAllModelTypeVariableAccess().getTypeAllModelTypeCrossReference_0_0()); 
-            // InternalPersistenceDsl.g:3303:3: ( RULE_ID )
-            // InternalPersistenceDsl.g:3304:4: RULE_ID
+            // InternalPersistenceDsl.g:3309:3: ( RULE_ID )
+            // InternalPersistenceDsl.g:3310:4: RULE_ID
             {
              before(grammarAccess.getDefAllModelTypeVariableAccess().getTypeAllModelTypeIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -10029,17 +10053,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeVariable__NameAssignment_1"
-    // InternalPersistenceDsl.g:3315:1: rule__DefAllModelTypeVariable__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:3321:1: rule__DefAllModelTypeVariable__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__DefAllModelTypeVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3319:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3320:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3325:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3326:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:3320:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:3321:3: RULE_ID
+            // InternalPersistenceDsl.g:3326:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3327:3: RULE_ID
             {
              before(grammarAccess.getDefAllModelTypeVariableAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -10066,17 +10090,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleVariable__TypeAssignment_0"
-    // InternalPersistenceDsl.g:3330:1: rule__DefSimpleVariable__TypeAssignment_0 : ( ruleType ) ;
+    // InternalPersistenceDsl.g:3336:1: rule__DefSimpleVariable__TypeAssignment_0 : ( ruleType ) ;
     public final void rule__DefSimpleVariable__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3334:1: ( ( ruleType ) )
-            // InternalPersistenceDsl.g:3335:2: ( ruleType )
+            // InternalPersistenceDsl.g:3340:1: ( ( ruleType ) )
+            // InternalPersistenceDsl.g:3341:2: ( ruleType )
             {
-            // InternalPersistenceDsl.g:3335:2: ( ruleType )
-            // InternalPersistenceDsl.g:3336:3: ruleType
+            // InternalPersistenceDsl.g:3341:2: ( ruleType )
+            // InternalPersistenceDsl.g:3342:3: ruleType
             {
              before(grammarAccess.getDefSimpleVariableAccess().getTypeTypeParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -10107,17 +10131,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleVariable__NameAssignment_1"
-    // InternalPersistenceDsl.g:3345:1: rule__DefSimpleVariable__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:3351:1: rule__DefSimpleVariable__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__DefSimpleVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3349:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3350:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3355:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3356:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:3350:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:3351:3: RULE_ID
+            // InternalPersistenceDsl.g:3356:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3357:3: RULE_ID
             {
              before(grammarAccess.getDefSimpleVariableAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -10144,17 +10168,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeCollectionVariable__TypeAssignment_0"
-    // InternalPersistenceDsl.g:3360:1: rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 : ( ruleAllModelTypeCollection ) ;
+    // InternalPersistenceDsl.g:3366:1: rule__DefAllModelTypeCollectionVariable__TypeAssignment_0 : ( ruleAllModelTypeCollection ) ;
     public final void rule__DefAllModelTypeCollectionVariable__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3364:1: ( ( ruleAllModelTypeCollection ) )
-            // InternalPersistenceDsl.g:3365:2: ( ruleAllModelTypeCollection )
+            // InternalPersistenceDsl.g:3370:1: ( ( ruleAllModelTypeCollection ) )
+            // InternalPersistenceDsl.g:3371:2: ( ruleAllModelTypeCollection )
             {
-            // InternalPersistenceDsl.g:3365:2: ( ruleAllModelTypeCollection )
-            // InternalPersistenceDsl.g:3366:3: ruleAllModelTypeCollection
+            // InternalPersistenceDsl.g:3371:2: ( ruleAllModelTypeCollection )
+            // InternalPersistenceDsl.g:3372:3: ruleAllModelTypeCollection
             {
              before(grammarAccess.getDefAllModelTypeCollectionVariableAccess().getTypeAllModelTypeCollectionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -10185,17 +10209,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefAllModelTypeCollectionVariable__NameAssignment_1"
-    // InternalPersistenceDsl.g:3375:1: rule__DefAllModelTypeCollectionVariable__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:3381:1: rule__DefAllModelTypeCollectionVariable__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__DefAllModelTypeCollectionVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3379:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3380:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3385:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3386:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:3380:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:3381:3: RULE_ID
+            // InternalPersistenceDsl.g:3386:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3387:3: RULE_ID
             {
              before(grammarAccess.getDefAllModelTypeCollectionVariableAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -10222,17 +10246,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleTypeCollectionVariable__TypeAssignment_0"
-    // InternalPersistenceDsl.g:3390:1: rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 : ( ruleSimpleTypeCollection ) ;
+    // InternalPersistenceDsl.g:3396:1: rule__DefSimpleTypeCollectionVariable__TypeAssignment_0 : ( ruleSimpleTypeCollection ) ;
     public final void rule__DefSimpleTypeCollectionVariable__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3394:1: ( ( ruleSimpleTypeCollection ) )
-            // InternalPersistenceDsl.g:3395:2: ( ruleSimpleTypeCollection )
+            // InternalPersistenceDsl.g:3400:1: ( ( ruleSimpleTypeCollection ) )
+            // InternalPersistenceDsl.g:3401:2: ( ruleSimpleTypeCollection )
             {
-            // InternalPersistenceDsl.g:3395:2: ( ruleSimpleTypeCollection )
-            // InternalPersistenceDsl.g:3396:3: ruleSimpleTypeCollection
+            // InternalPersistenceDsl.g:3401:2: ( ruleSimpleTypeCollection )
+            // InternalPersistenceDsl.g:3402:3: ruleSimpleTypeCollection
             {
              before(grammarAccess.getDefSimpleTypeCollectionVariableAccess().getTypeSimpleTypeCollectionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -10263,17 +10287,17 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__DefSimpleTypeCollectionVariable__NameAssignment_1"
-    // InternalPersistenceDsl.g:3405:1: rule__DefSimpleTypeCollectionVariable__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalPersistenceDsl.g:3411:1: rule__DefSimpleTypeCollectionVariable__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__DefSimpleTypeCollectionVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalPersistenceDsl.g:3409:1: ( ( RULE_ID ) )
-            // InternalPersistenceDsl.g:3410:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3415:1: ( ( RULE_ID ) )
+            // InternalPersistenceDsl.g:3416:2: ( RULE_ID )
             {
-            // InternalPersistenceDsl.g:3410:2: ( RULE_ID )
-            // InternalPersistenceDsl.g:3411:3: RULE_ID
+            // InternalPersistenceDsl.g:3416:2: ( RULE_ID )
+            // InternalPersistenceDsl.g:3417:3: RULE_ID
             {
              before(grammarAccess.getDefSimpleTypeCollectionVariableAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -10305,21 +10329,21 @@ public class InternalPersistenceDslParser extends AbstractInternalContentAssistP
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000008007FB0L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000008007FB2L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000002007FF0L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000007FF0L});
-    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000003F90L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x000000001000FFB0L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x000000001000FFB2L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x000000000400FFF0L});
+    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x000000000000FFF0L});
+    public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000000007F90L});
 
 }

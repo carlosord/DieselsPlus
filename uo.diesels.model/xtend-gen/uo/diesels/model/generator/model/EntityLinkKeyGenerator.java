@@ -189,7 +189,6 @@ public class EntityLinkKeyGenerator {
             _builder.append("Long ");
             String _name = r.getName();
             _builder.append(_name, "");
-            _builder.append("_id");
           } else {
             Entity _type_1 = r.getType();
             String _name_1 = _type_1.getName();
@@ -197,7 +196,6 @@ public class EntityLinkKeyGenerator {
             _builder.append("Key ");
             String _name_2 = r.getName();
             _builder.append(_name_2, "");
-            _builder.append("_id");
           }
         }
         {
@@ -223,7 +221,7 @@ public class EntityLinkKeyGenerator {
         _builder.append(" = ");
         String _name_4 = r_1.getName();
         _builder.append(_name_4, "\t");
-        _builder.append("_id;");
+        _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }

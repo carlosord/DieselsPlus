@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import uo.diesels.model.generator.common.util.TypeCodeTransformation;
 import uo.diesels.model.generator.model.EntitySrcGenerator;
 import uo.diesels.model.generator.model.util.ModelEntity;
 import uo.diesels.model.generator.model.util.ModelMethod;
@@ -529,8 +530,23 @@ public class EntityGenerator {
                 }
               }
               _builder.append("private ");
-              String _variableType = v.getVariableType();
-              _builder.append(_variableType, "");
+              {
+                TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
+                Map<String, String> _types = _instance_2.getTypes();
+                String _variableType = v.getVariableType();
+                String _get_4 = _types.get(_variableType);
+                boolean _notEquals = (!Objects.equal(_get_4, null));
+                if (_notEquals) {
+                  TypeCodeTransformation _instance_3 = TypeCodeTransformation.getInstance();
+                  Map<String, String> _types_1 = _instance_3.getTypes();
+                  String _variableType_1 = v.getVariableType();
+                  String _get_5 = _types_1.get(_variableType_1);
+                  _builder.append(_get_5, "");
+                } else {
+                  String _variableType_2 = v.getVariableType();
+                  _builder.append(_variableType_2, "");
+                }
+              }
               _builder.append(" ");
               String _variableName_1 = v.getVariableName();
               _builder.append(_variableName_1, "");
@@ -552,11 +568,11 @@ public class EntityGenerator {
               {
                 boolean _containsOtherValueTypeLike_1 = ModelUtils.containsOtherValueTypeLike(allVariables, v_1);
                 if (_containsOtherValueTypeLike_1) {
-                  JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
-                  Map<String, String[]> _annotations_4 = _instance_2.getAnnotations();
-                  String[] _get_4 = _annotations_4.get("attributeOverrides");
-                  String _get_5 = _get_4[0];
-                  _builder.append(_get_5, "");
+                  JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
+                  Map<String, String[]> _annotations_4 = _instance_4.getAnnotations();
+                  String[] _get_6 = _annotations_4.get("attributeOverrides");
+                  String _get_7 = _get_6[0];
+                  _builder.append(_get_7, "");
                   _builder.append("( {");
                   _builder.newLineIfNotEmpty();
                   _builder.append("\t");
@@ -576,11 +592,11 @@ public class EntityGenerator {
                   {
                     boolean _isNullable_3 = v_1.isNullable();
                     if (_isNullable_3) {
-                      JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
-                      Map<String, String[]> _annotations_5 = _instance_3.getAnnotations();
-                      String[] _get_6 = _annotations_5.get("attributeOverrides");
-                      String _get_7 = _get_6[0];
-                      _builder.append(_get_7, "");
+                      JPAAnnotations _instance_5 = JPAAnnotations.getInstance();
+                      Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
+                      String[] _get_8 = _annotations_5.get("attributeOverrides");
+                      String _get_9 = _get_8[0];
+                      _builder.append(_get_9, "");
                       _builder.append("( {");
                       _builder.newLineIfNotEmpty();
                       _builder.append("\t");
@@ -599,8 +615,23 @@ public class EntityGenerator {
             }
           }
           _builder.append("private ");
-          String _variableType_1 = v_1.getVariableType();
-          _builder.append(_variableType_1, "");
+          {
+            TypeCodeTransformation _instance_6 = TypeCodeTransformation.getInstance();
+            Map<String, String> _types_2 = _instance_6.getTypes();
+            String _variableType_3 = v_1.getVariableType();
+            String _get_10 = _types_2.get(_variableType_3);
+            boolean _notEquals_1 = (!Objects.equal(_get_10, null));
+            if (_notEquals_1) {
+              TypeCodeTransformation _instance_7 = TypeCodeTransformation.getInstance();
+              Map<String, String> _types_3 = _instance_7.getTypes();
+              String _variableType_4 = v_1.getVariableType();
+              String _get_11 = _types_3.get(_variableType_4);
+              _builder.append(_get_11, "");
+            } else {
+              String _variableType_5 = v_1.getVariableType();
+              _builder.append(_variableType_5, "");
+            }
+          }
           _builder.append(" ");
           String _variableName_3 = v_1.getVariableName();
           _builder.append(_variableName_3, "");
@@ -626,13 +657,13 @@ public class EntityGenerator {
                   RelationClass rel = ModelUtils.containsEntityOrSuperClass(l, _superClass);
                   _builder.newLineIfNotEmpty();
                   {
-                    boolean _notEquals = (!Objects.equal(rel, null));
-                    if (_notEquals) {
+                    boolean _notEquals_2 = (!Objects.equal(rel, null));
+                    if (_notEquals_2) {
                       _builder.append("// Extra column for unique constraint over an inherited attribute");
                       _builder.newLine();
                       _builder.append("@ManyToOne (optional = false) private ");
-                      String _variableType_2 = v_2.getVariableType();
-                      _builder.append(_variableType_2, "");
+                      String _variableType_6 = v_2.getVariableType();
+                      _builder.append(_variableType_6, "");
                       _builder.append(" ");
                       String _variableName_4 = v_2.getVariableName();
                       _builder.append(_variableName_4, "");
@@ -649,8 +680,8 @@ public class EntityGenerator {
                   RelationClass rel_1 = ModelUtils.containsEntityOrSuperClass(l_1, _superClass_1);
                   _builder.newLineIfNotEmpty();
                   {
-                    boolean _notEquals_1 = (!Objects.equal(rel_1, null));
-                    if (_notEquals_1) {
+                    boolean _notEquals_3 = (!Objects.equal(rel_1, null));
+                    if (_notEquals_3) {
                       ModelEntity _type = rel_1.getType();
                       RelationClass otherRel = ModelUtils.getOtherRelationFromLink(l_1, _type);
                       _builder.newLineIfNotEmpty();
@@ -771,15 +802,17 @@ public class EntityGenerator {
                         Map<String, String[]> _annotations_3 = _instance_3.getAnnotations();
                         String[] _get_6 = _annotations_3.get("manytomany");
                         String _get_7 = _get_6[0];
-                        _builder.append(_get_7, "");
+                        String _name_4 = thisRel.getName();
+                        String _format_3 = String.format(_get_7, _name_4);
+                        _builder.append(_format_3, "");
                         _builder.newLineIfNotEmpty();
                         _builder.append("private Set<");
                         ModelEntity _type_3 = otherRel.getType();
                         String _entityName_3 = _type_3.getEntityName();
                         _builder.append(_entityName_3, "");
                         _builder.append("> ");
-                        String _name_4 = otherRel.getName();
-                        _builder.append(_name_4, "");
+                        String _name_5 = otherRel.getName();
+                        _builder.append(_name_5, "");
                         _builder.append(" = new HashSet<>();");
                         _builder.newLineIfNotEmpty();
                       }
@@ -819,8 +852,8 @@ public class EntityGenerator {
                 String[] _get_8 = _annotations_4.get("onetoone");
                 String _get_9 = _get_8[0];
                 boolean _isOptional_2 = otherRel_1.isOptional();
-                String _format_3 = String.format(_get_9, Boolean.valueOf(_isOptional_2));
-                _builder.append(_format_3, "");
+                String _format_4 = String.format(_get_9, Boolean.valueOf(_isOptional_2));
+                _builder.append(_format_4, "");
                 _builder.newLineIfNotEmpty();
                 _builder.append("private ");
                 _builder.append(className, "");
@@ -834,9 +867,9 @@ public class EntityGenerator {
                 Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
                 String[] _get_10 = _annotations_5.get("onetomany");
                 String _get_11 = _get_10[0];
-                String _name_5 = thisRel_1.getName();
-                String _format_4 = String.format(_get_11, _name_5);
-                _builder.append(_format_4, "");
+                String _name_6 = thisRel_1.getName();
+                String _format_5 = String.format(_get_11, _name_6);
+                _builder.append(_format_5, "");
                 _builder.newLineIfNotEmpty();
                 _builder.append("private Set<");
                 _builder.append(className, "");
@@ -894,8 +927,23 @@ public class EntityGenerator {
               String _name = a.getName();
               _builder.append(_name, "");
             } else {
-              String _variableType_1 = v.getVariableType();
-              _builder.append(_variableType_1, "");
+              {
+                TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+                Map<String, String> _types = _instance.getTypes();
+                String _variableType_1 = v.getVariableType();
+                String _get = _types.get(_variableType_1);
+                boolean _notEquals_1 = (!Objects.equal(_get, null));
+                if (_notEquals_1) {
+                  TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+                  Map<String, String> _types_1 = _instance_1.getTypes();
+                  String _variableType_2 = v.getVariableType();
+                  String _get_1 = _types_1.get(_variableType_2);
+                  _builder.append(_get_1, "");
+                } else {
+                  String _variableType_3 = v.getVariableType();
+                  _builder.append(_variableType_3, "");
+                }
+              }
               _builder.append(" ");
               String _variableName_1 = v.getVariableName();
               _builder.append(_variableName_1, "");
@@ -904,8 +952,8 @@ public class EntityGenerator {
           {
             int _size = allIds.size();
             int _minus = (_size - 1);
-            ModelVariableDefinition _get = allIds.get(_minus);
-            boolean _equals = v.equals(_get);
+            ModelVariableDefinition _get_2 = allIds.get(_minus);
+            boolean _equals = v.equals(_get_2);
             boolean _not = (!_equals);
             if (_not) {
               _builder.append(", ");
@@ -924,8 +972,8 @@ public class EntityGenerator {
           {
             int _size_1 = superClassIds.size();
             int _minus_1 = (_size_1 - 1);
-            ModelVariableDefinition _get_1 = superClassIds.get(_minus_1);
-            boolean _equals_1 = i.equals(_get_1);
+            ModelVariableDefinition _get_3 = superClassIds.get(_minus_1);
+            boolean _equals_1 = i.equals(_get_3);
             boolean _not_1 = (!_equals_1);
             if (_not_1) {
               _builder.append(", ");
@@ -951,8 +999,8 @@ public class EntityGenerator {
                   {
                     SimpleEntityClass _superClass_1 = e.getSuperClass();
                     RelationClass _containsEntityOrSuperClass = ModelUtils.containsEntityOrSuperClass(l, _superClass_1);
-                    boolean _notEquals_1 = (!Objects.equal(_containsEntityOrSuperClass, null));
-                    if (_notEquals_1) {
+                    boolean _notEquals_2 = (!Objects.equal(_containsEntityOrSuperClass, null));
+                    if (_notEquals_2) {
                       _builder.append("\t");
                       _builder.append("this.");
                       String _variableName_3 = v_1.getVariableName();
@@ -973,8 +1021,8 @@ public class EntityGenerator {
                   {
                     SimpleEntityClass _superClass_2 = e.getSuperClass();
                     RelationClass _containsEntityOrSuperClass_1 = ModelUtils.containsEntityOrSuperClass(l_1, _superClass_2);
-                    boolean _notEquals_2 = (!Objects.equal(_containsEntityOrSuperClass_1, null));
-                    if (_notEquals_2) {
+                    boolean _notEquals_3 = (!Objects.equal(_containsEntityOrSuperClass_1, null));
+                    if (_notEquals_3) {
                       _builder.append("\t");
                       _builder.append("this.");
                       String _variableName_5 = v_1.getVariableName();
@@ -1007,12 +1055,12 @@ public class EntityGenerator {
               RelationClass thisRel = ModelUtils.containsEntityOrSuperClass(_relations, e);
               _builder.newLineIfNotEmpty();
               {
-                boolean _notEquals_3 = (!Objects.equal(thisRel, null));
-                if (_notEquals_3) {
+                boolean _notEquals_4 = (!Objects.equal(thisRel, null));
+                if (_notEquals_4) {
                   {
                     List<RelationClass> _relations_1 = l_2.getRelations();
-                    RelationClass _get_2 = _relations_1.get(0);
-                    boolean _equals_2 = thisRel.equals(_get_2);
+                    RelationClass _get_4 = _relations_1.get(0);
+                    boolean _equals_2 = thisRel.equals(_get_4);
                     if (_equals_2) {
                       _builder.append("\t");
                       _builder.append("Associations.");
@@ -1173,8 +1221,23 @@ public class EntityGenerator {
           boolean _not = (!(_variableTypeClass instanceof Link));
           if (_not) {
             _builder.append("public ");
-            String _variableType = p.getVariableType();
-            _builder.append(_variableType, "");
+            {
+              TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+              Map<String, String> _types = _instance.getTypes();
+              String _variableType = p.getVariableType();
+              String _get = _types.get(_variableType);
+              boolean _notEquals = (!Objects.equal(_get, null));
+              if (_notEquals) {
+                TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+                Map<String, String> _types_1 = _instance_1.getTypes();
+                String _variableType_1 = p.getVariableType();
+                String _get_1 = _types_1.get(_variableType_1);
+                _builder.append(_get_1, "");
+              } else {
+                String _variableType_2 = p.getVariableType();
+                _builder.append(_variableType_2, "");
+              }
+            }
             _builder.append(" get");
             String _variableName = p.getVariableName();
             String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -1200,8 +1263,23 @@ public class EntityGenerator {
         {
           if (((!(v instanceof ModelTypeCollectionVariableClass)) && (!(v instanceof SimpleTypeCollectionVariableClass)))) {
             _builder.append("public ");
-            String _variableType_1 = v.getVariableType();
-            _builder.append(_variableType_1, "");
+            {
+              TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
+              Map<String, String> _types_2 = _instance_2.getTypes();
+              String _variableType_3 = v.getVariableType();
+              String _get_2 = _types_2.get(_variableType_3);
+              boolean _notEquals_1 = (!Objects.equal(_get_2, null));
+              if (_notEquals_1) {
+                TypeCodeTransformation _instance_3 = TypeCodeTransformation.getInstance();
+                Map<String, String> _types_3 = _instance_3.getTypes();
+                String _variableType_4 = v.getVariableType();
+                String _get_3 = _types_3.get(_variableType_4);
+                _builder.append(_get_3, "");
+              } else {
+                String _variableType_5 = v.getVariableType();
+                _builder.append(_variableType_5, "");
+              }
+            }
             _builder.append(" get");
             String _variableName_2 = v.getVariableName();
             String _upperFirst_1 = StringUtils.toUpperFirst(_variableName_2);
@@ -1223,8 +1301,23 @@ public class EntityGenerator {
             String _upperFirst_2 = StringUtils.toUpperFirst(_variableName_4);
             _builder.append(_upperFirst_2, "");
             _builder.append("(");
-            String _variableType_2 = v.getVariableType();
-            _builder.append(_variableType_2, "");
+            {
+              TypeCodeTransformation _instance_4 = TypeCodeTransformation.getInstance();
+              Map<String, String> _types_4 = _instance_4.getTypes();
+              String _variableType_6 = v.getVariableType();
+              String _get_4 = _types_4.get(_variableType_6);
+              boolean _notEquals_2 = (!Objects.equal(_get_4, null));
+              if (_notEquals_2) {
+                TypeCodeTransformation _instance_5 = TypeCodeTransformation.getInstance();
+                Map<String, String> _types_5 = _instance_5.getTypes();
+                String _variableType_7 = v.getVariableType();
+                String _get_5 = _types_5.get(_variableType_7);
+                _builder.append(_get_5, "");
+              } else {
+                String _variableType_8 = v.getVariableType();
+                _builder.append(_variableType_8, "");
+              }
+            }
             _builder.append(" ");
             String _variableName_5 = v.getVariableName();
             _builder.append(_variableName_5, "");
@@ -1243,11 +1336,11 @@ public class EntityGenerator {
             _builder.newLine();
             _builder.newLine();
           } else {
-            String _variableType_3 = v.getVariableType();
-            String paramType = ModelUtils.getCollectionType(_variableType_3);
+            String _variableType_9 = v.getVariableType();
+            String paramType = ModelUtils.getCollectionType(_variableType_9);
             _builder.newLineIfNotEmpty();
-            String _variableType_4 = v.getVariableType();
-            String _collectionType = ModelUtils.getCollectionType(_variableType_4);
+            String _variableType_10 = v.getVariableType();
+            String _collectionType = ModelUtils.getCollectionType(_variableType_10);
             String param = StringUtils.toLowerFirst(_collectionType);
             _builder.newLineIfNotEmpty();
             _builder.append("public void add");
@@ -1293,8 +1386,8 @@ public class EntityGenerator {
             _builder.newLine();
             _builder.newLine();
             _builder.append("public ");
-            String _variableType_5 = v.getVariableType();
-            String _collection = ModelUtils.getCollection(_variableType_5);
+            String _variableType_11 = v.getVariableType();
+            String _collection = ModelUtils.getCollection(_variableType_11);
             _builder.append(_collection, "");
             _builder.append("<");
             _builder.append(paramType, "");
@@ -1306,8 +1399,8 @@ public class EntityGenerator {
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("return ");
-            String _variableType_6 = v.getVariableType();
-            String _collectionInitialize = ModelUtils.getCollectionInitialize(_variableType_6);
+            String _variableType_12 = v.getVariableType();
+            String _collectionInitialize = ModelUtils.getCollectionInitialize(_variableType_12);
             _builder.append(_collectionInitialize, "\t");
             _builder.append("(");
             String _variableName_13 = v.getVariableName();
@@ -1480,8 +1573,23 @@ public class EntityGenerator {
       List<ModelMethod> _methods = e.getMethods();
       for(final ModelMethod m : _methods) {
         _builder.append("public abstract ");
-        String _methodReturnType = m.getMethodReturnType();
-        _builder.append(_methodReturnType, "");
+        {
+          TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+          Map<String, String> _types = _instance.getTypes();
+          String _methodReturnType = m.getMethodReturnType();
+          String _get = _types.get(_methodReturnType);
+          boolean _notEquals = (!Objects.equal(_get, null));
+          if (_notEquals) {
+            TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+            Map<String, String> _types_1 = _instance_1.getTypes();
+            String _methodReturnType_1 = m.getMethodReturnType();
+            String _get_1 = _types_1.get(_methodReturnType_1);
+            _builder.append(_get_1, "");
+          } else {
+            String _methodReturnType_2 = m.getMethodReturnType();
+            _builder.append(_methodReturnType_2, "");
+          }
+        }
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -1489,8 +1597,23 @@ public class EntityGenerator {
         {
           List<ModelVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final ModelVariableDefinition p : _methodParameters) {
-            String _variableType = p.getVariableType();
-            _builder.append(_variableType, "");
+            {
+              TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
+              Map<String, String> _types_2 = _instance_2.getTypes();
+              String _variableType = p.getVariableType();
+              String _get_2 = _types_2.get(_variableType);
+              boolean _notEquals_1 = (!Objects.equal(_get_2, null));
+              if (_notEquals_1) {
+                TypeCodeTransformation _instance_3 = TypeCodeTransformation.getInstance();
+                Map<String, String> _types_3 = _instance_3.getTypes();
+                String _variableType_1 = p.getVariableType();
+                String _get_3 = _types_3.get(_variableType_1);
+                _builder.append(_get_3, "");
+              } else {
+                String _variableType_2 = p.getVariableType();
+                _builder.append(_variableType_2, "");
+              }
+            }
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -1499,8 +1622,8 @@ public class EntityGenerator {
               List<ModelVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              ModelVariableDefinition _get = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get);
+              ModelVariableDefinition _get_4 = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get_4);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

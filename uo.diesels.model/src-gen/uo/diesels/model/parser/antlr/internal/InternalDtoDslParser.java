@@ -21,32 +21,33 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalDtoDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_LIST", "RULE_SET", "RULE_TYPE_INT", "RULE_TYPE_DOUBLE", "RULE_TYPE_FLOAT", "RULE_TYPE_LONG", "RULE_TYPE_CHAR", "RULE_TYPE_STRING", "RULE_TYPE_BOOLEAN", "RULE_DATE", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Dto'", "'{'", "'}'", "'for'", "'<'", "'>'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_LIST", "RULE_SET", "RULE_TYPE_INT", "RULE_TYPE_DOUBLE", "RULE_TYPE_FLOAT", "RULE_TYPE_LONG", "RULE_TYPE_CHAR", "RULE_TYPE_STRING", "RULE_TYPE_BOOLEAN", "RULE_TYPE_BINARY", "RULE_DATE", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Dto'", "'{'", "'}'", "'for'", "'<'", "'>'"
     };
     public static final int RULE_SET=6;
-    public static final int RULE_STRING=16;
+    public static final int RULE_STRING=17;
     public static final int RULE_TYPE_CHAR=11;
-    public static final int RULE_SL_COMMENT=18;
+    public static final int RULE_SL_COMMENT=19;
     public static final int RULE_TYPE_STRING=12;
     public static final int EOF=-1;
     public static final int RULE_TYPE_INT=7;
     public static final int RULE_ID=4;
     public static final int RULE_LIST=5;
     public static final int RULE_TYPE_LONG=10;
-    public static final int RULE_WS=19;
+    public static final int RULE_WS=20;
     public static final int RULE_TYPE_FLOAT=9;
-    public static final int RULE_ANY_OTHER=20;
+    public static final int RULE_TYPE_BINARY=14;
+    public static final int RULE_ANY_OTHER=21;
     public static final int RULE_TYPE_BOOLEAN=13;
-    public static final int RULE_DATE=14;
+    public static final int RULE_DATE=15;
     public static final int T__26=26;
-    public static final int RULE_INT=15;
+    public static final int T__27=27;
+    public static final int RULE_INT=16;
     public static final int T__22=22;
-    public static final int RULE_ML_COMMENT=17;
+    public static final int RULE_ML_COMMENT=18;
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int RULE_TYPE_DOUBLE=8;
     public static final int T__25=25;
-    public static final int T__21=21;
 
     // delegates
     // delegators
@@ -144,7 +145,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==21) ) {
+                if ( (LA1_0==22) ) {
                     alt1=1;
                 }
 
@@ -263,16 +264,16 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==21) ) {
+            if ( (LA2_0==22) ) {
                 int LA2_1 = input.LA(2);
 
                 if ( (LA2_1==RULE_ID) ) {
                     int LA2_2 = input.LA(3);
 
-                    if ( (LA2_2==22) ) {
+                    if ( (LA2_2==23) ) {
                         alt2=1;
                     }
-                    else if ( (LA2_2==24) ) {
+                    else if ( (LA2_2==25) ) {
                         alt2=2;
                     }
                     else {
@@ -412,7 +413,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             // InternalDtoDsl.g:150:2: (otherlv_0= 'Dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleDefDtoAttribute ) )* otherlv_4= '}' )
             // InternalDtoDsl.g:151:3: otherlv_0= 'Dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleDefDtoAttribute ) )* otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,21,FOLLOW_4); 
+            otherlv_0=(Token)match(input,22,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDtoEntityAccess().getDtoKeyword_0());
             		
@@ -442,7 +443,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,22,FOLLOW_6); 
+            otherlv_2=(Token)match(input,23,FOLLOW_6); 
 
             			newLeafNode(otherlv_2, grammarAccess.getDtoEntityAccess().getLeftCurlyBracketKeyword_2());
             		
@@ -495,7 +496,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,23,FOLLOW_2); 
+            otherlv_4=(Token)match(input,24,FOLLOW_2); 
 
             			newLeafNode(otherlv_4, grammarAccess.getDtoEntityAccess().getRightCurlyBracketKeyword_4());
             		
@@ -577,7 +578,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             // InternalDtoDsl.g:218:2: (otherlv_0= 'Dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) ) )
             // InternalDtoDsl.g:219:3: otherlv_0= 'Dto' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= 'for' ( (otherlv_3= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,21,FOLLOW_4); 
+            otherlv_0=(Token)match(input,22,FOLLOW_4); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDtoForAccess().getDtoKeyword_0());
             		
@@ -607,7 +608,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,24,FOLLOW_4); 
+            otherlv_2=(Token)match(input,25,FOLLOW_4); 
 
             			newLeafNode(otherlv_2, grammarAccess.getDtoForAccess().getForKeyword_2());
             		
@@ -719,6 +720,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             case RULE_TYPE_CHAR:
             case RULE_TYPE_STRING:
             case RULE_TYPE_BOOLEAN:
+            case RULE_TYPE_BINARY:
             case RULE_DATE:
                 {
                 alt4=1;
@@ -1136,7 +1138,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             if ( (LA5_0==RULE_LIST) ) {
                 int LA5_1 = input.LA(2);
 
-                if ( (LA5_1==25) ) {
+                if ( (LA5_1==26) ) {
                     int LA5_3 = input.LA(3);
 
                     if ( ((LA5_3>=RULE_TYPE_INT && LA5_3<=RULE_DATE)) ) {
@@ -1162,7 +1164,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             else if ( (LA5_0==RULE_SET) ) {
                 int LA5_2 = input.LA(2);
 
-                if ( (LA5_2==25) ) {
+                if ( (LA5_2==26) ) {
                     int LA5_3 = input.LA(3);
 
                     if ( ((LA5_3>=RULE_TYPE_INT && LA5_3<=RULE_DATE)) ) {
@@ -1380,7 +1382,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,25,FOLLOW_4); 
+            otherlv_1=(Token)match(input,26,FOLLOW_4); 
 
             			newLeafNode(otherlv_1, grammarAccess.getDefDtoModelTypeCollectionVariableAccess().getLessThanSignKeyword_1());
             		
@@ -1405,7 +1407,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,26,FOLLOW_4); 
+            otherlv_3=(Token)match(input,27,FOLLOW_4); 
 
             			newLeafNode(otherlv_3, grammarAccess.getDefDtoModelTypeCollectionVariableAccess().getGreaterThanSignKeyword_3());
             		
@@ -1588,7 +1590,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,25,FOLLOW_10); 
+            otherlv_1=(Token)match(input,26,FOLLOW_10); 
 
             			newLeafNode(otherlv_1, grammarAccess.getDefDtoSimpleTypeCollectionVariableAccess().getLessThanSignKeyword_1());
             		
@@ -1623,7 +1625,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,26,FOLLOW_4); 
+            otherlv_3=(Token)match(input,27,FOLLOW_4); 
 
             			newLeafNode(otherlv_3, grammarAccess.getDefDtoSimpleTypeCollectionVariableAccess().getGreaterThanSignKeyword_3());
             		
@@ -1732,7 +1734,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( ((LA8_0>=RULE_TYPE_INT && LA8_0<=RULE_TYPE_BOOLEAN)) ) {
+            if ( ((LA8_0>=RULE_TYPE_INT && LA8_0<=RULE_TYPE_BINARY)) ) {
                 alt8=1;
             }
             else if ( (LA8_0==RULE_DATE) ) {
@@ -1844,7 +1846,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBasicType"
-    // InternalDtoDsl.g:688:1: ruleBasicType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN ) ;
+    // InternalDtoDsl.g:688:1: ruleBasicType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN | this_TYPE_BINARY_7= RULE_TYPE_BINARY ) ;
     public final AntlrDatatypeRuleToken ruleBasicType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1855,16 +1857,17 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
         Token this_TYPE_CHAR_4=null;
         Token this_TYPE_STRING_5=null;
         Token this_TYPE_BOOLEAN_6=null;
+        Token this_TYPE_BINARY_7=null;
 
 
         	enterRule();
 
         try {
-            // InternalDtoDsl.g:694:2: ( (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN ) )
-            // InternalDtoDsl.g:695:2: (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN )
+            // InternalDtoDsl.g:694:2: ( (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN | this_TYPE_BINARY_7= RULE_TYPE_BINARY ) )
+            // InternalDtoDsl.g:695:2: (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN | this_TYPE_BINARY_7= RULE_TYPE_BINARY )
             {
-            // InternalDtoDsl.g:695:2: (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN )
-            int alt9=7;
+            // InternalDtoDsl.g:695:2: (this_TYPE_INT_0= RULE_TYPE_INT | this_TYPE_DOUBLE_1= RULE_TYPE_DOUBLE | this_TYPE_FLOAT_2= RULE_TYPE_FLOAT | this_TYPE_LONG_3= RULE_TYPE_LONG | this_TYPE_CHAR_4= RULE_TYPE_CHAR | this_TYPE_STRING_5= RULE_TYPE_STRING | this_TYPE_BOOLEAN_6= RULE_TYPE_BOOLEAN | this_TYPE_BINARY_7= RULE_TYPE_BINARY )
+            int alt9=8;
             switch ( input.LA(1) ) {
             case RULE_TYPE_INT:
                 {
@@ -1899,6 +1902,11 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
             case RULE_TYPE_BOOLEAN:
                 {
                 alt9=7;
+                }
+                break;
+            case RULE_TYPE_BINARY:
+                {
+                alt9=8;
                 }
                 break;
             default:
@@ -2000,6 +2008,19 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 8 :
+                    // InternalDtoDsl.g:752:3: this_TYPE_BINARY_7= RULE_TYPE_BINARY
+                    {
+                    this_TYPE_BINARY_7=(Token)match(input,RULE_TYPE_BINARY,FOLLOW_2); 
+
+                    			current.merge(this_TYPE_BINARY_7);
+                    		
+
+                    			newLeafNode(this_TYPE_BINARY_7, grammarAccess.getBasicTypeAccess().getTYPE_BINARYTerminalRuleCall_7());
+                    		
+
+                    }
+                    break;
 
             }
 
@@ -2023,7 +2044,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleComplexType"
-    // InternalDtoDsl.g:755:1: entryRuleComplexType returns [String current=null] : iv_ruleComplexType= ruleComplexType EOF ;
+    // InternalDtoDsl.g:763:1: entryRuleComplexType returns [String current=null] : iv_ruleComplexType= ruleComplexType EOF ;
     public final String entryRuleComplexType() throws RecognitionException {
         String current = null;
 
@@ -2031,8 +2052,8 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalDtoDsl.g:755:51: (iv_ruleComplexType= ruleComplexType EOF )
-            // InternalDtoDsl.g:756:2: iv_ruleComplexType= ruleComplexType EOF
+            // InternalDtoDsl.g:763:51: (iv_ruleComplexType= ruleComplexType EOF )
+            // InternalDtoDsl.g:764:2: iv_ruleComplexType= ruleComplexType EOF
             {
              newCompositeNode(grammarAccess.getComplexTypeRule()); 
             pushFollow(FOLLOW_1);
@@ -2059,7 +2080,7 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleComplexType"
-    // InternalDtoDsl.g:762:1: ruleComplexType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_DATE_0= RULE_DATE ;
+    // InternalDtoDsl.g:770:1: ruleComplexType returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_DATE_0= RULE_DATE ;
     public final AntlrDatatypeRuleToken ruleComplexType() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2069,8 +2090,8 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalDtoDsl.g:768:2: (this_DATE_0= RULE_DATE )
-            // InternalDtoDsl.g:769:2: this_DATE_0= RULE_DATE
+            // InternalDtoDsl.g:776:2: (this_DATE_0= RULE_DATE )
+            // InternalDtoDsl.g:777:2: this_DATE_0= RULE_DATE
             {
             this_DATE_0=(Token)match(input,RULE_DATE,FOLLOW_2); 
 
@@ -2104,13 +2125,13 @@ public class InternalDtoDslParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000807FF0L});
-    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000007F80L});
+    public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x000000000100FFF0L});
+    public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x000000000000FF80L});
 
 }
