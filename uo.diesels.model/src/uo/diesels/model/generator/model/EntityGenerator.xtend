@@ -42,7 +42,7 @@ class EntityGenerator {
 	def compile() {
 		for (ent : resource.allContents.toIterable.filter(typeof(SimpleEntity))) {
 			var e = new SimpleEntityClass(ent, isSuperclassEntity(ent.name));
-			
+
 			// Crea el codigo de la clase
 			var sb = new StringBuilder();
 			sb.append(e.compileText);
@@ -52,7 +52,7 @@ class EntityGenerator {
 
 			// Crea el nuevo fichero
 			fsa.generateFile(entityPath, sb.toString);
-			
+
 			if (e.implementable) {
 				var src = new EntitySrcGenerator(resource, fsa, project, e);
 				src.compile;
@@ -64,22 +64,31 @@ class EntityGenerator {
 		var oneRelations = new ArrayList<RelationClass>();
 		var manyRelations = new ArrayList<RelationClass>();
 		var associativeEntities = new ArrayList<AssociativeEntityClass>();
-		
+
 		// Busca asociaciones simples donde este involucrada esta entidad
 		for (link : resource.allContents.toIterable.filter(typeof(SimpleLink))) {
 			var l = new SimpleLinkClass(link);
 			if (ModelUtils.containsEntity(l.getRelations, e) != null) {
 				var r = ModelUtils.getOtherRelationFromLink(l.getRelations, e);
-				if (r.isNavigable) {
+				if (r == null) { // Es una relacion reflexiva
+					for (rel: l.getRelations) {
+						if (rel.multiplicity.contains("one")) {
+							oneRelations.add(rel);
+						} else { // Si son "many"
+							manyRelations.add(rel);
+						}
+					}
+				}
+				if (r != null && r.isNavigable) {
 					if (r.multiplicity.contains("one")) {
 						oneRelations.add(r);
-					} else { //Si son "many"
+					} else { // Si son "many"
 						manyRelations.add(r);
 					}
 				}
 			}
 		}
-		
+
 		// Busca entidades asociativas donde este involucrada esta entidad
 		for (associativeEntity : resource.allContents.toIterable.filter(typeof(AssociativeEntity))) {
 			var l = new AssociativeEntityClass(associativeEntity);
@@ -129,13 +138,13 @@ class EntityGenerator {
 			«String.format(PackageConstants.MODEL_PACKAGE, StringUtils.remplaceSlashToDot(project))»
 		'''
 	}
-	
+
 	def createImportsDeclarations(SimpleEntityClass e) {
 		var imports = new HashSet<String>(e.getImports(StringUtils.remplaceSlashToDot(project)));
 		var attributes = new ArrayList<ModelVariableDefinition>();
 		attributes.addAll(e.primaryKey);
 		attributes.addAll(e.attributes);
-		for (v: attributes) {
+		for (v : attributes) {
 			if (v.variableTypeClass instanceof ValueType) {
 				if (ModelUtils.containsOtherValueTypeLike(e.attributes, v) || v.nullable) {
 					imports.add(JPAAnnotations.getInstance.getAnnotations.get("attributeOverrides").get(1));
@@ -144,72 +153,126 @@ class EntityGenerator {
 			}
 		}
 		for (link : resource.allContents.toIterable.filter(typeof(SimpleLink))) {
-				var l = new SimpleLinkClass(link);
-				var thisRel = ModelUtils.containsEntity(l.getRelations, e);
-				if (thisRel != null) {
-					var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e);
-					if (otherRel.isNavigable) {
-						if (thisRel.multiplicity.contains("one")) {
-							if (otherRel.multiplicity.contains("one")) {
-								imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
-							} else {
-								imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
-								imports.add(ImportConstants.SET_IMPORT);
-								imports.add(ImportConstants.HASHSET_IMPORT);
-							}
-						} else {
-							if (otherRel.multiplicity.contains("one")) {
-								imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
-							} else {
-								imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
-								imports.add(ImportConstants.SET_IMPORT);
-								imports.add(ImportConstants.HASHSET_IMPORT);
-							}
-						}
-					}
-				}
-			}			
-			for (associativeEntity : resource.allContents.toIterable.filter(typeof(AssociativeEntity))) {
-				var l = new AssociativeEntityClass(associativeEntity);
-				var thisRel = ModelUtils.containsEntity(l.relations, e);
-				if (thisRel != null) {
-					var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e);
-					if (otherRel.multiplicity.contains("one")) {
+			var l = new SimpleLinkClass(link);
+			if (ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null){
+				var r1 = l.getRelations.get(0);
+				var r2 = l.getRelations.get(1);
+				if (r1.multiplicity.contains("one")) {
+					if (r2.multiplicity.contains("one")) {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
 					} else {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 						imports.add(ImportConstants.SET_IMPORT);
 						imports.add(ImportConstants.HASHSET_IMPORT);
 					}
+				} else {
+					if (r2.multiplicity.contains("one")) {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+					} else {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
+						imports.add(ImportConstants.SET_IMPORT);
+						imports.add(ImportConstants.HASHSET_IMPORT);
+					}
 				}
-			}
-			for (v: e.idVariables){
-				imports.addAll(v.getVariableImports(StringUtils.remplaceSlashToDot(project)));
-			}
-			// En caso concreto de que la id sea un enlace declarado en su padre
-			for (v: e.primaryKey) {
-				if ((v.variableTypeClass instanceof Link) && e.superClass != null) {
-					if (v.variableTypeClass instanceof AssociativeEntity) {
-						var l = (new AssociativeEntityClass(v.variableTypeClass as AssociativeEntity)).relations;
-						if (ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null) {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+				if (r2.multiplicity.contains("one")) {
+					if (r1.multiplicity.contains("one")) {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+					} else {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+						imports.add(ImportConstants.SET_IMPORT);
+						imports.add(ImportConstants.HASHSET_IMPORT);
+					}
+				} else {
+					if (r1.multiplicity.contains("one")) {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+					} else {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
+						imports.add(ImportConstants.SET_IMPORT);
+						imports.add(ImportConstants.HASHSET_IMPORT);
+					}
+				}
+			} else {
+				var thisRel = ModelUtils.containsEntity(l.getRelations, e);
+				var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e);
+				if (otherRel != null && otherRel.isNavigable) {
+					if (thisRel.multiplicity.contains("one")) {
+						if (otherRel.multiplicity.contains("one")) {
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+						} else {
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+							imports.add(ImportConstants.SET_IMPORT);
+							imports.add(ImportConstants.HASHSET_IMPORT);
 						}
 					} else {
-						var l = (new SimpleLinkClass(v.variableTypeClass as SimpleLink)).relations;
-						if (ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null) {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));	
+						if (otherRel.multiplicity.contains("one")) {
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+						} else {
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
+							imports.add(ImportConstants.SET_IMPORT);
+							imports.add(ImportConstants.HASHSET_IMPORT);
 						}
 					}
 				}
 			}
+		}
+		for (associativeEntity : resource.allContents.toIterable.filter(typeof(AssociativeEntity))) {
+			var l = new AssociativeEntityClass(associativeEntity);
+			if (ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null) {
+				var r1 = l.getRelations.get(0);
+				var r2 = l.getRelations.get(1);
+				if (r2.multiplicity.contains("one")) {
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+				} else {
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+					imports.add(ImportConstants.SET_IMPORT);
+					imports.add(ImportConstants.HASHSET_IMPORT);
+				}
+				if (r1.multiplicity.contains("one")) {
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+				} else {
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+					imports.add(ImportConstants.SET_IMPORT);
+					imports.add(ImportConstants.HASHSET_IMPORT);
+				}
+			} else {
+				var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e);
+				if (otherRel.multiplicity.contains("one")) {
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+				} else {
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+					imports.add(ImportConstants.SET_IMPORT);
+					imports.add(ImportConstants.HASHSET_IMPORT);
+				}
+			}
+		}
+		for (v : e.idVariables) {
+			imports.addAll(v.getVariableImports(StringUtils.remplaceSlashToDot(project)));
+		}
+		// En caso concreto de que la id sea un enlace declarado en su padre
+		for (v : e.primaryKey) {
+			if ((v.variableTypeClass instanceof Link) && e.superClass != null) {
+				if (v.variableTypeClass instanceof AssociativeEntity) {
+					var l = (new AssociativeEntityClass(v.variableTypeClass as AssociativeEntity)).relations;
+					if (ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null) {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+					}
+				} else {
+					var l = (new SimpleLinkClass(v.variableTypeClass as SimpleLink)).relations;
+					if (ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null) {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+					}
+				}
+			}
+		}
 		'''
-			«FOR i: imports»
+			«FOR i : imports»
 				«i»
 			«ENDFOR»			
 		'''
 	}
-	
-	def createClassDeclaration(SimpleEntityClass e) {
+
+	def createClassDeclaration(
+		SimpleEntityClass e) {
 		'''
 			@Generated(
 				value = "DieselsCodeGenerator",
@@ -220,19 +283,19 @@ class EntityGenerator {
 			public«IF e.abstractEntity» abstract«ENDIF» class «e.className» extends «IF e.superClass != null»«e.superClass.name»«ELSE»BaseEntity«ENDIF» implements Serializable {
 		'''
 	}
-	
+
 	def createSerialVersionDeclaration() {
 		'''
 			private static final long serialVersionUID = 1L;
 		'''
 	}
-	
+
 	def createAttributteDeclarations(SimpleEntityClass e) {
 		var allVariables = new ArrayList<ModelVariableDefinition>();
 		allVariables.addAll(e.attributes);
 		allVariables.addAll(e.primaryKey);
 		'''
-			«FOR v: e.primaryKey»
+			«FOR v : e.primaryKey»
 				«v.annotations»
 				«IF !(v.variableTypeClass instanceof Link)»
 					«IF(v.variableTypeClass instanceof ValueType)»
@@ -254,7 +317,7 @@ class EntityGenerator {
 					private «IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»;
 				«ENDIF»
 			«ENDFOR»
-			«FOR v: e.attributes»
+			«FOR v : e.attributes»
 				«v.annotations»
 				«IF v.variableTypeClass instanceof ValueType»
 					«IF ModelUtils.containsOtherValueTypeLike(allVariables, v)»
@@ -273,8 +336,8 @@ class EntityGenerator {
 				«ENDIF»
 				private «IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»«v.collectionVariable»;
 			«ENDFOR»
-«««			En caso concreto de que la id sea un enlace declarado en su padre
-			«FOR v: e.primaryKey»
+			«««			En caso concreto de que la id sea un enlace declarado en su padre
+			«FOR v : e.primaryKey»
 				«IF (v.variableTypeClass instanceof Link) && e.superClass != null»
 					«IF v.variableTypeClass instanceof AssociativeEntity»
 						«var l = (new AssociativeEntityClass(v.variableTypeClass as AssociativeEntity)).relations»
@@ -296,30 +359,69 @@ class EntityGenerator {
 			«ENDFOR»
 		'''
 	}
-	
+
 	def createMaintenanceAttributteDeclarations(SimpleEntityClass e) {
 		'''
 			«FOR link : resource.allContents.toIterable.filter(typeof(SimpleLink))»
 				«var l = new SimpleLinkClass(link)»
-				«var thisRel = ModelUtils.containsEntity(l.getRelations, e)»
-				«IF thisRel != null»
-					«var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e)»
-					«IF (otherRel.isNavigable)»
-						«IF (thisRel.multiplicity.contains("one"))»
-							«IF (otherRel.multiplicity.contains("one"))»
-								«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), otherRel.optional)»
-								private «otherRel.type.entityName» «otherRel.name»;
-							«ELSE»
-								«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), thisRel.name)»
-								private Set<«otherRel.type.entityName»> «otherRel.name» = new HashSet<>();
-							«ENDIF»
+				«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+					«var r1 = l.getRelations.get(0)»
+					«var r2 = l.getRelations.get(1)»
+					«IF (r1.multiplicity.contains("one"))»
+						«IF (r2.multiplicity.contains("one"))»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r2.optional)»
+							private «r2.type.entityName» «r2.name»;
 						«ELSE»
-							«IF (otherRel.multiplicity.contains("one"))»
-								«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), otherRel.optional)»
-								private «otherRel.type.entityName» «otherRel.name»;
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r1.name)»
+							private Set<«r2.type.entityName»> «r2.name» = new HashSet<>();
+						«ENDIF»
+					«ELSE»
+						«IF (r2.multiplicity.contains("one"))»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), r2.optional)»
+							private «r2.type.entityName» «r2.name»;
+						«ELSE»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), r1.name)»
+							private Set<«r2.type.entityName»> «r2.name» = new HashSet<>();
+						«ENDIF»
+					«ENDIF»
+					«IF (r2.multiplicity.contains("one"))»
+						«IF (r1.multiplicity.contains("one"))»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r1.optional)»
+							private «r1.type.entityName» «r1.name»;
+						«ELSE»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r2.name)»
+							private Set<«r1.type.entityName»> «r1.name» = new HashSet<>();
+						«ENDIF»
+					«ELSE»
+						«IF (r1.multiplicity.contains("one"))»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), r1.optional)»
+							private «r1.type.entityName» «r1.name»;
+						«ELSE»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), r2.name)»
+							private Set<«r1.type.entityName»> «r1.name» = new HashSet<>();
+						«ENDIF»
+					«ENDIF»
+				«ELSE»
+					«var thisRel = ModelUtils.containsEntity(l.getRelations, e)»
+					«IF thisRel != null»
+						«var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e)»
+						«IF (otherRel.isNavigable)»
+							«IF (thisRel.multiplicity.contains("one"))»
+								«IF (otherRel.multiplicity.contains("one"))»
+									«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), otherRel.optional)»
+									private «otherRel.type.entityName» «otherRel.name»;
+								«ELSE»
+									«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), thisRel.name)»
+									private Set<«otherRel.type.entityName»> «otherRel.name» = new HashSet<>();
+								«ENDIF»
 							«ELSE»
-								«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), thisRel.name)»
-								private Set<«otherRel.type.entityName»> «otherRel.name» = new HashSet<>();
+								«IF (otherRel.multiplicity.contains("one"))»
+									«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), otherRel.optional)»
+									private «otherRel.type.entityName» «otherRel.name»;
+								«ELSE»
+									«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), thisRel.name)»
+									private Set<«otherRel.type.entityName»> «otherRel.name» = new HashSet<>();
+								«ENDIF»
 							«ENDIF»
 						«ENDIF»
 					«ENDIF»
@@ -327,95 +429,117 @@ class EntityGenerator {
 			«ENDFOR»			
 			«FOR associativeEntity : resource.allContents.toIterable.filter(typeof(AssociativeEntity))»
 				«var l = new AssociativeEntityClass(associativeEntity)»
-				«var thisRel = ModelUtils.containsEntity(l.relations, e)»
-				«var className = l.name»
-				«IF thisRel != null»
-					«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
-					«IF (otherRel.multiplicity.contains("one"))»
-						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), otherRel.optional)»
-						private «className» «StringUtils.toLowerFirst(className)»;
+				«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+					«var r1 = l.getRelations.get(0)»
+					«var r2 = l.getRelations.get(1)»
+					«IF (r2.multiplicity.contains("one"))»
+						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r2.optional)»
+						private «r2.type.entityName» «r2.name»;
 					«ELSE»
-						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), thisRel.name)»
-						private Set<«className»> «StringUtils.toLowerFirst(className)» = new HashSet<>();
+						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r1.name)»
+						private Set<«r2.type.entityName»> «r2.name» = new HashSet<>();
+					«ENDIF»
+					«IF (r1.multiplicity.contains("one"))»
+						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r1.optional)»
+						private «r1.type.entityName» «r1.name»;
+					«ELSE»
+						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r2.name)»
+						private Set<«r1.type.entityName»> «r1.name» = new HashSet<>();
+					«ENDIF»
+				«ELSE»
+					«var thisRel = ModelUtils.containsEntity(l.relations, e)»
+					«var className = l.name»
+					«IF thisRel != null»
+						«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
+						«IF (otherRel.multiplicity.contains("one"))»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), otherRel.optional)»
+							private «className» «StringUtils.toLowerFirst(className)»;
+						«ELSE»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), thisRel.name)»
+							private Set<«className»> «StringUtils.toLowerFirst(className)» = new HashSet<>();
+						«ENDIF»
 					«ENDIF»
 				«ENDIF»
 			«ENDFOR»
 		'''
 	}
-	
+
 	def createEmptyConstructor(SimpleEntityClass e) {
 		'''
 			«e.className»() {}
 		'''
 	}
-	
-	def createDefaultConstructor(SimpleEntityClass e) {		
+
+	def createDefaultConstructor(SimpleEntityClass e) {
 		var superClassIds = new ArrayList<ModelVariableDefinition>();
 		if (e.superClass != null) {
 			superClassIds.addAll(ModelUtils.getIdsFromSuperclass(e));
 		}
-		var allIds = e.idVariables;
+		var allIds = e.
+			idVariables;
 		'''
-			public «e.className»(«FOR v: allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
-				super(«FOR i: superClassIds»«i.variableName»«IF !i.equals(superClassIds.get(superClassIds.size-1))», «ENDIF»«ENDFOR»);
-«««				En caso concreto de que la id sea un enlace declarado en su padre
-				«FOR v: e.primaryKey»
-					«IF (v.variableTypeClass instanceof Link) && e.superClass != null»
-						«IF v.variableTypeClass instanceof AssociativeEntity»
-							«var l = (new AssociativeEntityClass(v.variableTypeClass as AssociativeEntity)).relations»
-							«IF ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null»
-								this.«v.variableName»_unique_constraint = «v.variableName»;
-							«ENDIF»
-						«ELSE»
-							«var l = (new SimpleLinkClass(v.variableTypeClass as SimpleLink)).relations»
-							«IF ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null»
-								this.«v.variableName»_unique_constraint = «v.variableName»;
-							«ENDIF»
-						«ENDIF»
-					«ENDIF»
-				«ENDFOR»
-				«FOR v: e.primaryKey»
-					«IF v.variableTypeClass instanceof SimpleLink»
-						«var l = new SimpleLinkClass(v.variableTypeClass as SimpleLink)»
-						«var thisRel = ModelUtils.containsEntityOrSuperClass(l.getRelations, e)»
-						«IF thisRel != null»
-							«IF thisRel.equals(l.getRelations.get(0))»
-								Associations.«l.getName».link(this, «v.variableName»);
-							«ELSE»
-								Associations.«l.getName».link(«v.variableName», this);
-							«ENDIF»
+			public «e.className»(«FOR v : allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«IF(TypeCodeTransformation.instance.types.get(v.variableType) != null)»«TypeCodeTransformation.instance.types.get(v.variableType)»«ELSE»«v.variableType»«ENDIF» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
+				super(«FOR i : superClassIds»«i.variableName»«IF !i.equals(superClassIds.get(superClassIds.size-1))», «ENDIF»«ENDFOR»);
+			«««				En caso concreto de que la id sea un enlace declarado en su padre
+				«FOR v : e.primaryKey»
+				«IF (v.variableTypeClass instanceof Link) && e.superClass != null»
+					«IF v.variableTypeClass instanceof AssociativeEntity»
+						«var l = (new AssociativeEntityClass(v.variableTypeClass as AssociativeEntity)).relations»
+						«IF ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null»
+							this.«v.variableName»_unique_constraint = «v.variableName»;
 						«ENDIF»
 					«ELSE»
-						«IF !(v.variableTypeClass instanceof AssociativeEntity)»
-							this.«v.variableName» = «v.variableName»;
+						«var l = (new SimpleLinkClass(v.variableTypeClass as SimpleLink)).relations»
+						«IF ModelUtils.containsEntityOrSuperClass(l, e.superClass) != null»
+							this.«v.variableName»_unique_constraint = «v.variableName»;
 						«ENDIF»
 					«ENDIF»
+				«ENDIF»
+				«ENDFOR»
+				«FOR v : e.primaryKey»
+				«IF v.variableTypeClass instanceof SimpleLink»
+					«var l = new SimpleLinkClass(v.variableTypeClass as SimpleLink)»
+					«var thisRel = ModelUtils.containsEntityOrSuperClass(l.getRelations, e)»
+					«IF thisRel != null»
+						«IF thisRel.equals(l.getRelations.get(0))»
+							Associations.«l.getName».link(this, «v.variableName»);
+						«ELSE»
+							Associations.«l.getName».link(«v.variableName», this);
+						«ENDIF»
+					«ENDIF»
+				«ELSE»
+					«IF !(v.variableTypeClass instanceof AssociativeEntity)»
+						this.«v.variableName» = «v.variableName»;
+					«ENDIF»
+				«ENDIF»
 				«ENDFOR»
 			}
 			
 		'''
 	}
-	
+
 	def createDefaultConstructorForAbstracClass(SimpleEntityClass e) {
 		var superClassIds = new ArrayList<ModelVariableDefinition>();
 		if (e.superClass != null) {
 			superClassIds.addAll(ModelUtils.getIdsFromSuperclass(e));
 		}
-		var allIds = e.idVariablesWithoutLink;
+		var allIds = e.
+			idVariablesWithoutLink;
 		'''
-			public «e.className»(«FOR v: allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«v.variableType» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
-				super(«FOR i: superClassIds»«i.variableName»«IF !i.equals(superClassIds.get(superClassIds.size-1))», «ENDIF»«ENDFOR»);
-				«FOR v: e.primaryKey»
-					«IF !(v.variableTypeClass instanceof SimpleLink) && !(v.variableTypeClass instanceof AssociativeEntity)»
-						this.«v.variableName» = «v.variableName»;
-					«ENDIF»
+			public «e.className»(«FOR v : allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«v.variableType» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
+				super(«FOR i : superClassIds»«i.variableName»«IF !i.equals(superClassIds.get(superClassIds.size-1))», «ENDIF»«ENDFOR»);
+				«FOR v : e.primaryKey»
+				«IF !(v.variableTypeClass instanceof SimpleLink) && !(v.variableTypeClass instanceof AssociativeEntity)»
+					this.«v.variableName» = «v.variableName»;
+				«ENDIF»
 				«ENDFOR»
 			}
 			
 		'''
 	}
-	
-	def createGettersSetters(SimpleEntityClass e) {
+
+	def createGettersSetters(
+		SimpleEntityClass e) {
 		'''
 			«FOR p : e.primaryKey»
 				«IF(!(p.variableTypeClass instanceof Link))»		
@@ -454,8 +578,9 @@ class EntityGenerator {
 			«ENDFOR»		
 		'''
 	}
-	
-	def createHashCodeEquals(SimpleEntityClass e) {
+
+	def createHashCodeEquals(
+		SimpleEntityClass e) {
 		'''
 			@Override
 			public int hashCode() {
@@ -476,106 +601,111 @@ class EntityGenerator {
 			
 		'''
 	}
-	
+
 	def createToString(SimpleEntityClass e) {
 		var vars = new ArrayList<ModelVariableDefinition>();
 		vars.addAll(e.primaryKey);
-		vars.addAll(e.attributes);
-		'''
-			@Override
-			public String toString() {
-				return "«e.className» [«FOR v : vars»«v.variableName»=" + this.get«StringUtils.toUpperFirst(v.variableName)»() + "«IF !v.equals(vars.get(vars.size-1))», «ENDIF»«ENDFOR»]";
+		vars.addAll(
+			e.
+				attributes);
+				'''
+					@Override
+					public String toString() {
+						return "«e.className» [«FOR v : vars»«v.variableName»=" + this.get«StringUtils.toUpperFirst(v.variableName)»() + "«IF !v.equals(vars.get(vars.size-1))», «ENDIF»«ENDFOR»]";
+					}
+					
+				'''
 			}
-			
-		'''
-	}
-	
-	def createMethods(SimpleEntityClass e) {
-		'''
-			«FOR m: e.methods»
-				public abstract «IF(TypeCodeTransformation.instance.types.get(m.methodReturnType) != null)»«TypeCodeTransformation.instance.types.get(m.methodReturnType)»«ELSE»«m.methodReturnType»«ENDIF» «m.methodName»(«FOR p : m.methodParameters»«IF(TypeCodeTransformation.instance.types.get(p.variableType) != null)»«TypeCodeTransformation.instance.types.get(p.variableType)»«ELSE»«p.variableType»«ENDIF» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
-			«ENDFOR»			
-		'''
-	}
-	
-	def createMaintenanceOneRelations(List<RelationClass> oneRelations) {
-		'''
-			«FOR r: oneRelations»
-				void _set«StringUtils.toUpperFirst(r.name)»(«r.type.entityName» «r.name») {
-					this.«r.name» = «r.name»;
-				}
-				
-				public «r.type.entityName» get«StringUtils.toUpperFirst(r.name)»() {
-					return this.«r.name»;
-				}
-				
-			«ENDFOR»
-		'''
-	}
-	
-	def createMaintenanceManyRelations(List<RelationClass> manyRelations) {
-		'''
-			«FOR r: manyRelations»
-				Set<«r.type.entityName»> _get«StringUtils.toUpperFirst(r.name)»() {
-					return this.«r.name»;
-				}
-				
-				public Set<«r.type.entityName»> get«StringUtils.toUpperFirst(r.name)»() {
-					return new HashSet<>(«r.name»);
-				}
-				
-			«ENDFOR»
-		'''
-	}
-	
-	def createAssociativeMaintenanceRelations(List<AssociativeEntityClass> associativeEntities, SimpleEntityClass e) {
-		'''
-			«FOR l: associativeEntities»
-				«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e).multiplicity»
-				«var className = l.name»
-				«IF (otherRel.contains("one"))»
-					void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
-						this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
-					}
-					
-					public «className» get«className»() {
-						return this.«StringUtils.toLowerFirst(className)»;
-					}
-					
-				«ELSE»
-					Set<«className»> _get«className»() {
-						return this.«StringUtils.toLowerFirst(className)»;
-					}
-					
-					public Set<«className»> get«className»() {
-						return new HashSet<>(«StringUtils.toLowerFirst(className)»);
-					}
-					
-				«ENDIF»								
-			«ENDFOR»
-		'''
-	}
-	
-	/* Métodos de apoyo */	
-	def getTypeFromRelationName(String linkName, String relationName) {
-		for (l: resource.allContents.toIterable.filter(typeof(SimpleLink))) {
-			var link = new SimpleLinkClass(l);
-			if (link.getName.equals(linkName)) {
-				for (r: link.getRelations) {
-					if (r.name.equals(relationName)) {
-						return r;
+
+			def createMethods(SimpleEntityClass e) {
+				'''
+					«FOR m : e.methods»
+						public abstract «IF(TypeCodeTransformation.instance.types.get(m.methodReturnType) != null)»«TypeCodeTransformation.instance.types.get(m.methodReturnType)»«ELSE»«m.methodReturnType»«ENDIF» «m.methodName»(«FOR p : m.methodParameters»«IF(TypeCodeTransformation.instance.types.get(p.variableType) != null)»«TypeCodeTransformation.instance.types.get(p.variableType)»«ELSE»«p.variableType»«ENDIF» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
+					«ENDFOR»			
+				'''
+			}
+
+			def createMaintenanceOneRelations(List<RelationClass> oneRelations) {
+				'''
+					«FOR r : oneRelations»
+						void _set«StringUtils.toUpperFirst(r.name)»(«r.type.entityName» «r.name») {
+							this.«r.name» = «r.name»;
+						}
+						
+						public «r.type.entityName» get«StringUtils.toUpperFirst(r.name)»() {
+							return this.«r.name»;
+						}
+						
+					«ENDFOR»
+				'''
+			}
+
+			def createMaintenanceManyRelations(List<RelationClass> manyRelations) {
+				'''
+					«FOR r : manyRelations»
+						Set<«r.type.entityName»> _get«StringUtils.toUpperFirst(r.name)»() {
+							return this.«r.name»;
+						}
+						
+						public Set<«r.type.entityName»> get«StringUtils.toUpperFirst(r.name)»() {
+							return new HashSet<>(«r.name»);
+						}
+						
+					«ENDFOR»
+				'''
+			}
+
+			def createAssociativeMaintenanceRelations(List<AssociativeEntityClass> associativeEntities,
+				SimpleEntityClass e) {
+				'''
+					«FOR l : associativeEntities»
+						«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e).multiplicity»
+						«var className = l.name»
+						«IF (otherRel.contains("one"))»
+							void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
+								this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
+							}
+							
+							public «className» get«className»() {
+								return this.«StringUtils.toLowerFirst(className)»;
+							}
+							
+						«ELSE»
+							Set<«className»> _get«className»() {
+								return this.«StringUtils.toLowerFirst(className)»;
+							}
+							
+							public Set<«className»> get«className»() {
+								return new HashSet<>(«StringUtils.toLowerFirst(className)»);
+							}
+							
+						«ENDIF»								
+					«ENDFOR»
+				'''
+			}
+
+			/* Métodos de apoyo */
+			def getTypeFromRelationName(String linkName, String relationName) {
+				for (l : resource.allContents.toIterable.filter(typeof(SimpleLink))) {
+					var link = new SimpleLinkClass(l);
+					if (link.getName.equals(linkName)) {
+						for (r : link.getRelations) {
+							if (r.name.equals(relationName)) {
+								return r;
+							}
+						}
 					}
 				}
 			}
+
+			def isSuperclassEntity(String entity) {
+				for (e : resource.allContents.toIterable.filter(typeof(SimpleEntity))) {
+					if (e.superClass != null && e.superClass.name.equals(entity)) {
+						return true;
+					}
+				}
+				return false;
+			}
+
 		}
-	}
-	
-	def isSuperclassEntity(String entity) {
-		for (e: resource.allContents.toIterable.filter(typeof(SimpleEntity))) {
-			if (e.superClass != null && e.superClass.name.equals(entity)) {
-				return true;
-			}
-		} return false;
-	}
-	
-}
+		

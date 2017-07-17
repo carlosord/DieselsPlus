@@ -22,7 +22,7 @@ public class TypeCodeTransformation {
 	
 	private void initializeTypesMap() {
 		this.types = new HashMap<>();
-		types.put("Binary", "Byte[]");
+		types.put("Binary", "byte[]");
 	}
 	
 	public Map<String, String> getTypes() {

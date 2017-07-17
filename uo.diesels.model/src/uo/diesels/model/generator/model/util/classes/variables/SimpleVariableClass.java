@@ -41,7 +41,7 @@ public class SimpleVariableClass extends DefaultSimpleVariableClass implements M
 		if (this.type.equals("Date")) {
 			sb.append(JPAAnnotations.getInstance().getAnnotations().get("temporal")[ANNOTATION]);
 			sb.append(StringUtils.newLine());
-		} else if (this.type.equals("Byte[]")) {
+		} else if (this.type.equals("Binary")) {
 			sb.append(JPAAnnotations.getInstance().getAnnotations().get("lob")[ANNOTATION]);
 			sb.append(StringUtils.newLine());
 		}
@@ -56,7 +56,7 @@ public class SimpleVariableClass extends DefaultSimpleVariableClass implements M
 		if (this.type.equals("Date")) {
 			imports.add(JPAAnnotations.getInstance().getAnnotations().get("temporal")[ANNOTATION_IMPORT]);
 			imports.add(JPAAnnotations.getInstance().getAnnotations().get("temporalType")[ANNOTATION_IMPORT]);
-		} else if (this.type.equals("Byte[]")) {
+		} else if (this.type.equals("Binary")) {
 			imports.add(JPAAnnotations.getInstance().getAnnotations().get("lob")[ANNOTATION_IMPORT]);
 		}
 		imports.add(JPAAnnotations.getInstance().getAnnotations().get("column")[ANNOTATION_IMPORT]);
