@@ -185,7 +185,7 @@ public class ModelUtils {
 		return ids;
 	}
 
-	public static boolean isReflexiveRelation(List<RelationClass> relations, SimpleEntityClass e) {
+	public static boolean isReflexiveRelation(List<RelationClass> relations, ModelEntity e) {
 	  	return relations.get(0).getType().getClassName().equals(relations.get(1).getType().getClassName());
 	}
 	

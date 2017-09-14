@@ -169,7 +169,7 @@ class EntityGenerator {
 					if (r2.multiplicity.contains("one")) {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
 					} else {
-						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(2));
 						imports.add(ImportConstants.SET_IMPORT);
 						imports.add(ImportConstants.HASHSET_IMPORT);
 					}
@@ -186,7 +186,7 @@ class EntityGenerator {
 					if (r1.multiplicity.contains("one")) {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
 					} else {
-						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(2));
 						imports.add(ImportConstants.SET_IMPORT);
 						imports.add(ImportConstants.HASHSET_IMPORT);
 					}
@@ -194,7 +194,7 @@ class EntityGenerator {
 			} else {
 				var thisRel = ModelUtils.containsEntity(l.getRelations, e);
 				var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e);
-				if (otherRel != null && otherRel.isNavigable) {
+				if (thisRel != null && otherRel != null && otherRel.isNavigable) {
 					if (thisRel.multiplicity.contains("one")) {
 						if (otherRel.multiplicity.contains("one")) {
 							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
@@ -207,7 +207,7 @@ class EntityGenerator {
 						if (otherRel.multiplicity.contains("one")) {
 							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
 						} else {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1));
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(2));
 							imports.add(ImportConstants.SET_IMPORT);
 							imports.add(ImportConstants.HASHSET_IMPORT);
 						}
@@ -380,7 +380,7 @@ class EntityGenerator {
 							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), r2.optional)»
 							private «r2.type.entityName» «r2.name»;
 						«ELSE»
-							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), r1.name)»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1), r1.name)»
 							private Set<«r2.type.entityName»> «r2.name» = new HashSet<>();
 						«ENDIF»
 					«ENDIF»
@@ -397,7 +397,7 @@ class EntityGenerator {
 							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), r1.optional)»
 							private «r1.type.entityName» «r1.name»;
 						«ELSE»
-							«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), r2.name)»
+							«JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0)»
 							private Set<«r1.type.entityName»> «r1.name» = new HashSet<>();
 						«ENDIF»
 					«ENDIF»
@@ -419,7 +419,11 @@ class EntityGenerator {
 									«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), otherRel.optional)»
 									private «otherRel.type.entityName» «otherRel.name»;
 								«ELSE»
-									«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0), thisRel.name)»
+									«IF (thisRel.equals(l.getRelations.get(0)))»
+										«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(1), thisRel.name)»
+									«ELSE»
+										«JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(0)»
+									«ENDIF»
 									private Set<«otherRel.type.entityName»> «otherRel.name» = new HashSet<>();
 								«ENDIF»
 							«ENDIF»
@@ -659,27 +663,55 @@ class EntityGenerator {
 				SimpleEntityClass e) {
 				'''
 					«FOR l : associativeEntities»
-						«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e).multiplicity»
-						«var className = l.name»
-						«IF (otherRel.contains("one"))»
-							void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
-								this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
-							}
-							
-							public «className» get«className»() {
-								return this.«StringUtils.toLowerFirst(className)»;
-							}
-							
-						«ELSE»
-							Set<«className»> _get«className»() {
-								return this.«StringUtils.toLowerFirst(className)»;
-							}
-							
-							public Set<«className»> get«className»() {
-								return new HashSet<>(«StringUtils.toLowerFirst(className)»);
-							}
-							
-						«ENDIF»								
+«««						«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+«««							«var r1 = l.getRelations.get(0)»
+«««							«var r2 = l.getRelations.get(1)»
+«««							«var className = l.className»
+«««							«IF (r1.multiplicity.contains("one"))»
+«««								void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
+«««									this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
+«««								}
+«««								
+«««								public «className» get«className»() {
+«««									return this.«StringUtils.toLowerFirst(className)»;
+«««								}
+«««								
+«««							«ELSE»
+«««								Set<«className»> _get«className»() {
+«««									return this.«StringUtils.toLowerFirst(className)»;
+«««								}
+«««								
+«««								public Set<«className»> get«className»() {
+«««									return new HashSet<>(«StringUtils.toLowerFirst(className)»);
+«««								}
+«««								
+«««							«ENDIF»
+«««							«IF (r2.multiplicity.contains("one"))»
+«««							«ELSE»
+«««							«ENDIF»
+«««						«ELSE»
+							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e).multiplicity»
+							«var className = l.name»
+							«IF (otherRel.contains("one"))»
+								void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
+									this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
+								}
+								
+								public «className» get«className»() {
+									return this.«StringUtils.toLowerFirst(className)»;
+								}
+								
+							«ELSE»
+								Set<«className»> _get«className»() {
+									return this.«StringUtils.toLowerFirst(className)»;
+								}
+								
+								public Set<«className»> get«className»() {
+									return new HashSet<>(«StringUtils.toLowerFirst(className)»);
+								}
+								
+							«ENDIF»
+«««						«ENDIF»								
 					«ENDFOR»
 				'''
 			}

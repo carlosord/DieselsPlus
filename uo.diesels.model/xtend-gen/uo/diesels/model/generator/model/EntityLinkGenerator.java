@@ -92,11 +92,23 @@ public class EntityLinkGenerator {
           if (_notEquals) {
             List<RelationClass> _relations_1 = l.getRelations();
             RelationClass r = ModelUtils.getOtherRelationFromLink(_relations_1, e);
-            boolean _isNavigable = r.isNavigable();
-            if (_isNavigable) {
-              String _multiplicity = r.getMultiplicity();
-              boolean _contains = _multiplicity.contains("one");
-              if (_contains) {
+            boolean _equals = Objects.equal(r, null);
+            if (_equals) {
+              List<RelationClass> _relations_2 = l.getRelations();
+              for (final RelationClass rel : _relations_2) {
+                String _multiplicity = rel.getMultiplicity();
+                boolean _contains = _multiplicity.contains("one");
+                if (_contains) {
+                  oneRelations.add(rel);
+                } else {
+                  manyRelations.add(rel);
+                }
+              }
+            }
+            if (((!Objects.equal(r, null)) && r.isNavigable())) {
+              String _multiplicity_1 = r.getMultiplicity();
+              boolean _contains_1 = _multiplicity_1.contains("one");
+              if (_contains_1) {
                 oneRelations.add(r);
               } else {
                 manyRelations.add(r);
@@ -254,49 +266,130 @@ public class EntityLinkGenerator {
       for (final SimpleLink link : _filter) {
         {
           SimpleLinkClass l = new SimpleLinkClass(link);
-          List<RelationClass> _relations = l.getRelations();
-          RelationClass thisRel = ModelUtils.containsEntity(_relations, e);
-          boolean _notEquals = (!Objects.equal(thisRel, null));
-          if (_notEquals) {
+          if ((ModelUtils.isReflexiveRelation(l.getRelations(), e) && (!Objects.equal(ModelUtils.containsEntity(l.getRelations(), e), null)))) {
+            List<RelationClass> _relations = l.getRelations();
+            RelationClass r1 = _relations.get(0);
             List<RelationClass> _relations_1 = l.getRelations();
-            RelationClass otherRel = ModelUtils.getOtherRelationFromLink(_relations_1, e);
-            boolean _isNavigable = otherRel.isNavigable();
-            if (_isNavigable) {
-              String _multiplicity = thisRel.getMultiplicity();
-              boolean _contains = _multiplicity.contains("one");
-              if (_contains) {
-                String _multiplicity_1 = otherRel.getMultiplicity();
-                boolean _contains_1 = _multiplicity_1.contains("one");
-                if (_contains_1) {
-                  JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
-                  Map<String, String[]> _annotations_2 = _instance_2.getAnnotations();
-                  String[] _get_4 = _annotations_2.get("onetoone");
-                  String _get_5 = _get_4[1];
-                  imports.add(_get_5);
+            RelationClass r2 = _relations_1.get(1);
+            String _multiplicity = r1.getMultiplicity();
+            boolean _contains = _multiplicity.contains("one");
+            if (_contains) {
+              String _multiplicity_1 = r2.getMultiplicity();
+              boolean _contains_1 = _multiplicity_1.contains("one");
+              if (_contains_1) {
+                JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_2 = _instance_2.getAnnotations();
+                String[] _get_4 = _annotations_2.get("onetoone");
+                String _get_5 = _get_4[1];
+                imports.add(_get_5);
+              } else {
+                JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_3 = _instance_3.getAnnotations();
+                String[] _get_6 = _annotations_3.get("onetomany");
+                String _get_7 = _get_6[1];
+                imports.add(_get_7);
+                imports.add(ImportConstants.SET_IMPORT);
+                imports.add(ImportConstants.HASHSET_IMPORT);
+              }
+            } else {
+              String _multiplicity_2 = r2.getMultiplicity();
+              boolean _contains_2 = _multiplicity_2.contains("one");
+              if (_contains_2) {
+                JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_4 = _instance_4.getAnnotations();
+                String[] _get_8 = _annotations_4.get("manytoone");
+                String _get_9 = _get_8[1];
+                imports.add(_get_9);
+              } else {
+                JPAAnnotations _instance_5 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
+                String[] _get_10 = _annotations_5.get("manytomany");
+                String _get_11 = _get_10[2];
+                imports.add(_get_11);
+                imports.add(ImportConstants.SET_IMPORT);
+                imports.add(ImportConstants.HASHSET_IMPORT);
+              }
+            }
+            String _multiplicity_3 = r2.getMultiplicity();
+            boolean _contains_3 = _multiplicity_3.contains("one");
+            if (_contains_3) {
+              String _multiplicity_4 = r1.getMultiplicity();
+              boolean _contains_4 = _multiplicity_4.contains("one");
+              if (_contains_4) {
+                JPAAnnotations _instance_6 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_6 = _instance_6.getAnnotations();
+                String[] _get_12 = _annotations_6.get("onetoone");
+                String _get_13 = _get_12[1];
+                imports.add(_get_13);
+              } else {
+                JPAAnnotations _instance_7 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_7 = _instance_7.getAnnotations();
+                String[] _get_14 = _annotations_7.get("onetomany");
+                String _get_15 = _get_14[1];
+                imports.add(_get_15);
+                imports.add(ImportConstants.SET_IMPORT);
+                imports.add(ImportConstants.HASHSET_IMPORT);
+              }
+            } else {
+              String _multiplicity_5 = r1.getMultiplicity();
+              boolean _contains_5 = _multiplicity_5.contains("one");
+              if (_contains_5) {
+                JPAAnnotations _instance_8 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_8 = _instance_8.getAnnotations();
+                String[] _get_16 = _annotations_8.get("manytoone");
+                String _get_17 = _get_16[1];
+                imports.add(_get_17);
+              } else {
+                JPAAnnotations _instance_9 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_9 = _instance_9.getAnnotations();
+                String[] _get_18 = _annotations_9.get("manytomany");
+                String _get_19 = _get_18[2];
+                imports.add(_get_19);
+                imports.add(ImportConstants.SET_IMPORT);
+                imports.add(ImportConstants.HASHSET_IMPORT);
+              }
+            }
+          } else {
+            List<RelationClass> _relations_2 = l.getRelations();
+            RelationClass thisRel = ModelUtils.containsEntity(_relations_2, e);
+            List<RelationClass> _relations_3 = l.getRelations();
+            RelationClass otherRel = ModelUtils.getOtherRelationFromLink(_relations_3, e);
+            if ((((!Objects.equal(thisRel, null)) && (!Objects.equal(otherRel, null))) && otherRel.isNavigable())) {
+              String _multiplicity_6 = thisRel.getMultiplicity();
+              boolean _contains_6 = _multiplicity_6.contains("one");
+              if (_contains_6) {
+                String _multiplicity_7 = otherRel.getMultiplicity();
+                boolean _contains_7 = _multiplicity_7.contains("one");
+                if (_contains_7) {
+                  JPAAnnotations _instance_10 = JPAAnnotations.getInstance();
+                  Map<String, String[]> _annotations_10 = _instance_10.getAnnotations();
+                  String[] _get_20 = _annotations_10.get("onetoone");
+                  String _get_21 = _get_20[1];
+                  imports.add(_get_21);
                 } else {
-                  JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
-                  Map<String, String[]> _annotations_3 = _instance_3.getAnnotations();
-                  String[] _get_6 = _annotations_3.get("onetomany");
-                  String _get_7 = _get_6[1];
-                  imports.add(_get_7);
+                  JPAAnnotations _instance_11 = JPAAnnotations.getInstance();
+                  Map<String, String[]> _annotations_11 = _instance_11.getAnnotations();
+                  String[] _get_22 = _annotations_11.get("onetomany");
+                  String _get_23 = _get_22[1];
+                  imports.add(_get_23);
                   imports.add(ImportConstants.SET_IMPORT);
                   imports.add(ImportConstants.HASHSET_IMPORT);
                 }
               } else {
-                String _multiplicity_2 = otherRel.getMultiplicity();
-                boolean _contains_2 = _multiplicity_2.contains("one");
-                if (_contains_2) {
-                  JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
-                  Map<String, String[]> _annotations_4 = _instance_4.getAnnotations();
-                  String[] _get_8 = _annotations_4.get("manytoone");
-                  String _get_9 = _get_8[1];
-                  imports.add(_get_9);
+                String _multiplicity_8 = otherRel.getMultiplicity();
+                boolean _contains_8 = _multiplicity_8.contains("one");
+                if (_contains_8) {
+                  JPAAnnotations _instance_12 = JPAAnnotations.getInstance();
+                  Map<String, String[]> _annotations_12 = _instance_12.getAnnotations();
+                  String[] _get_24 = _annotations_12.get("manytoone");
+                  String _get_25 = _get_24[1];
+                  imports.add(_get_25);
                 } else {
-                  JPAAnnotations _instance_5 = JPAAnnotations.getInstance();
-                  Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
-                  String[] _get_10 = _annotations_5.get("manytomany");
-                  String _get_11 = _get_10[1];
-                  imports.add(_get_11);
+                  JPAAnnotations _instance_13 = JPAAnnotations.getInstance();
+                  Map<String, String[]> _annotations_13 = _instance_13.getAnnotations();
+                  String[] _get_26 = _annotations_13.get("manytomany");
+                  String _get_27 = _get_26[2];
+                  imports.add(_get_27);
                   imports.add(ImportConstants.SET_IMPORT);
                   imports.add(ImportConstants.HASHSET_IMPORT);
                 }
@@ -311,13 +404,12 @@ public class EntityLinkGenerator {
       for (final AssociativeEntity associativeEntity : _filter_1) {
         {
           AssociativeEntityClass l = new AssociativeEntityClass(associativeEntity);
-          List<RelationClass> _relations = l.getRelations();
-          RelationClass thisRel = ModelUtils.containsEntity(_relations, e);
-          boolean _notEquals = (!Objects.equal(thisRel, null));
-          if (_notEquals) {
+          if ((ModelUtils.isReflexiveRelation(l.getRelations(), e) && (!Objects.equal(ModelUtils.containsEntity(l.getRelations(), e), null)))) {
+            List<RelationClass> _relations = l.getRelations();
+            RelationClass r1 = _relations.get(0);
             List<RelationClass> _relations_1 = l.getRelations();
-            RelationClass otherRel = ModelUtils.getOtherRelationFromLink(_relations_1, e);
-            String _multiplicity = otherRel.getMultiplicity();
+            RelationClass r2 = _relations_1.get(1);
+            String _multiplicity = r2.getMultiplicity();
             boolean _contains = _multiplicity.contains("one");
             if (_contains) {
               JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
@@ -331,6 +423,43 @@ public class EntityLinkGenerator {
               String[] _get_6 = _annotations_3.get("onetomany");
               String _get_7 = _get_6[1];
               imports.add(_get_7);
+              imports.add(ImportConstants.SET_IMPORT);
+              imports.add(ImportConstants.HASHSET_IMPORT);
+            }
+            String _multiplicity_1 = r1.getMultiplicity();
+            boolean _contains_1 = _multiplicity_1.contains("one");
+            if (_contains_1) {
+              JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
+              Map<String, String[]> _annotations_4 = _instance_4.getAnnotations();
+              String[] _get_8 = _annotations_4.get("onetoone");
+              String _get_9 = _get_8[1];
+              imports.add(_get_9);
+            } else {
+              JPAAnnotations _instance_5 = JPAAnnotations.getInstance();
+              Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
+              String[] _get_10 = _annotations_5.get("onetomany");
+              String _get_11 = _get_10[1];
+              imports.add(_get_11);
+              imports.add(ImportConstants.SET_IMPORT);
+              imports.add(ImportConstants.HASHSET_IMPORT);
+            }
+          } else {
+            List<RelationClass> _relations_2 = l.getRelations();
+            RelationClass otherRel = ModelUtils.getOtherRelationFromLink(_relations_2, e);
+            String _multiplicity_2 = otherRel.getMultiplicity();
+            boolean _contains_2 = _multiplicity_2.contains("one");
+            if (_contains_2) {
+              JPAAnnotations _instance_6 = JPAAnnotations.getInstance();
+              Map<String, String[]> _annotations_6 = _instance_6.getAnnotations();
+              String[] _get_12 = _annotations_6.get("onetoone");
+              String _get_13 = _get_12[1];
+              imports.add(_get_13);
+            } else {
+              JPAAnnotations _instance_7 = JPAAnnotations.getInstance();
+              Map<String, String[]> _annotations_7 = _instance_7.getAnnotations();
+              String[] _get_14 = _annotations_7.get("onetomany");
+              String _get_15 = _get_14[1];
+              imports.add(_get_15);
               imports.add(ImportConstants.SET_IMPORT);
               imports.add(ImportConstants.HASHSET_IMPORT);
             }
@@ -526,101 +655,304 @@ public class EntityLinkGenerator {
       for(final SimpleLink link : _filter) {
         SimpleLinkClass l = new SimpleLinkClass(link);
         _builder.newLineIfNotEmpty();
-        List<RelationClass> _relations = l.getRelations();
-        RelationClass thisRel = ModelUtils.containsEntity(_relations, e);
-        _builder.newLineIfNotEmpty();
         {
-          boolean _notEquals = (!Objects.equal(thisRel, null));
-          if (_notEquals) {
+          if ((ModelUtils.isReflexiveRelation(l.getRelations(), e) && (!Objects.equal(ModelUtils.containsEntity(l.getRelations(), e), null)))) {
+            List<RelationClass> _relations = l.getRelations();
+            RelationClass r1 = _relations.get(0);
+            _builder.newLineIfNotEmpty();
             List<RelationClass> _relations_1 = l.getRelations();
-            RelationClass otherRel = ModelUtils.getOtherRelationFromLink(_relations_1, e);
+            RelationClass r2 = _relations_1.get(1);
             _builder.newLineIfNotEmpty();
             {
-              boolean _isNavigable = otherRel.isNavigable();
-              if (_isNavigable) {
+              String _multiplicity = r1.getMultiplicity();
+              boolean _contains = _multiplicity.contains("one");
+              if (_contains) {
                 {
-                  String _multiplicity = thisRel.getMultiplicity();
-                  boolean _contains = _multiplicity.contains("one");
-                  if (_contains) {
-                    {
-                      String _multiplicity_1 = otherRel.getMultiplicity();
-                      boolean _contains_1 = _multiplicity_1.contains("one");
-                      if (_contains_1) {
-                        JPAAnnotations _instance = JPAAnnotations.getInstance();
-                        Map<String, String[]> _annotations = _instance.getAnnotations();
-                        String[] _get = _annotations.get("onetoone");
-                        String _get_1 = _get[0];
-                        boolean _isOptional = otherRel.isOptional();
-                        String _format = String.format(_get_1, Boolean.valueOf(_isOptional));
-                        _builder.append(_format, "");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("private ");
-                        ModelEntity _type = otherRel.getType();
-                        String _entityName = _type.getEntityName();
-                        _builder.append(_entityName, "");
-                        _builder.append(" ");
-                        String _name = otherRel.getName();
-                        _builder.append(_name, "");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
-                      } else {
-                        JPAAnnotations _instance_1 = JPAAnnotations.getInstance();
-                        Map<String, String[]> _annotations_1 = _instance_1.getAnnotations();
-                        String[] _get_2 = _annotations_1.get("onetomany");
-                        String _get_3 = _get_2[0];
-                        String _name_1 = thisRel.getName();
-                        String _format_1 = String.format(_get_3, _name_1);
-                        _builder.append(_format_1, "");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("private Set<");
-                        ModelEntity _type_1 = otherRel.getType();
-                        String _entityName_1 = _type_1.getEntityName();
-                        _builder.append(_entityName_1, "");
-                        _builder.append("> ");
-                        String _name_2 = otherRel.getName();
-                        _builder.append(_name_2, "");
-                        _builder.append(" = new HashSet<>();");
-                        _builder.newLineIfNotEmpty();
-                      }
-                    }
+                  String _multiplicity_1 = r2.getMultiplicity();
+                  boolean _contains_1 = _multiplicity_1.contains("one");
+                  if (_contains_1) {
+                    JPAAnnotations _instance = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations = _instance.getAnnotations();
+                    String[] _get = _annotations.get("onetoone");
+                    String _get_1 = _get[0];
+                    boolean _isOptional = r2.isOptional();
+                    String _format = String.format(_get_1, Boolean.valueOf(_isOptional));
+                    _builder.append(_format, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private ");
+                    ModelEntity _type = r2.getType();
+                    String _entityName = _type.getEntityName();
+                    _builder.append(_entityName, "");
+                    _builder.append(" ");
+                    String _name = r2.getName();
+                    _builder.append(_name, "");
+                    _builder.append(";");
+                    _builder.newLineIfNotEmpty();
                   } else {
+                    JPAAnnotations _instance_1 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_1 = _instance_1.getAnnotations();
+                    String[] _get_2 = _annotations_1.get("onetomany");
+                    String _get_3 = _get_2[0];
+                    String _name_1 = r1.getName();
+                    String _format_1 = String.format(_get_3, _name_1);
+                    _builder.append(_format_1, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private Set<");
+                    ModelEntity _type_1 = r2.getType();
+                    String _entityName_1 = _type_1.getEntityName();
+                    _builder.append(_entityName_1, "");
+                    _builder.append("> ");
+                    String _name_2 = r2.getName();
+                    _builder.append(_name_2, "");
+                    _builder.append(" = new HashSet<>();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              } else {
+                {
+                  String _multiplicity_2 = r2.getMultiplicity();
+                  boolean _contains_2 = _multiplicity_2.contains("one");
+                  if (_contains_2) {
+                    JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_2 = _instance_2.getAnnotations();
+                    String[] _get_4 = _annotations_2.get("manytoone");
+                    String _get_5 = _get_4[0];
+                    boolean _isOptional_1 = r2.isOptional();
+                    String _format_2 = String.format(_get_5, Boolean.valueOf(_isOptional_1));
+                    _builder.append(_format_2, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private ");
+                    ModelEntity _type_2 = r2.getType();
+                    String _entityName_2 = _type_2.getEntityName();
+                    _builder.append(_entityName_2, "");
+                    _builder.append(" ");
+                    String _name_3 = r2.getName();
+                    _builder.append(_name_3, "");
+                    _builder.append(";");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_3 = _instance_3.getAnnotations();
+                    String[] _get_6 = _annotations_3.get("manytomany");
+                    String _get_7 = _get_6[1];
+                    String _name_4 = r1.getName();
+                    String _format_3 = String.format(_get_7, _name_4);
+                    _builder.append(_format_3, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private Set<");
+                    ModelEntity _type_3 = r2.getType();
+                    String _entityName_3 = _type_3.getEntityName();
+                    _builder.append(_entityName_3, "");
+                    _builder.append("> ");
+                    String _name_5 = r2.getName();
+                    _builder.append(_name_5, "");
+                    _builder.append(" = new HashSet<>();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              String _multiplicity_3 = r2.getMultiplicity();
+              boolean _contains_3 = _multiplicity_3.contains("one");
+              if (_contains_3) {
+                {
+                  String _multiplicity_4 = r1.getMultiplicity();
+                  boolean _contains_4 = _multiplicity_4.contains("one");
+                  if (_contains_4) {
+                    JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_4 = _instance_4.getAnnotations();
+                    String[] _get_8 = _annotations_4.get("onetoone");
+                    String _get_9 = _get_8[0];
+                    boolean _isOptional_2 = r1.isOptional();
+                    String _format_4 = String.format(_get_9, Boolean.valueOf(_isOptional_2));
+                    _builder.append(_format_4, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private ");
+                    ModelEntity _type_4 = r1.getType();
+                    String _entityName_4 = _type_4.getEntityName();
+                    _builder.append(_entityName_4, "");
+                    _builder.append(" ");
+                    String _name_6 = r1.getName();
+                    _builder.append(_name_6, "");
+                    _builder.append(";");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    JPAAnnotations _instance_5 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
+                    String[] _get_10 = _annotations_5.get("onetomany");
+                    String _get_11 = _get_10[0];
+                    String _name_7 = r2.getName();
+                    String _format_5 = String.format(_get_11, _name_7);
+                    _builder.append(_format_5, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private Set<");
+                    ModelEntity _type_5 = r1.getType();
+                    String _entityName_5 = _type_5.getEntityName();
+                    _builder.append(_entityName_5, "");
+                    _builder.append("> ");
+                    String _name_8 = r1.getName();
+                    _builder.append(_name_8, "");
+                    _builder.append(" = new HashSet<>();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              } else {
+                {
+                  String _multiplicity_5 = r1.getMultiplicity();
+                  boolean _contains_5 = _multiplicity_5.contains("one");
+                  if (_contains_5) {
+                    JPAAnnotations _instance_6 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_6 = _instance_6.getAnnotations();
+                    String[] _get_12 = _annotations_6.get("manytoone");
+                    String _get_13 = _get_12[0];
+                    boolean _isOptional_3 = r1.isOptional();
+                    String _format_6 = String.format(_get_13, Boolean.valueOf(_isOptional_3));
+                    _builder.append(_format_6, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private ");
+                    ModelEntity _type_6 = r1.getType();
+                    String _entityName_6 = _type_6.getEntityName();
+                    _builder.append(_entityName_6, "");
+                    _builder.append(" ");
+                    String _name_9 = r1.getName();
+                    _builder.append(_name_9, "");
+                    _builder.append(";");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    JPAAnnotations _instance_7 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_7 = _instance_7.getAnnotations();
+                    String[] _get_14 = _annotations_7.get("manytomany");
+                    String _get_15 = _get_14[0];
+                    _builder.append(_get_15, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private Set<");
+                    ModelEntity _type_7 = r1.getType();
+                    String _entityName_7 = _type_7.getEntityName();
+                    _builder.append(_entityName_7, "");
+                    _builder.append("> ");
+                    String _name_10 = r1.getName();
+                    _builder.append(_name_10, "");
+                    _builder.append(" = new HashSet<>();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+          } else {
+            List<RelationClass> _relations_2 = l.getRelations();
+            RelationClass thisRel = ModelUtils.containsEntity(_relations_2, e);
+            _builder.newLineIfNotEmpty();
+            {
+              boolean _notEquals = (!Objects.equal(thisRel, null));
+              if (_notEquals) {
+                List<RelationClass> _relations_3 = l.getRelations();
+                RelationClass otherRel = ModelUtils.getOtherRelationFromLink(_relations_3, e);
+                _builder.newLineIfNotEmpty();
+                {
+                  boolean _isNavigable = otherRel.isNavigable();
+                  if (_isNavigable) {
                     {
-                      String _multiplicity_2 = otherRel.getMultiplicity();
-                      boolean _contains_2 = _multiplicity_2.contains("one");
-                      if (_contains_2) {
-                        JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
-                        Map<String, String[]> _annotations_2 = _instance_2.getAnnotations();
-                        String[] _get_4 = _annotations_2.get("manytoone");
-                        String _get_5 = _get_4[0];
-                        boolean _isOptional_1 = otherRel.isOptional();
-                        String _format_2 = String.format(_get_5, Boolean.valueOf(_isOptional_1));
-                        _builder.append(_format_2, "");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("private ");
-                        ModelEntity _type_2 = otherRel.getType();
-                        String _entityName_2 = _type_2.getEntityName();
-                        _builder.append(_entityName_2, "");
-                        _builder.append(" ");
-                        String _name_3 = otherRel.getName();
-                        _builder.append(_name_3, "");
-                        _builder.append(";");
-                        _builder.newLineIfNotEmpty();
+                      String _multiplicity_6 = thisRel.getMultiplicity();
+                      boolean _contains_6 = _multiplicity_6.contains("one");
+                      if (_contains_6) {
+                        {
+                          String _multiplicity_7 = otherRel.getMultiplicity();
+                          boolean _contains_7 = _multiplicity_7.contains("one");
+                          if (_contains_7) {
+                            JPAAnnotations _instance_8 = JPAAnnotations.getInstance();
+                            Map<String, String[]> _annotations_8 = _instance_8.getAnnotations();
+                            String[] _get_16 = _annotations_8.get("onetoone");
+                            String _get_17 = _get_16[0];
+                            boolean _isOptional_4 = otherRel.isOptional();
+                            String _format_7 = String.format(_get_17, Boolean.valueOf(_isOptional_4));
+                            _builder.append(_format_7, "");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("private ");
+                            ModelEntity _type_8 = otherRel.getType();
+                            String _entityName_8 = _type_8.getEntityName();
+                            _builder.append(_entityName_8, "");
+                            _builder.append(" ");
+                            String _name_11 = otherRel.getName();
+                            _builder.append(_name_11, "");
+                            _builder.append(";");
+                            _builder.newLineIfNotEmpty();
+                          } else {
+                            JPAAnnotations _instance_9 = JPAAnnotations.getInstance();
+                            Map<String, String[]> _annotations_9 = _instance_9.getAnnotations();
+                            String[] _get_18 = _annotations_9.get("onetomany");
+                            String _get_19 = _get_18[0];
+                            String _name_12 = thisRel.getName();
+                            String _format_8 = String.format(_get_19, _name_12);
+                            _builder.append(_format_8, "");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("private Set<");
+                            ModelEntity _type_9 = otherRel.getType();
+                            String _entityName_9 = _type_9.getEntityName();
+                            _builder.append(_entityName_9, "");
+                            _builder.append("> ");
+                            String _name_13 = otherRel.getName();
+                            _builder.append(_name_13, "");
+                            _builder.append(" = new HashSet<>();");
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
                       } else {
-                        JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
-                        Map<String, String[]> _annotations_3 = _instance_3.getAnnotations();
-                        String[] _get_6 = _annotations_3.get("manytomany");
-                        String _get_7 = _get_6[0];
-                        _builder.append(_get_7, "");
-                        _builder.newLineIfNotEmpty();
-                        _builder.append("private Set<");
-                        ModelEntity _type_3 = otherRel.getType();
-                        String _entityName_3 = _type_3.getEntityName();
-                        _builder.append(_entityName_3, "");
-                        _builder.append("> ");
-                        String _name_4 = otherRel.getName();
-                        _builder.append(_name_4, "");
-                        _builder.append(" = new HashSet<>();");
-                        _builder.newLineIfNotEmpty();
+                        {
+                          String _multiplicity_8 = otherRel.getMultiplicity();
+                          boolean _contains_8 = _multiplicity_8.contains("one");
+                          if (_contains_8) {
+                            JPAAnnotations _instance_10 = JPAAnnotations.getInstance();
+                            Map<String, String[]> _annotations_10 = _instance_10.getAnnotations();
+                            String[] _get_20 = _annotations_10.get("manytoone");
+                            String _get_21 = _get_20[0];
+                            boolean _isOptional_5 = otherRel.isOptional();
+                            String _format_9 = String.format(_get_21, Boolean.valueOf(_isOptional_5));
+                            _builder.append(_format_9, "");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("private ");
+                            ModelEntity _type_10 = otherRel.getType();
+                            String _entityName_10 = _type_10.getEntityName();
+                            _builder.append(_entityName_10, "");
+                            _builder.append(" ");
+                            String _name_14 = otherRel.getName();
+                            _builder.append(_name_14, "");
+                            _builder.append(";");
+                            _builder.newLineIfNotEmpty();
+                          } else {
+                            {
+                              List<RelationClass> _relations_4 = l.getRelations();
+                              RelationClass _get_22 = _relations_4.get(0);
+                              boolean _equals = thisRel.equals(_get_22);
+                              if (_equals) {
+                                JPAAnnotations _instance_11 = JPAAnnotations.getInstance();
+                                Map<String, String[]> _annotations_11 = _instance_11.getAnnotations();
+                                String[] _get_23 = _annotations_11.get("manytomany");
+                                String _get_24 = _get_23[1];
+                                String _name_15 = thisRel.getName();
+                                String _format_10 = String.format(_get_24, _name_15);
+                                _builder.append(_format_10, "");
+                                _builder.newLineIfNotEmpty();
+                              } else {
+                                JPAAnnotations _instance_12 = JPAAnnotations.getInstance();
+                                Map<String, String[]> _annotations_12 = _instance_12.getAnnotations();
+                                String[] _get_25 = _annotations_12.get("manytomany");
+                                String _get_26 = _get_25[0];
+                                _builder.append(_get_26, "");
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
+                            _builder.append("private Set<");
+                            ModelEntity _type_11 = otherRel.getType();
+                            String _entityName_11 = _type_11.getEntityName();
+                            _builder.append(_entityName_11, "");
+                            _builder.append("> ");
+                            String _name_16 = otherRel.getName();
+                            _builder.append(_name_16, "");
+                            _builder.append(" = new HashSet<>();");
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
                       }
                     }
                   }
@@ -638,52 +970,145 @@ public class EntityLinkGenerator {
       for(final AssociativeEntity associativeEntity : _filter_1) {
         AssociativeEntityClass l_1 = new AssociativeEntityClass(associativeEntity);
         _builder.newLineIfNotEmpty();
-        List<RelationClass> _relations_2 = l_1.getRelations();
-        RelationClass thisRel_1 = ModelUtils.containsEntity(_relations_2, e);
-        _builder.newLineIfNotEmpty();
-        String className = l_1.getName();
-        _builder.newLineIfNotEmpty();
         {
-          boolean _notEquals_1 = (!Objects.equal(thisRel_1, null));
-          if (_notEquals_1) {
-            List<RelationClass> _relations_3 = l_1.getRelations();
-            RelationClass otherRel_1 = ModelUtils.getOtherRelationFromLink(_relations_3, e);
+          if ((ModelUtils.isReflexiveRelation(l_1.getRelations(), e) && (!Objects.equal(ModelUtils.containsEntity(l_1.getRelations(), e), null)))) {
+            List<RelationClass> _relations_5 = l_1.getRelations();
+            RelationClass r1_1 = _relations_5.get(0);
+            _builder.newLineIfNotEmpty();
+            List<RelationClass> _relations_6 = l_1.getRelations();
+            RelationClass r2_1 = _relations_6.get(1);
             _builder.newLineIfNotEmpty();
             {
-              String _multiplicity_3 = otherRel_1.getMultiplicity();
-              boolean _contains_3 = _multiplicity_3.contains("one");
-              if (_contains_3) {
-                JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
-                Map<String, String[]> _annotations_4 = _instance_4.getAnnotations();
-                String[] _get_8 = _annotations_4.get("onetoone");
-                String _get_9 = _get_8[0];
-                boolean _isOptional_2 = otherRel_1.isOptional();
-                String _format_3 = String.format(_get_9, Boolean.valueOf(_isOptional_2));
-                _builder.append(_format_3, "");
+              String _multiplicity_9 = r2_1.getMultiplicity();
+              boolean _contains_9 = _multiplicity_9.contains("one");
+              if (_contains_9) {
+                JPAAnnotations _instance_13 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_13 = _instance_13.getAnnotations();
+                String[] _get_27 = _annotations_13.get("onetoone");
+                String _get_28 = _get_27[0];
+                boolean _isOptional_6 = r2_1.isOptional();
+                String _format_11 = String.format(_get_28, Boolean.valueOf(_isOptional_6));
+                _builder.append(_format_11, "");
                 _builder.newLineIfNotEmpty();
                 _builder.append("private ");
-                _builder.append(className, "");
+                ModelEntity _type_12 = r2_1.getType();
+                String _entityName_12 = _type_12.getEntityName();
+                _builder.append(_entityName_12, "");
                 _builder.append(" ");
-                String _lowerFirst = StringUtils.toLowerFirst(className);
-                _builder.append(_lowerFirst, "");
+                String _name_17 = r2_1.getName();
+                _builder.append(_name_17, "");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
               } else {
-                JPAAnnotations _instance_5 = JPAAnnotations.getInstance();
-                Map<String, String[]> _annotations_5 = _instance_5.getAnnotations();
-                String[] _get_10 = _annotations_5.get("onetomany");
-                String _get_11 = _get_10[0];
-                String _name_5 = thisRel_1.getName();
-                String _format_4 = String.format(_get_11, _name_5);
-                _builder.append(_format_4, "");
+                JPAAnnotations _instance_14 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_14 = _instance_14.getAnnotations();
+                String[] _get_29 = _annotations_14.get("onetomany");
+                String _get_30 = _get_29[0];
+                String _name_18 = r1_1.getName();
+                String _format_12 = String.format(_get_30, _name_18);
+                _builder.append(_format_12, "");
                 _builder.newLineIfNotEmpty();
                 _builder.append("private Set<");
-                _builder.append(className, "");
+                ModelEntity _type_13 = r2_1.getType();
+                String _entityName_13 = _type_13.getEntityName();
+                _builder.append(_entityName_13, "");
                 _builder.append("> ");
-                String _lowerFirst_1 = StringUtils.toLowerFirst(className);
-                _builder.append(_lowerFirst_1, "");
+                String _name_19 = r2_1.getName();
+                _builder.append(_name_19, "");
                 _builder.append(" = new HashSet<>();");
                 _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              String _multiplicity_10 = r1_1.getMultiplicity();
+              boolean _contains_10 = _multiplicity_10.contains("one");
+              if (_contains_10) {
+                JPAAnnotations _instance_15 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_15 = _instance_15.getAnnotations();
+                String[] _get_31 = _annotations_15.get("onetoone");
+                String _get_32 = _get_31[0];
+                boolean _isOptional_7 = r1_1.isOptional();
+                String _format_13 = String.format(_get_32, Boolean.valueOf(_isOptional_7));
+                _builder.append(_format_13, "");
+                _builder.newLineIfNotEmpty();
+                _builder.append("private ");
+                ModelEntity _type_14 = r1_1.getType();
+                String _entityName_14 = _type_14.getEntityName();
+                _builder.append(_entityName_14, "");
+                _builder.append(" ");
+                String _name_20 = r1_1.getName();
+                _builder.append(_name_20, "");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                JPAAnnotations _instance_16 = JPAAnnotations.getInstance();
+                Map<String, String[]> _annotations_16 = _instance_16.getAnnotations();
+                String[] _get_33 = _annotations_16.get("onetomany");
+                String _get_34 = _get_33[0];
+                String _name_21 = r2_1.getName();
+                String _format_14 = String.format(_get_34, _name_21);
+                _builder.append(_format_14, "");
+                _builder.newLineIfNotEmpty();
+                _builder.append("private Set<");
+                ModelEntity _type_15 = r1_1.getType();
+                String _entityName_15 = _type_15.getEntityName();
+                _builder.append(_entityName_15, "");
+                _builder.append("> ");
+                String _name_22 = r1_1.getName();
+                _builder.append(_name_22, "");
+                _builder.append(" = new HashSet<>();");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          } else {
+            List<RelationClass> _relations_7 = l_1.getRelations();
+            RelationClass thisRel_1 = ModelUtils.containsEntity(_relations_7, e);
+            _builder.newLineIfNotEmpty();
+            String className = l_1.getName();
+            _builder.newLineIfNotEmpty();
+            {
+              boolean _notEquals_1 = (!Objects.equal(thisRel_1, null));
+              if (_notEquals_1) {
+                List<RelationClass> _relations_8 = l_1.getRelations();
+                RelationClass otherRel_1 = ModelUtils.getOtherRelationFromLink(_relations_8, e);
+                _builder.newLineIfNotEmpty();
+                {
+                  String _multiplicity_11 = otherRel_1.getMultiplicity();
+                  boolean _contains_11 = _multiplicity_11.contains("one");
+                  if (_contains_11) {
+                    JPAAnnotations _instance_17 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_17 = _instance_17.getAnnotations();
+                    String[] _get_35 = _annotations_17.get("onetoone");
+                    String _get_36 = _get_35[0];
+                    boolean _isOptional_8 = otherRel_1.isOptional();
+                    String _format_15 = String.format(_get_36, Boolean.valueOf(_isOptional_8));
+                    _builder.append(_format_15, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private ");
+                    _builder.append(className, "");
+                    _builder.append(" ");
+                    String _lowerFirst = StringUtils.toLowerFirst(className);
+                    _builder.append(_lowerFirst, "");
+                    _builder.append(";");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    JPAAnnotations _instance_18 = JPAAnnotations.getInstance();
+                    Map<String, String[]> _annotations_18 = _instance_18.getAnnotations();
+                    String[] _get_37 = _annotations_18.get("onetomany");
+                    String _get_38 = _get_37[0];
+                    String _name_23 = thisRel_1.getName();
+                    String _format_16 = String.format(_get_38, _name_23);
+                    _builder.append(_format_16, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("private Set<");
+                    _builder.append(className, "");
+                    _builder.append("> ");
+                    String _lowerFirst_1 = StringUtils.toLowerFirst(className);
+                    _builder.append(_lowerFirst_1, "");
+                    _builder.append(" = new HashSet<>();");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
               }
             }
           }
