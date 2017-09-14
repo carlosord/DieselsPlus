@@ -6,6 +6,7 @@ import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import uo.diesels.model.dtoDsl.DtoFor
+import uo.diesels.model.generator.common.util.TypeCodeTransformation
 import uo.diesels.model.generator.dto.util.elements.DtoForClass
 import uo.diesels.model.generator.util.ImportConstants
 import uo.diesels.model.generator.util.PackageConstants
@@ -84,7 +85,7 @@ class DtoAssemblerGenerator {
 	
 	def createDefaultConstructor(DtoForClass d) {
 		'''
-			public «d.name»(«FOR v : d.attributes»«v.variableType» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
+			public «d.name»(«FOR v : d.attributes»«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
 			«FOR v : d.attributes»
 				this.«v.variableName» = «v.variableName»;
 			«ENDFOR»

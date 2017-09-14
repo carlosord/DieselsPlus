@@ -3,6 +3,7 @@ package uo.diesels.model.generator.dto;
 import com.google.common.collect.Iterables;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -11,6 +12,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import uo.diesels.model.dtoDsl.DtoEntity;
+import uo.diesels.model.generator.common.util.TypeCodeTransformation;
 import uo.diesels.model.generator.dto.util.DtoVariableDefinition;
 import uo.diesels.model.generator.dto.util.elements.DtoEntityClass;
 import uo.diesels.model.generator.util.PackageConstants;
@@ -177,8 +179,11 @@ public class DtoEntityGenerator {
     {
       List<DtoVariableDefinition> _attributes = d.getAttributes();
       for(final DtoVariableDefinition v : _attributes) {
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = v.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _variableName = v.getVariableName();
         _builder.append(_variableName, "");
@@ -187,8 +192,8 @@ public class DtoEntityGenerator {
           List<DtoVariableDefinition> _attributes_2 = d.getAttributes();
           int _size = _attributes_2.size();
           int _minus = (_size - 1);
-          DtoVariableDefinition _get = _attributes_1.get(_minus);
-          boolean _equals = v.equals(_get);
+          DtoVariableDefinition _get_1 = _attributes_1.get(_minus);
+          boolean _equals = v.equals(_get_1);
           boolean _not = (!_equals);
           if (_not) {
             _builder.append(", ");
@@ -223,8 +228,11 @@ public class DtoEntityGenerator {
       List<DtoVariableDefinition> _attributes = d.getAttributes();
       for(final DtoVariableDefinition a : _attributes) {
         _builder.append("private ");
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = a.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _variableName = a.getVariableName();
         _builder.append(_variableName, "");
@@ -241,8 +249,11 @@ public class DtoEntityGenerator {
       List<DtoVariableDefinition> _attributes = d.getAttributes();
       for(final DtoVariableDefinition a : _attributes) {
         _builder.append("public ");
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = a.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" get");
         String _variableName = a.getVariableName();
         String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -268,8 +279,11 @@ public class DtoEntityGenerator {
         String _upperFirst_1 = StringUtils.toUpperFirst(_variableName_2);
         _builder.append(_upperFirst_1, "");
         _builder.append("(");
+        TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+        Map<String, String> _types_1 = _instance_1.getTypes();
         String _variableType_1 = a_1.getVariableType();
-        _builder.append(_variableType_1, "");
+        String _get_1 = _types_1.get(_variableType_1);
+        _builder.append(_get_1, "");
         _builder.append(" ");
         String _variableName_3 = a_1.getVariableName();
         _builder.append(_variableName_3, "");

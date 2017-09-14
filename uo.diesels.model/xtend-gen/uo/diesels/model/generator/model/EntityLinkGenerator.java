@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import uo.diesels.model.generator.common.util.TypeCodeTransformation;
 import uo.diesels.model.generator.model.EntityLinkKeyGenerator;
 import uo.diesels.model.generator.model.EntitySrcGenerator;
 import uo.diesels.model.generator.model.util.ModelEntity;
@@ -632,8 +633,11 @@ public class EntityLinkGenerator {
           }
         }
         _builder.append("private ");
+        TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance_2.getTypes();
         String _variableType = v.getVariableType();
-        _builder.append(_variableType, "");
+        String _get_4 = _types.get(_variableType);
+        _builder.append(_get_4, "");
         _builder.append(" ");
         String _variableName_1 = v.getVariableName();
         _builder.append(_variableName_1, "");
@@ -1183,8 +1187,11 @@ public class EntityLinkGenerator {
         {
           if (((!(v instanceof ModelTypeCollectionVariableClass)) && (!(v instanceof SimpleTypeCollectionVariableClass)))) {
             _builder.append("public ");
+            TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+            Map<String, String> _types = _instance.getTypes();
             String _variableType = v.getVariableType();
-            _builder.append(_variableType, "");
+            String _get = _types.get(_variableType);
+            _builder.append(_get, "");
             _builder.append(" get");
             String _variableName = v.getVariableName();
             String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -1206,8 +1213,11 @@ public class EntityLinkGenerator {
             String _upperFirst_1 = StringUtils.toUpperFirst(_variableName_2);
             _builder.append(_upperFirst_1, "");
             _builder.append("(");
+            TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType_1 = v.getVariableType();
-            _builder.append(_variableType_1, "");
+            String _get_1 = _types_1.get(_variableType_1);
+            _builder.append(_get_1, "");
             _builder.append(" ");
             String _variableName_3 = v.getVariableName();
             _builder.append(_variableName_3, "");
@@ -1464,8 +1474,11 @@ public class EntityLinkGenerator {
       List<ModelMethod> _methods = e.getMethods();
       for(final ModelMethod m : _methods) {
         _builder.append("public abstract ");
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        _builder.append(_methodReturnType, "");
+        String _get = _types.get(_methodReturnType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -1473,8 +1486,11 @@ public class EntityLinkGenerator {
         {
           List<ModelVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final ModelVariableDefinition p : _methodParameters) {
+            TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            _builder.append(_variableType, "");
+            String _get_1 = _types_1.get(_variableType);
+            _builder.append(_get_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -1483,8 +1499,8 @@ public class EntityLinkGenerator {
               List<ModelVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              ModelVariableDefinition _get = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get);
+              ModelVariableDefinition _get_2 = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get_2);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

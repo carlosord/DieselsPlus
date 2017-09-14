@@ -2,6 +2,7 @@ package uo.diesels.model.generator.business;
 
 import com.google.common.base.Objects;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -15,6 +16,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess;
 import uo.diesels.model.generator.business.util.BusinessMethod;
 import uo.diesels.model.generator.business.util.BusinessVariableDefinition;
 import uo.diesels.model.generator.business.util.elements.ServiceClass;
+import uo.diesels.model.generator.common.util.TypeCodeTransformation;
 import uo.diesels.model.generator.util.PackageConstants;
 import uo.diesels.model.generator.util.PathConstants;
 import uo.diesels.model.generator.util.ResourceUtils;
@@ -160,8 +162,11 @@ public class CommandGenerator {
       List<BusinessVariableDefinition> _methodParameters = m.getMethodParameters();
       for(final BusinessVariableDefinition p : _methodParameters) {
         _builder.append("private ");
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = p.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _variableName = p.getVariableName();
         _builder.append(_variableName, "");
@@ -183,8 +188,11 @@ public class CommandGenerator {
     {
       List<BusinessVariableDefinition> _methodParameters = m.getMethodParameters();
       for(final BusinessVariableDefinition p : _methodParameters) {
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = p.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _variableName = p.getVariableName();
         _builder.append(_variableName, "");
@@ -193,8 +201,8 @@ public class CommandGenerator {
           List<BusinessVariableDefinition> _methodParameters_2 = m.getMethodParameters();
           int _size = _methodParameters_2.size();
           int _minus = (_size - 1);
-          BusinessVariableDefinition _get = _methodParameters_1.get(_minus);
-          boolean _equals = p.equals(_get);
+          BusinessVariableDefinition _get_1 = _methodParameters_1.get(_minus);
+          boolean _equals = p.equals(_get_1);
           boolean _not = (!_equals);
           if (_not) {
             _builder.append(", ");
@@ -229,8 +237,11 @@ public class CommandGenerator {
     _builder.append("@Override");
     _builder.newLine();
     _builder.append("public ");
+    TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+    Map<String, String> _types = _instance.getTypes();
     String _methodReturnType = m.getMethodReturnType();
-    String _upperFirst = StringUtils.toUpperFirst(_methodReturnType);
+    String _get = _types.get(_methodReturnType);
+    String _upperFirst = StringUtils.toUpperFirst(_get);
     _builder.append(_upperFirst, "");
     _builder.append(" execute() throws BusinessException {");
     _builder.newLineIfNotEmpty();

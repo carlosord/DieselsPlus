@@ -4,6 +4,7 @@ import java.util.Date
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import uo.diesels.model.dtoDsl.DtoFor
+import uo.diesels.model.generator.common.util.TypeCodeTransformation
 import uo.diesels.model.generator.dto.util.elements.DtoForClass
 import uo.diesels.model.generator.util.PackageConstants
 import uo.diesels.model.generator.util.PathConstants
@@ -98,7 +99,7 @@ class DtoForGenerator {
 	
 	def createDefaultConstructor(DtoForClass d) {
 		'''
-			public «d.name»(«FOR v : d.attributes»«v.variableType» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
+			public «d.name»(«FOR v : d.attributes»«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
 				«FOR v : d.attributes»
 					this.«v.variableName» = «v.variableName»;
 				«ENDFOR»
@@ -109,7 +110,7 @@ class DtoForGenerator {
 	def createAttributeDeclarations(DtoForClass d) {
 		'''
 			«FOR a : d.attributes»
-				private «a.variableType» «a.variableName»;
+				private «TypeCodeTransformation.instance.types.get(a.variableType)» «a.variableName»;
 			«ENDFOR»
 		'''
 	}
@@ -117,13 +118,13 @@ class DtoForGenerator {
 	def createGettersSetters(DtoForClass d) {
 		'''
 			«FOR a : d.attributes»			
-				public «a.variableType» get«StringUtils.toUpperFirst(a.variableName)»() {
+				public «TypeCodeTransformation.instance.types.get(a.variableType)» get«StringUtils.toUpperFirst(a.variableName)»() {
 					return this.«a.variableName»;
 				}
 				
 			«ENDFOR»			
 			«FOR a : d.attributes»				
-				public void set«StringUtils.toUpperFirst(a.variableName)»(«a.variableType» «a.variableName») {
+				public void set«StringUtils.toUpperFirst(a.variableName)»(«TypeCodeTransformation.instance.types.get(a.variableType)» «a.variableName») {
 					this.«a.variableName» = «a.variableName»;
 				}
 				

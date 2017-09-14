@@ -10,6 +10,7 @@ import uo.diesels.model.generator.business.util.classes.methods.JpaMethodClass
 import uo.diesels.model.generator.business.util.elements.ServiceClass
 import uo.diesels.model.generator.business.util.util.BusinessMethodImplementations
 import uo.diesels.model.generator.business.util.util.BusinessUtils
+import uo.diesels.model.generator.common.util.TypeCodeTransformation
 import uo.diesels.model.generator.util.PackageConstants
 import uo.diesels.model.generator.util.PathConstants
 import uo.diesels.model.generator.util.StringUtils
@@ -93,11 +94,11 @@ class ServiceImplGenerator {
 		'''
 			«FOR m: methods»
 				@Override
-				public «m.methodReturnType» «m.methodName»(«FOR p: m.methodParameters»«p.variableType» «p.variableName»«IF (!p.equals(m.methodParameters.get(m.methodParameters.size - 1)))», «ENDIF»«ENDFOR») throws BusinessException {
+				public «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p: m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF (!p.equals(m.methodParameters.get(m.methodParameters.size - 1)))», «ENDIF»«ENDFOR») throws BusinessException {
 					«IF m.methodKeyword != null»
-						Command<«StringUtils.toUpperFirst(m.methodReturnType)»> c = new Command<«StringUtils.toUpperFirst(m.methodReturnType)»>() {			
+						Command<«StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))»> c = new Command<«StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))»>() {			
 							@Override
-							public «StringUtils.toUpperFirst(m.methodReturnType)» execute() throws BusinessException {
+							public «StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))» execute() throws BusinessException {
 								«IF m.methodKeyword.equals("delete")»							
 									«(m as JpaMethodClass).keyword = "find"»
 									«var entity = (m as JpaMethodClass).entity»

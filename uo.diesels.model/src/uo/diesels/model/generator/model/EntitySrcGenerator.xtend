@@ -5,6 +5,7 @@ import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.core.runtime.Path
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
+import uo.diesels.model.generator.common.util.TypeCodeTransformation
 import uo.diesels.model.generator.model.util.ModelEntity
 import uo.diesels.model.generator.model.util.ModelVariableDefinition
 import uo.diesels.model.generator.model.util.elements.AssociativeEntityClass
@@ -153,7 +154,7 @@ class EntitySrcGenerator {
 	def createMethods(ModelEntity e) {
 		'''
 			«FOR m : e.srcMethods»
-				public «m.methodReturnType» «m.methodName»(«FOR p : m.methodParameters»«p.variableType» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR») {
+				public «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR») {
 					// TODO Auto-generated method stub
 				«IF !m.methodReturnType.equals("void")»	return null;«ENDIF»
 				}

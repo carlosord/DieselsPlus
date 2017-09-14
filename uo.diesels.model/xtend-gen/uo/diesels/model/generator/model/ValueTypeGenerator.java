@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import uo.diesels.model.generator.common.util.TypeCodeTransformation;
 import uo.diesels.model.generator.model.util.ModelVariableDefinition;
 import uo.diesels.model.generator.model.util.classes.variables.ModelTypeCollectionVariableClass;
 import uo.diesels.model.generator.model.util.classes.variables.SimpleTypeCollectionVariableClass;
@@ -253,8 +254,11 @@ public class ValueTypeGenerator {
           }
         }
         _builder.append("private ");
+        TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance_2.getTypes();
         String _variableType = v.getVariableType();
-        _builder.append(_variableType, "");
+        String _get_4 = _types.get(_variableType);
+        _builder.append(_get_4, "");
         _builder.append(" ");
         String _variableName_1 = v.getVariableName();
         _builder.append(_variableName_1, "");
@@ -284,8 +288,11 @@ public class ValueTypeGenerator {
     {
       List<ModelVariableDefinition> _attributes = value.getAttributes();
       for(final ModelVariableDefinition v : _attributes) {
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = v.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _variableName = v.getVariableName();
         _builder.append(_variableName, "");
@@ -294,8 +301,8 @@ public class ValueTypeGenerator {
           List<ModelVariableDefinition> _attributes_2 = value.getAttributes();
           int _size = _attributes_2.size();
           int _minus = (_size - 1);
-          ModelVariableDefinition _get = _attributes_1.get(_minus);
-          boolean _equals = v.equals(_get);
+          ModelVariableDefinition _get_1 = _attributes_1.get(_minus);
+          boolean _equals = v.equals(_get_1);
           boolean _not = (!_equals);
           if (_not) {
             _builder.append(", ");
@@ -348,8 +355,11 @@ public class ValueTypeGenerator {
       List<ModelVariableDefinition> _attributes = value.getAttributes();
       for(final ModelVariableDefinition v : _attributes) {
         _builder.append("public ");
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _variableType = v.getVariableType();
-        _builder.append(_variableType, "");
+        String _get = _types.get(_variableType);
+        _builder.append(_get, "");
         _builder.append(" get");
         String _variableName = v.getVariableName();
         String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -375,8 +385,11 @@ public class ValueTypeGenerator {
         String _upperFirst_1 = StringUtils.toUpperFirst(_variableName_2);
         _builder.append(_upperFirst_1, "");
         _builder.append("(");
+        TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+        Map<String, String> _types_1 = _instance_1.getTypes();
         String _variableType_1 = v_1.getVariableType();
-        _builder.append(_variableType_1, "");
+        String _get_1 = _types_1.get(_variableType_1);
+        _builder.append(_get_1, "");
         _builder.append(" ");
         String _variableName_3 = v_1.getVariableName();
         _builder.append(_variableName_3, "");

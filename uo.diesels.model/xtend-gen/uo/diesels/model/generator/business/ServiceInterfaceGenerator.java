@@ -3,6 +3,7 @@ package uo.diesels.model.generator.business;
 import com.google.common.collect.Iterables;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -14,6 +15,7 @@ import uo.diesels.model.businessDsl.Service;
 import uo.diesels.model.generator.business.util.BusinessMethod;
 import uo.diesels.model.generator.business.util.BusinessVariableDefinition;
 import uo.diesels.model.generator.business.util.elements.ServiceClass;
+import uo.diesels.model.generator.common.util.TypeCodeTransformation;
 import uo.diesels.model.generator.util.PackageConstants;
 import uo.diesels.model.generator.util.PathConstants;
 import uo.diesels.model.generator.util.StringUtils;
@@ -130,8 +132,11 @@ public class ServiceInterfaceGenerator {
       List<BusinessMethod> _methods = s.getMethods();
       for(final BusinessMethod m : _methods) {
         _builder.append("public ");
+        TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
+        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        _builder.append(_methodReturnType, "");
+        String _get = _types.get(_methodReturnType);
+        _builder.append(_get, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -139,8 +144,11 @@ public class ServiceInterfaceGenerator {
         {
           List<BusinessVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final BusinessVariableDefinition p : _methodParameters) {
+            TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
+            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            _builder.append(_variableType, "");
+            String _get_1 = _types_1.get(_variableType);
+            _builder.append(_get_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -149,8 +157,8 @@ public class ServiceInterfaceGenerator {
               List<BusinessVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              BusinessVariableDefinition _get = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get);
+              BusinessVariableDefinition _get_2 = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get_2);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

@@ -6,6 +6,7 @@ import java.util.HashSet
 import java.util.List
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
+import uo.diesels.model.generator.common.util.TypeCodeTransformation
 import uo.diesels.model.generator.model.util.classes.RelationClass
 import uo.diesels.model.generator.model.util.classes.variables.ModelTypeCollectionVariableClass
 import uo.diesels.model.generator.model.util.classes.variables.SimpleTypeCollectionVariableClass
@@ -298,7 +299,7 @@ class EntityLinkGenerator {
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
-				private «v.variableType» «v.variableName»«v.collectionVariable»;
+				private «TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«v.collectionVariable»;
 			«ENDFOR»
 		'''
 	}
@@ -432,11 +433,11 @@ class EntityLinkGenerator {
 		'''		
 			«FOR v : e.attributes»			
 				«IF !(v instanceof ModelTypeCollectionVariableClass) && !(v instanceof SimpleTypeCollectionVariableClass) »
-					public «v.variableType» get«StringUtils.toUpperFirst(v.variableName)»() {
+					public «TypeCodeTransformation.instance.types.get(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
 						return this.«v.variableName»;
 					}
 							
-					public void set«StringUtils.toUpperFirst(v.variableName)»(«v.variableType» «v.variableName») {
+					public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName») {
 						this.«v.variableName» = «v.variableName»;
 					}
 					
@@ -494,7 +495,7 @@ class EntityLinkGenerator {
 	def createMethods(AssociativeEntityClass e) {
 		'''
 			«FOR m : e.methods»
-				public abstract «m.methodReturnType» «m.methodName»(«FOR p : m.methodParameters»«p.variableType» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
+				public abstract «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
 			«ENDFOR»			
 		'''
 	}
