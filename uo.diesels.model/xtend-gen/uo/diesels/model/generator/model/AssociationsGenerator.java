@@ -445,7 +445,9 @@ public class AssociationsGenerator {
           String _name_5 = r1.getName();
           _builder.append(_name_5, "\t");
           _builder.append("._set");
-          _builder.append(className, "\t");
+          String _name_6 = r2.getName();
+          String _upperFirst_2 = StringUtils.toUpperFirst(_name_6);
+          _builder.append(_upperFirst_2, "\t");
           _builder.append("(");
           String _lowerFirst_3 = StringUtils.toLowerFirst(className);
           _builder.append(_lowerFirst_3, "\t");
@@ -453,10 +455,12 @@ public class AssociationsGenerator {
           _builder.newLineIfNotEmpty();
         } else {
           _builder.append("\t");
-          String _name_6 = r1.getName();
-          _builder.append(_name_6, "\t");
+          String _name_7 = r1.getName();
+          _builder.append(_name_7, "\t");
           _builder.append("._get");
-          _builder.append(className, "\t");
+          String _name_8 = r2.getName();
+          String _upperFirst_3 = StringUtils.toUpperFirst(_name_8);
+          _builder.append(_upperFirst_3, "\t");
           _builder.append("().add(");
           String _lowerFirst_4 = StringUtils.toLowerFirst(className);
           _builder.append(_lowerFirst_4, "\t");
@@ -469,10 +473,12 @@ public class AssociationsGenerator {
         boolean _contains_1 = _multiplicity_1.contains("one");
         if (_contains_1) {
           _builder.append("\t");
-          String _name_7 = r2.getName();
-          _builder.append(_name_7, "\t");
+          String _name_9 = r2.getName();
+          _builder.append(_name_9, "\t");
           _builder.append("._set");
-          _builder.append(className, "\t");
+          String _name_10 = r1.getName();
+          String _upperFirst_4 = StringUtils.toUpperFirst(_name_10);
+          _builder.append(_upperFirst_4, "\t");
           _builder.append("(");
           String _lowerFirst_5 = StringUtils.toLowerFirst(className);
           _builder.append(_lowerFirst_5, "\t");
@@ -480,10 +486,12 @@ public class AssociationsGenerator {
           _builder.newLineIfNotEmpty();
         } else {
           _builder.append("\t");
-          String _name_8 = r2.getName();
-          _builder.append(_name_8, "\t");
+          String _name_11 = r2.getName();
+          _builder.append(_name_11, "\t");
           _builder.append("._get");
-          _builder.append(className, "\t");
+          String _name_12 = r1.getName();
+          String _upperFirst_5 = StringUtils.toUpperFirst(_name_12);
+          _builder.append(_upperFirst_5, "\t");
           _builder.append("().add(");
           String _lowerFirst_6 = StringUtils.toLowerFirst(className);
           _builder.append(_lowerFirst_6, "\t");
@@ -528,7 +536,9 @@ public class AssociationsGenerator {
           String _name_1 = r1.getName();
           _builder.append(_name_1, "\t");
           _builder.append("._get");
-          _builder.append(className, "\t");
+          String _name_2 = r2.getName();
+          String _upperFirst = StringUtils.toUpperFirst(_name_2);
+          _builder.append(_upperFirst, "\t");
           _builder.append("().remove(");
           String _lowerFirst_1 = StringUtils.toLowerFirst(className);
           _builder.append(_lowerFirst_1, "\t");
@@ -536,10 +546,12 @@ public class AssociationsGenerator {
           _builder.newLineIfNotEmpty();
         } else {
           _builder.append("\t");
-          String _name_2 = r1.getName();
-          _builder.append(_name_2, "\t");
+          String _name_3 = r1.getName();
+          _builder.append(_name_3, "\t");
           _builder.append("._set");
-          _builder.append(className, "\t");
+          String _name_4 = r2.getName();
+          String _upperFirst_1 = StringUtils.toUpperFirst(_name_4);
+          _builder.append(_upperFirst_1, "\t");
           _builder.append("(null);");
           _builder.newLineIfNotEmpty();
         }
@@ -547,10 +559,12 @@ public class AssociationsGenerator {
       {
         if ((r1.getMultiplicity().equals("many") || r1.getMultiplicity().equals("one-many"))) {
           _builder.append("\t");
-          String _name_3 = r2.getName();
-          _builder.append(_name_3, "\t");
+          String _name_5 = r2.getName();
+          _builder.append(_name_5, "\t");
           _builder.append("._get");
-          _builder.append(className, "\t");
+          String _name_6 = r1.getName();
+          String _upperFirst_2 = StringUtils.toUpperFirst(_name_6);
+          _builder.append(_upperFirst_2, "\t");
           _builder.append("().remove(");
           String _lowerFirst_2 = StringUtils.toLowerFirst(className);
           _builder.append(_lowerFirst_2, "\t");
@@ -558,10 +572,12 @@ public class AssociationsGenerator {
           _builder.newLineIfNotEmpty();
         } else {
           _builder.append("\t");
-          String _name_4 = r2.getName();
-          _builder.append(_name_4, "\t");
+          String _name_7 = r2.getName();
+          _builder.append(_name_7, "\t");
           _builder.append("._set");
-          _builder.append(className, "\t");
+          String _name_8 = r1.getName();
+          String _upperFirst_3 = StringUtils.toUpperFirst(_name_8);
+          _builder.append(_upperFirst_3, "\t");
           _builder.append("(null);");
           _builder.newLineIfNotEmpty();
         }
@@ -570,18 +586,18 @@ public class AssociationsGenerator {
       String _lowerFirst_3 = StringUtils.toLowerFirst(className);
       _builder.append(_lowerFirst_3, "\t");
       _builder.append("._set");
-      String _name_5 = r1.getName();
-      String _upperFirst = StringUtils.toUpperFirst(_name_5);
-      _builder.append(_upperFirst, "\t");
+      String _name_9 = r1.getName();
+      String _upperFirst_4 = StringUtils.toUpperFirst(_name_9);
+      _builder.append(_upperFirst_4, "\t");
       _builder.append("(null);");
       _builder.newLineIfNotEmpty();
       _builder.append("\t");
       String _lowerFirst_4 = StringUtils.toLowerFirst(className);
       _builder.append(_lowerFirst_4, "\t");
       _builder.append("._set");
-      String _name_6 = r2.getName();
-      String _upperFirst_1 = StringUtils.toUpperFirst(_name_6);
-      _builder.append(_upperFirst_1, "\t");
+      String _name_10 = r2.getName();
+      String _upperFirst_5 = StringUtils.toUpperFirst(_name_10);
+      _builder.append(_upperFirst_5, "\t");
       _builder.append("(null);");
       _builder.newLineIfNotEmpty();
       _builder.append("}");

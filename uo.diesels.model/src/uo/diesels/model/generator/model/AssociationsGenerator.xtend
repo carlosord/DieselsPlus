@@ -156,14 +156,14 @@ class AssociationsGenerator {
 				«StringUtils.toLowerFirst(className)»._set«StringUtils.toUpperFirst(r1.name)»(«r1.name»);
 				«StringUtils.toLowerFirst(className)»._set«StringUtils.toUpperFirst(r2.name)»(«r2.name»);
 				«IF (r2.multiplicity.contains("one"))»
-					«r1.name»._set«className»(«StringUtils.toLowerFirst(className)»);					
+					«r1.name»._set«StringUtils.toUpperFirst(r2.name)»(«StringUtils.toLowerFirst(className)»);					
 				«ELSE»
-					«r1.name»._get«className»().add(«StringUtils.toLowerFirst(className)»);
+					«r1.name»._get«StringUtils.toUpperFirst(r2.name)»().add(«StringUtils.toLowerFirst(className)»);
 				«ENDIF»
 				«IF (r1.multiplicity.contains("one"))»
-					«r2.name»._set«className»(«StringUtils.toLowerFirst(className)»);
+					«r2.name»._set«StringUtils.toUpperFirst(r1.name)»(«StringUtils.toLowerFirst(className)»);
 				«ELSE»
-					«r2.name»._get«className»().add(«StringUtils.toLowerFirst(className)»);
+					«r2.name»._get«StringUtils.toUpperFirst(r1.name)»().add(«StringUtils.toLowerFirst(className)»);
 				«ENDIF»
 			}
 		'''
@@ -175,14 +175,14 @@ class AssociationsGenerator {
 		'''
 			public static void unlink(«FOR r: relations»«r.type.entityName» «r.name», «ENDFOR»«className» «StringUtils.toLowerFirst(className)») {
 				«IF (r2.multiplicity.equals("many") || r2.multiplicity.equals("one-many"))»
-					«r1.name»._get«className»().remove(«StringUtils.toLowerFirst(className)»);
+					«r1.name»._get«StringUtils.toUpperFirst(r2.name)»().remove(«StringUtils.toLowerFirst(className)»);
 				«ELSE»
-					«r1.name»._set«className»(null);
+					«r1.name»._set«StringUtils.toUpperFirst(r2.name)»(null);
 				«ENDIF»
 				«IF (r1.multiplicity.equals("many") || r1.multiplicity.equals("one-many"))»
-					«r2.name»._get«className»().remove(«StringUtils.toLowerFirst(className)»);
+					«r2.name»._get«StringUtils.toUpperFirst(r1.name)»().remove(«StringUtils.toLowerFirst(className)»);
 				«ELSE»
-					«r2.name»._set«className»(null);
+					«r2.name»._set«StringUtils.toUpperFirst(r1.name)»(null);
 				«ENDIF»
 				«StringUtils.toLowerFirst(className)»._set«StringUtils.toUpperFirst(r1.name)»(null);
 				«StringUtils.toLowerFirst(className)»._set«StringUtils.toUpperFirst(r2.name)»(null);

@@ -208,7 +208,7 @@ public class AssociativeEntityClass extends DefaultAssociativeEntityClass implem
 		imports.add(JPAAnnotations.getInstance().getAnnotations().get("id")[ANNOTATION_IMPORT]);
 		for (RelationClass r: this.relations) {
 			if (r.getMultiplicity().contains("one")) {
-				imports.add(JPAAnnotations.getInstance().getAnnotations().get("onetoone")[ANNOTATION_IMPORT]);
+				imports.add(JPAAnnotations.getInstance().getAnnotations().get("onetoone")[2]);
 			} else {
 				imports.add(JPAAnnotations.getInstance().getAnnotations().get("manytoone")[ANNOTATION_IMPORT]);
 			}

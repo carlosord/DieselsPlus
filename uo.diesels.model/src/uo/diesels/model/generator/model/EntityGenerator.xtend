@@ -438,17 +438,17 @@ class EntityGenerator {
 					«var r2 = l.getRelations.get(1)»
 					«IF (r2.multiplicity.contains("one"))»
 						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r2.optional)»
-						private «r2.type.entityName» «r2.name»;
+						private «l.className» «r2.name»;
 					«ELSE»
 						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r1.name)»
-						private Set<«r2.type.entityName»> «r2.name» = new HashSet<>();
+						private Set<«l.className»> «r2.name» = new HashSet<>();
 					«ENDIF»
 					«IF (r1.multiplicity.contains("one"))»
 						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r1.optional)»
-						private «r1.type.entityName» «r1.name»;
+						private «l.className» «r1.name»;
 					«ELSE»
 						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r2.name)»
-						private Set<«r1.type.entityName»> «r1.name» = new HashSet<>();
+						private Set<«l.className»> «r1.name» = new HashSet<>();
 					«ENDIF»
 				«ELSE»
 					«var thisRel = ModelUtils.containsEntity(l.relations, e)»
@@ -663,33 +663,49 @@ class EntityGenerator {
 				SimpleEntityClass e) {
 				'''
 					«FOR l : associativeEntities»
-«««						«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
-«««							«var r1 = l.getRelations.get(0)»
-«««							«var r2 = l.getRelations.get(1)»
-«««							«var className = l.className»
-«««							«IF (r1.multiplicity.contains("one"))»
-«««								void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
-«««									this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
-«««								}
-«««								
-«««								public «className» get«className»() {
-«««									return this.«StringUtils.toLowerFirst(className)»;
-«««								}
-«««								
-«««							«ELSE»
-«««								Set<«className»> _get«className»() {
-«««									return this.«StringUtils.toLowerFirst(className)»;
-«««								}
-«««								
-«««								public Set<«className»> get«className»() {
-«««									return new HashSet<>(«StringUtils.toLowerFirst(className)»);
-«««								}
-«««								
-«««							«ENDIF»
-«««							«IF (r2.multiplicity.contains("one"))»
-«««							«ELSE»
-«««							«ENDIF»
-«««						«ELSE»
+						«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+							«var r1 = l.getRelations.get(0)»
+							«var r2 = l.getRelations.get(1)»
+							«var className = l.className»
+							«IF (r1.multiplicity.contains("one"))»
+								void _set«StringUtils.toUpperFirst(r1.name)»(«className» «r1.name») {
+									this.«r1.name» = «r1.name»;
+								}
+								
+								public «className» get«StringUtils.toUpperFirst(r1.name)»() {
+									return this.«r1.name»;
+								}
+								
+							«ELSE»
+								Set<«className»> _get«StringUtils.toUpperFirst(r1.name)»() {
+									return this.«r1.name»;
+								}
+								
+								public Set<«className»> get«StringUtils.toUpperFirst(r1.name)»() {
+									return new HashSet<>(«r1.name»);
+								}
+								
+							«ENDIF»
+							«IF (r2.multiplicity.contains("one"))»
+								void _set«StringUtils.toUpperFirst(r2.name)»(«className» «r2.name») {
+									this.«r2.name» = «r2.name»;
+								}
+								
+								public «className» get«StringUtils.toUpperFirst(r2.name)»() {
+									return this.«r2.name»;
+								}
+								
+							«ELSE»
+								Set<«className»> _get«StringUtils.toUpperFirst(r2.name)»() {
+									return this.«r2.name»;
+								}
+								
+								public Set<«className»> get«StringUtils.toUpperFirst(r2.name)»() {
+									return new HashSet<>(«r2.name»);
+								}
+								
+							«ENDIF»
+						«ELSE»
 							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
 							«var className = l.name»
 							«IF (otherRel.multiplicity.contains("one"))»
@@ -711,7 +727,7 @@ class EntityGenerator {
 								}
 								
 							«ENDIF»
-«««						«ENDIF»								
+						«ENDIF»								
 					«ENDFOR»
 				'''
 			}
