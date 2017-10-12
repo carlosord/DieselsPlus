@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DslFiles
+Bundle-SymbolicName: diesels-files;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: dslfiles.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.console;bundle-version="3.6.100",
+ org.eclipse.jdt.ui;bundle-version="3.11.1",
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

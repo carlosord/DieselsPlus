@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <!-- Wizards con los tipos de DSL's disponibles -->
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Diesels DSL Files"
+            id="DslFiles">
+      </category>
+      <wizard
+            name="Model DSL File"
+            icon="icons/template_obj.gif"
+            category="DslFiles"
+            class="dslfiles.wizards.model.NewModelDslFile"
+            id="dslfiles.wizards.model.NewModelDslFile">
+      </wizard>
+      <wizard
+            name="Business DSL File"
+            icon="icons/template_obj.gif"
+            category="DslFiles"
+            class="dslfiles.wizards.business.NewBusinessDslFile"
+            id="dslfiles.wizards.business.NewBusinessDslFile">
+      </wizard>
+      <wizard
+            name="Persistence DSL File"
+            icon="icons/template_obj.gif"
+            category="DslFiles"
+            class="dslfiles.wizards.persistence.NewPersistenceDslFile"
+            id="dslfiles.wizards.persistence.NewPersistenceDslFile">
+      </wizard>
+      <wizard
+            name="DTO DSL File"
+            icon="icons/template_obj.gif"
+            category="DslFiles"
+            class="dslfiles.wizards.dto.NewDtoDslFile"
+            id="dslfiles.wizards.dto.NewDtoDslFile">
+      </wizard>
+   </extension>
+
+</plugin>

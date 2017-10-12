@@ -154,7 +154,7 @@ class EntityLinkGenerator {
 				var r2 = l.getRelations.get(1);
 				if (r1.multiplicity.contains("one")) {
 					if (r2.multiplicity.contains("one")) {
-						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 					} else {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 						imports.add(ImportConstants.SET_IMPORT);
@@ -171,7 +171,7 @@ class EntityLinkGenerator {
 				}
 				if (r2.multiplicity.contains("one")) {
 					if (r1.multiplicity.contains("one")) {
-						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 					} else {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 						imports.add(ImportConstants.SET_IMPORT);
@@ -192,7 +192,7 @@ class EntityLinkGenerator {
 				if (thisRel != null && otherRel != null && otherRel.isNavigable) {
 					if (thisRel.multiplicity.contains("one")) {
 						if (otherRel.multiplicity.contains("one")) {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 						} else {
 							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 							imports.add(ImportConstants.SET_IMPORT);

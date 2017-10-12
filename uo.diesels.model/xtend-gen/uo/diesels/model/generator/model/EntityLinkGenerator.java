@@ -281,7 +281,7 @@ public class EntityLinkGenerator {
                 JPAAnnotations _instance_2 = JPAAnnotations.getInstance();
                 Map<String, String[]> _annotations_2 = _instance_2.getAnnotations();
                 String[] _get_4 = _annotations_2.get("onetoone");
-                String _get_5 = _get_4[1];
+                String _get_5 = _get_4[2];
                 imports.add(_get_5);
               } else {
                 JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
@@ -320,7 +320,7 @@ public class EntityLinkGenerator {
                 JPAAnnotations _instance_6 = JPAAnnotations.getInstance();
                 Map<String, String[]> _annotations_6 = _instance_6.getAnnotations();
                 String[] _get_12 = _annotations_6.get("onetoone");
-                String _get_13 = _get_12[1];
+                String _get_13 = _get_12[2];
                 imports.add(_get_13);
               } else {
                 JPAAnnotations _instance_7 = JPAAnnotations.getInstance();
@@ -365,7 +365,7 @@ public class EntityLinkGenerator {
                   JPAAnnotations _instance_10 = JPAAnnotations.getInstance();
                   Map<String, String[]> _annotations_10 = _instance_10.getAnnotations();
                   String[] _get_20 = _annotations_10.get("onetoone");
-                  String _get_21 = _get_20[1];
+                  String _get_21 = _get_20[2];
                   imports.add(_get_21);
                 } else {
                   JPAAnnotations _instance_11 = JPAAnnotations.getInstance();

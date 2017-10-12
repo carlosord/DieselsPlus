@@ -159,7 +159,7 @@ class EntityGenerator {
 				var r2 = l.getRelations.get(1);
 				if (r1.multiplicity.contains("one")) {
 					if (r2.multiplicity.contains("one")) {
-						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 					} else {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 						imports.add(ImportConstants.SET_IMPORT);
@@ -176,7 +176,7 @@ class EntityGenerator {
 				}
 				if (r2.multiplicity.contains("one")) {
 					if (r1.multiplicity.contains("one")) {
-						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 					} else {
 						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 						imports.add(ImportConstants.SET_IMPORT);
@@ -197,7 +197,7 @@ class EntityGenerator {
 				if (thisRel != null && otherRel != null && otherRel.isNavigable) {
 					if (thisRel.multiplicity.contains("one")) {
 						if (otherRel.multiplicity.contains("one")) {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 						} else {
 							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 							imports.add(ImportConstants.SET_IMPORT);
@@ -221,14 +221,14 @@ class EntityGenerator {
 				var r1 = l.getRelations.get(0);
 				var r2 = l.getRelations.get(1);
 				if (r2.multiplicity.contains("one")) {
-					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 				} else {
 					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 					imports.add(ImportConstants.SET_IMPORT);
 					imports.add(ImportConstants.HASHSET_IMPORT);
 				}
 				if (r1.multiplicity.contains("one")) {
-					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 				} else {
 					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 					imports.add(ImportConstants.SET_IMPORT);
@@ -237,7 +237,7 @@ class EntityGenerator {
 			} else {
 				var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e);
 				if (otherRel.multiplicity.contains("one")) {
-					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1));
+					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
 				} else {
 					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
 					imports.add(ImportConstants.SET_IMPORT);
@@ -369,7 +369,7 @@ class EntityGenerator {
 					«var r2 = l.getRelations.get(1)»
 					«IF (r1.multiplicity.contains("one"))»
 						«IF (r2.multiplicity.contains("one"))»
-							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r2.optional)»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1), r1.name, r2.optional)»
 							private «r2.type.entityName» «r2.name»;
 						«ELSE»
 							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r1.name)»
@@ -457,10 +457,10 @@ class EntityGenerator {
 						«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
 						«IF (otherRel.multiplicity.contains("one"))»
 							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), otherRel.optional)»
-							private «className» «StringUtils.toLowerFirst(className)»;
+							private «className» «otherRel.name»;
 						«ELSE»
 							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), thisRel.name)»
-							private Set<«className»> «StringUtils.toLowerFirst(className)» = new HashSet<>();
+							private Set<«className»> «otherRel.name» = new HashSet<>();
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
@@ -690,24 +690,24 @@ class EntityGenerator {
 «««							«ELSE»
 «««							«ENDIF»
 «««						«ELSE»
-							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e).multiplicity»
+							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
 							«var className = l.name»
-							«IF (otherRel.contains("one"))»
-								void _set«className»(«className» «StringUtils.toLowerFirst(className)») {
-									this.«StringUtils.toLowerFirst(className)» = «StringUtils.toLowerFirst(className)»;
+							«IF (otherRel.multiplicity.contains("one"))»
+								void _set«className»(«className» «otherRel.name») {
+									this.«otherRel.name» = «otherRel.name»;
 								}
 								
 								public «className» get«className»() {
-									return this.«StringUtils.toLowerFirst(className)»;
+									return this.«otherRel.name»;
 								}
 								
 							«ELSE»
 								Set<«className»> _get«className»() {
-									return this.«StringUtils.toLowerFirst(className)»;
+									return this.«otherRel.name»;
 								}
 								
 								public Set<«className»> get«className»() {
-									return new HashSet<>(«StringUtils.toLowerFirst(className)»);
+									return new HashSet<>(«otherRel.name»);
 								}
 								
 							«ENDIF»

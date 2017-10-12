@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+        <!-- Java version -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+        <!-- Plugin version -->
+        <plugin.lifecycle.version>1.0.0</plugin.lifecycle.version>
+        <plugin.buildhelper.version>1.10</plugin.buildhelper.version>
+        <!-- Dependency version -->
+        <dependency.junit.version>3.8.1</dependency.junit.version>
+        <dependency.hibernate.version>3.5.1-Final</dependency.hibernate.version>
+        <dependency.slf4j.version>1.7.18</dependency.slf4j.version>        
+        <dependency.hsqldb.version>2.2.9</dependency.hsqldb.version>
+        <!--dependency.mysql.version>5.1.38</dependency.mongodb.version-->
+        <!--dependency.mongodb.version>3.2.2</dependency.mongodb.version-->
+        <!--dependency.oracle-jdbc.version>10.2.0.3.0</dependency.oracle-jdbc.version-->
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>eclipse-maven</id>
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.eclipse.m2e</groupId>
+                            <artifactId>lifecycle-mapping</artifactId>
+                            <version>${plugin.lifecycle.version}</version>
+                            <configuration>
+                                <lifecycleMappingMetadata>
+                                    <pluginExecutions>
+                                        <pluginExecution>
+                                            <!-- Build helper plugin configuration -->
+                                            <pluginExecutionFilter>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>build-helper-maven-plugin</artifactId>
+                                                <versionRange>[1.0,)</versionRange>
+                                                <goals>
+                                                    <goal>add-source</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <execute>
+                                                    <runOnConfiguration>true</runOnConfiguration>
+                                                    <runOnIncremental>true</runOnIncremental>
+                                                </execute>
+                                            </action>
+                                        </pluginExecution>
+                                    </pluginExecutions>
+                                </lifecycleMappingMetadata>
+                                <downloadSources>true</downloadSources>
+                                <downloadJavadocs>true</downloadJavadocs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${plugin.buildhelper.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals><goal>add-source</goal></goals>
+                        <configuration>
+                            <sources>
+                                <source>src-gen/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>        
+    </build>
+
+    <dependencies>
+
+        <!-- JUnit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${dependency.junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JPA - Hibernate (Default) -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${dependency.hibernate.version}</version>
+        </dependency>
+        
+        <!-- slf4j-api -->
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${dependency.slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+                
+        <!-- slf4j-log4j12 -->
+		<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${dependency.slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <!-- Databases -->        
+
+        <!-- Databases - HSQL (Default) -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${dependency.hsqldb.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Databases - MySql -->
+        <!--dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${dependency.mysql.version}</version>
+        </dependency-->
+        
+        <!-- Databases - MongoDB -->
+        <!--dependency>
+            <groupId>or.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>${dependency.mongodb.version}</version>
+        </dependency-->
+        
+        <!--dependency>
+	        <groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>${dependency.oracle-jdbc.version}</version>  			
+         </dependency-->
+
+    </dependencies>
+
+</project>

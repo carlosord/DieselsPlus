@@ -42,7 +42,7 @@ public class JPAAnnotations {
 		
 		annotations.put("manytomany", new String[] {"@ManyToMany", "@ManyToMany(mappedBy = \"%s\")", "import javax.persistence.ManyToMany;"});
 		annotations.put("manytoone", new String[] {"@ManyToOne(optional = %s)", "import javax.persistence.ManyToOne;"});
-		annotations.put("onetoone", new String[] {"@OneToOne(optional = %s)", "import javax.persistence.OneToOne;"});
+		annotations.put("onetoone", new String[] {"@OneToOne(optional = %s)", "@OneToOne(mappedBy = \"%s\", optional = %s)", "import javax.persistence.OneToOne;"});
 		annotations.put("onetomany", new String[] {"@OneToMany(mappedBy = \"%s\")", "import javax.persistence.OneToMany;"});
 		
 		annotations.put("attributeOverrides", new String[] {"@AttributeOverrides", "import javax.persistence.AttributeOverrides;"});
