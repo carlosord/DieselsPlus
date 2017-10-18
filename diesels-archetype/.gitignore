@@ -24,13 +24,11 @@
 
 # Eclipse files #
 .buildpath
-.classpath
 .cproject
 .externalToolBuilders/
 .launch
 .loadpath
 .metadata
-.project
 .settings/
 bin/**
 tmp/**
