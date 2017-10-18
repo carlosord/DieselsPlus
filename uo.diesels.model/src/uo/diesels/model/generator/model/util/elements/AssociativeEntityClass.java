@@ -206,6 +206,13 @@ public class AssociativeEntityClass extends DefaultAssociativeEntityClass implem
 		
 		//Relaciones
 		imports.add(JPAAnnotations.getInstance().getAnnotations().get("id")[ANNOTATION_IMPORT]);
+		for (RelationClass r: this.relations) {
+			if (r.getMultiplicity().startsWith("one")) {
+				imports.add(JPAAnnotations.getInstance().getAnnotations().get("onetoone")[2]);
+			} else {
+				imports.add(JPAAnnotations.getInstance().getAnnotations().get("manytoone")[ANNOTATION_IMPORT]);
+			}
+		}
 		
 		for (ModelVariableDefinition v: this.attributes) {
 			imports.addAll(v.getAnnotationImports());
