@@ -709,20 +709,20 @@ class EntityGenerator {
 							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
 							«var className = l.name»
 							«IF (otherRel.multiplicity.contains("one"))»
-								void _set«className»(«className» «otherRel.name») {
+								void _set«StringUtils.toUpperFirst(otherRel.name)»(«className» «otherRel.name») {
 									this.«otherRel.name» = «otherRel.name»;
 								}
 								
-								public «className» get«className»() {
+								public «className» get«StringUtils.toUpperFirst(otherRel.name)»() {
 									return this.«otherRel.name»;
 								}
 								
 							«ELSE»
-								Set<«className»> _get«className»() {
+								Set<«className»> _get«StringUtils.toUpperFirst(otherRel.name)»() {
 									return this.«otherRel.name»;
 								}
 								
-								public Set<«className»> get«className»() {
+								public Set<«className»> get«StringUtils.toUpperFirst(otherRel.name)»() {
 									return new HashSet<>(«otherRel.name»);
 								}
 								

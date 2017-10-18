@@ -595,20 +595,20 @@ class EntityLinkGenerator {
 							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
 							«var className = l.name»
 							«IF (otherRel.multiplicity.contains("one"))»
-								void _set«className»(«className» «otherRel.name») {
+								void _set«StringUtils.toUpperFirst(otherRel.name)»(«className» «otherRel.name») {
 									this.«otherRel.name» = «otherRel.name»;
 								}
 								
-								public «className» get«className»() {
+								public «StringUtils.toUpperFirst(otherRel.name)» get«className»() {
 									return this.«otherRel.name»;
 								}
 								
 							«ELSE»
-								Set<«className»> _get«className»() {
+								Set<«StringUtils.toUpperFirst(otherRel.name)»> _get«className»() {
 									return this.«otherRel.name»;
 								}
 								
-								public Set<«className»> get«className»() {
+								public Set<«StringUtils.toUpperFirst(otherRel.name)»> get«className»() {
 									return new HashSet<>(«otherRel.name»);
 								}
 								
