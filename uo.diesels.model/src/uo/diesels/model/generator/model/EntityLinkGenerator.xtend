@@ -274,7 +274,7 @@ class EntityLinkGenerator {
 				«ELSE»
 					«String.format(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(0), r.optional)»
 				«ENDIF»
-				private «r.type.entityName» «r.name»;
+				private «e.className» «r.name»;
 			«ENDFOR»
 		'''
 	}
@@ -299,7 +299,7 @@ class EntityLinkGenerator {
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
-				private «TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«v.collectionVariable»;
+				private «TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»«v.collectionVariable»;
 			«ENDFOR»
 		'''
 	}
@@ -433,11 +433,11 @@ class EntityLinkGenerator {
 		'''		
 			«FOR v : e.attributes»			
 				«IF !(v instanceof ModelTypeCollectionVariableClass) && !(v instanceof SimpleTypeCollectionVariableClass) »
-					public «TypeCodeTransformation.instance.types.get(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
+					public «TypeCodeTransformation.instance.getTypeFor(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
 						return this.«v.variableName»;
 					}
 							
-					public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName») {
+					public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName») {
 						this.«v.variableName» = «v.variableName»;
 					}
 					
@@ -495,7 +495,7 @@ class EntityLinkGenerator {
 	def createMethods(AssociativeEntityClass e) {
 		'''
 			«FOR m : e.methods»
-				public abstract «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
+				public abstract «TypeCodeTransformation.instance.getTypeFor(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.getTypeFor(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
 			«ENDFOR»			
 		'''
 	}

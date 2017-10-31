@@ -660,10 +660,9 @@ public class EntityGenerator {
               }
               _builder.append("private ");
               TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
-              Map<String, String> _types = _instance_2.getTypes();
               String _variableType = v.getVariableType();
-              String _get_4 = _types.get(_variableType);
-              _builder.append(_get_4, "");
+              String _typeFor = _instance_2.getTypeFor(_variableType);
+              _builder.append(_typeFor, "");
               _builder.append(" ");
               String _variableName_1 = v.getVariableName();
               _builder.append(_variableName_1, "");
@@ -687,9 +686,9 @@ public class EntityGenerator {
                 if (_containsOtherValueTypeLike_1) {
                   JPAAnnotations _instance_3 = JPAAnnotations.getInstance();
                   Map<String, String[]> _annotations_4 = _instance_3.getAnnotations();
-                  String[] _get_5 = _annotations_4.get("attributeOverrides");
-                  String _get_6 = _get_5[0];
-                  _builder.append(_get_6, "");
+                  String[] _get_4 = _annotations_4.get("attributeOverrides");
+                  String _get_5 = _get_4[0];
+                  _builder.append(_get_5, "");
                   _builder.append("( {");
                   _builder.newLineIfNotEmpty();
                   _builder.append("\t");
@@ -711,9 +710,9 @@ public class EntityGenerator {
                     if (_isNullable_3) {
                       JPAAnnotations _instance_4 = JPAAnnotations.getInstance();
                       Map<String, String[]> _annotations_5 = _instance_4.getAnnotations();
-                      String[] _get_7 = _annotations_5.get("attributeOverrides");
-                      String _get_8 = _get_7[0];
-                      _builder.append(_get_8, "");
+                      String[] _get_6 = _annotations_5.get("attributeOverrides");
+                      String _get_7 = _get_6[0];
+                      _builder.append(_get_7, "");
                       _builder.append("( {");
                       _builder.newLineIfNotEmpty();
                       _builder.append("\t");
@@ -733,10 +732,9 @@ public class EntityGenerator {
           }
           _builder.append("private ");
           TypeCodeTransformation _instance_5 = TypeCodeTransformation.getInstance();
-          Map<String, String> _types_1 = _instance_5.getTypes();
           String _variableType_1 = v_1.getVariableType();
-          String _get_9 = _types_1.get(_variableType_1);
-          _builder.append(_get_9, "");
+          String _typeFor_1 = _instance_5.getTypeFor(_variableType_1);
+          _builder.append(_typeFor_1, "");
           _builder.append(" ");
           String _variableName_3 = v_1.getVariableName();
           _builder.append(_variableName_3, "");
@@ -1324,10 +1322,9 @@ public class EntityGenerator {
               _builder.append(_name, "");
             } else {
               TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-              Map<String, String> _types = _instance.getTypes();
               String _variableType_1 = v.getVariableType();
-              String _get = _types.get(_variableType_1);
-              _builder.append(_get, "");
+              String _typeFor = _instance.getTypeFor(_variableType_1);
+              _builder.append(_typeFor, "");
               _builder.append(" ");
               String _variableName_1 = v.getVariableName();
               _builder.append(_variableName_1, "");
@@ -1336,8 +1333,8 @@ public class EntityGenerator {
           {
             int _size = allIds.size();
             int _minus = (_size - 1);
-            ModelVariableDefinition _get_1 = allIds.get(_minus);
-            boolean _equals = v.equals(_get_1);
+            ModelVariableDefinition _get = allIds.get(_minus);
+            boolean _equals = v.equals(_get);
             boolean _not = (!_equals);
             if (_not) {
               _builder.append(", ");
@@ -1356,8 +1353,8 @@ public class EntityGenerator {
           {
             int _size_1 = superClassIds.size();
             int _minus_1 = (_size_1 - 1);
-            ModelVariableDefinition _get_2 = superClassIds.get(_minus_1);
-            boolean _equals_1 = i.equals(_get_2);
+            ModelVariableDefinition _get_1 = superClassIds.get(_minus_1);
+            boolean _equals_1 = i.equals(_get_1);
             boolean _not_1 = (!_equals_1);
             if (_not_1) {
               _builder.append(", ");
@@ -1439,8 +1436,8 @@ public class EntityGenerator {
                 if (_notEquals_3) {
                   {
                     List<RelationClass> _relations_1 = l_2.getRelations();
-                    RelationClass _get_3 = _relations_1.get(0);
-                    boolean _equals_2 = thisRel.equals(_get_3);
+                    RelationClass _get_2 = _relations_1.get(0);
+                    boolean _equals_2 = thisRel.equals(_get_2);
                     if (_equals_2) {
                       _builder.append("\t");
                       _builder.append("Associations.");
@@ -1602,10 +1599,9 @@ public class EntityGenerator {
           if (_not) {
             _builder.append("public ");
             TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-            Map<String, String> _types = _instance.getTypes();
             String _variableType = p.getVariableType();
-            String _get = _types.get(_variableType);
-            _builder.append(_get, "");
+            String _typeFor = _instance.getTypeFor(_variableType);
+            _builder.append(_typeFor, "");
             _builder.append(" get");
             String _variableName = p.getVariableName();
             String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -1632,10 +1628,9 @@ public class EntityGenerator {
           if (((!(v instanceof ModelTypeCollectionVariableClass)) && (!(v instanceof SimpleTypeCollectionVariableClass)))) {
             _builder.append("public ");
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType_1 = v.getVariableType();
-            String _get_1 = _types_1.get(_variableType_1);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType_1);
+            _builder.append(_typeFor_1, "");
             _builder.append(" get");
             String _variableName_2 = v.getVariableName();
             String _upperFirst_1 = StringUtils.toUpperFirst(_variableName_2);
@@ -1658,10 +1653,9 @@ public class EntityGenerator {
             _builder.append(_upperFirst_2, "");
             _builder.append("(");
             TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_2 = _instance_2.getTypes();
             String _variableType_2 = v.getVariableType();
-            String _get_2 = _types_2.get(_variableType_2);
-            _builder.append(_get_2, "");
+            String _typeFor_2 = _instance_2.getTypeFor(_variableType_2);
+            _builder.append(_typeFor_2, "");
             _builder.append(" ");
             String _variableName_5 = v.getVariableName();
             _builder.append(_variableName_5, "");
@@ -1918,10 +1912,9 @@ public class EntityGenerator {
       for(final ModelMethod m : _methods) {
         _builder.append("public abstract ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        String _get = _types.get(_methodReturnType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_methodReturnType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -1930,10 +1923,9 @@ public class EntityGenerator {
           List<ModelVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final ModelVariableDefinition p : _methodParameters) {
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            String _get_1 = _types_1.get(_variableType);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -1942,8 +1934,8 @@ public class EntityGenerator {
               List<ModelVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              ModelVariableDefinition _get_2 = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get_2);
+              ModelVariableDefinition _get = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

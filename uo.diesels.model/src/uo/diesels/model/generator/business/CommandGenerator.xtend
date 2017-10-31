@@ -91,7 +91,7 @@ class CommandGenerator {
 	def createAttributeDeclarations(BusinessMethod m) {
 		'''
 			«FOR p : m.methodParameters»
-				private «TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»;
+				private «TypeCodeTransformation.instance.getTypeFor(p.variableType)» «p.variableName»;
 			«ENDFOR»
 			
 		'''
@@ -99,7 +99,7 @@ class CommandGenerator {
 
 	def createDefaultConstructor(BusinessMethod m) {
 		'''
-			public «StringUtils.toUpperFirst(m.methodName)»Command(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR») {
+			public «StringUtils.toUpperFirst(m.methodName)»Command(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.getTypeFor(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR») {
 				«FOR p : m.methodParameters»
 					this.«p.variableName» = «p.variableName»;
 				«ENDFOR»
@@ -111,7 +111,7 @@ class CommandGenerator {
 	def createMethodDeclaration(BusinessMethod m) {
 		'''
 			@Override
-			public «StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))» execute() throws BusinessException {
+			public «StringUtils.toUpperFirst(TypeCodeTransformation.instance.getTypeFor(m.methodReturnType))» execute() throws BusinessException {
 				// TODO Auto-generated method stub
 				return null;
 			}

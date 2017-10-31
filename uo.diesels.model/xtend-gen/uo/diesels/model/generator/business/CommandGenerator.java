@@ -2,7 +2,6 @@ package uo.diesels.model.generator.business;
 
 import com.google.common.base.Objects;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -163,10 +162,9 @@ public class CommandGenerator {
       for(final BusinessVariableDefinition p : _methodParameters) {
         _builder.append("private ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _variableType = p.getVariableType();
-        String _get = _types.get(_variableType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _variableName = p.getVariableName();
         _builder.append(_variableName, "");
@@ -189,10 +187,9 @@ public class CommandGenerator {
       List<BusinessVariableDefinition> _methodParameters = m.getMethodParameters();
       for(final BusinessVariableDefinition p : _methodParameters) {
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _variableType = p.getVariableType();
-        String _get = _types.get(_variableType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _variableName = p.getVariableName();
         _builder.append(_variableName, "");
@@ -201,8 +198,8 @@ public class CommandGenerator {
           List<BusinessVariableDefinition> _methodParameters_2 = m.getMethodParameters();
           int _size = _methodParameters_2.size();
           int _minus = (_size - 1);
-          BusinessVariableDefinition _get_1 = _methodParameters_1.get(_minus);
-          boolean _equals = p.equals(_get_1);
+          BusinessVariableDefinition _get = _methodParameters_1.get(_minus);
+          boolean _equals = p.equals(_get);
           boolean _not = (!_equals);
           if (_not) {
             _builder.append(", ");
@@ -238,10 +235,9 @@ public class CommandGenerator {
     _builder.newLine();
     _builder.append("public ");
     TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-    Map<String, String> _types = _instance.getTypes();
     String _methodReturnType = m.getMethodReturnType();
-    String _get = _types.get(_methodReturnType);
-    String _upperFirst = StringUtils.toUpperFirst(_get);
+    String _typeFor = _instance.getTypeFor(_methodReturnType);
+    String _upperFirst = StringUtils.toUpperFirst(_typeFor);
     _builder.append(_upperFirst, "");
     _builder.append(" execute() throws BusinessException {");
     _builder.newLineIfNotEmpty();

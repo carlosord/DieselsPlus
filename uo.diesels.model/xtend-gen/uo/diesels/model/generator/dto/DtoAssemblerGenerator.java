@@ -4,7 +4,6 @@ import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -145,10 +144,9 @@ public class DtoAssemblerGenerator {
       List<DtoVariableDefinition> _attributes = d.getAttributes();
       for(final DtoVariableDefinition v : _attributes) {
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _variableType = v.getVariableType();
-        String _get = _types.get(_variableType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _variableName = v.getVariableName();
         _builder.append(_variableName, "");
@@ -157,8 +155,8 @@ public class DtoAssemblerGenerator {
           List<DtoVariableDefinition> _attributes_2 = d.getAttributes();
           int _size = _attributes_2.size();
           int _minus = (_size - 1);
-          DtoVariableDefinition _get_1 = _attributes_1.get(_minus);
-          boolean _equals = v.equals(_get_1);
+          DtoVariableDefinition _get = _attributes_1.get(_minus);
+          boolean _equals = v.equals(_get);
           boolean _not = (!_equals);
           if (_not) {
             _builder.append(", ");

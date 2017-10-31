@@ -99,7 +99,7 @@ class DtoForGenerator {
 	
 	def createDefaultConstructor(DtoForClass d) {
 		'''
-			public «d.name»(«FOR v : d.attributes»«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
+			public «d.name»(«FOR v : d.attributes»«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
 				«FOR v : d.attributes»
 					this.«v.variableName» = «v.variableName»;
 				«ENDFOR»
@@ -110,7 +110,7 @@ class DtoForGenerator {
 	def createAttributeDeclarations(DtoForClass d) {
 		'''
 			«FOR a : d.attributes»
-				private «TypeCodeTransformation.instance.types.get(a.variableType)» «a.variableName»;
+				private «TypeCodeTransformation.instance.getTypeFor(a.variableType)» «a.variableName»;
 			«ENDFOR»
 		'''
 	}
@@ -118,13 +118,13 @@ class DtoForGenerator {
 	def createGettersSetters(DtoForClass d) {
 		'''
 			«FOR a : d.attributes»			
-				public «TypeCodeTransformation.instance.types.get(a.variableType)» get«StringUtils.toUpperFirst(a.variableName)»() {
+				public «TypeCodeTransformation.instance.getTypeFor(a.variableType)» get«StringUtils.toUpperFirst(a.variableName)»() {
 					return this.«a.variableName»;
 				}
 				
 			«ENDFOR»			
 			«FOR a : d.attributes»				
-				public void set«StringUtils.toUpperFirst(a.variableName)»(«TypeCodeTransformation.instance.types.get(a.variableType)» «a.variableName») {
+				public void set«StringUtils.toUpperFirst(a.variableName)»(«TypeCodeTransformation.instance.getTypeFor(a.variableType)» «a.variableName») {
 					this.«a.variableName» = «a.variableName»;
 				}
 				

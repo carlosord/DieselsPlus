@@ -4,7 +4,6 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -403,10 +402,9 @@ public class EntitySrcGenerator {
       for(final ModelMethod m : _srcMethods) {
         _builder.append("public ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        String _get = _types.get(_methodReturnType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_methodReturnType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -415,10 +413,9 @@ public class EntitySrcGenerator {
           List<ModelVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final ModelVariableDefinition p : _methodParameters) {
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            String _get_1 = _types_1.get(_variableType);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -427,8 +424,8 @@ public class EntitySrcGenerator {
               List<ModelVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              ModelVariableDefinition _get_2 = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get_2);
+              ModelVariableDefinition _get = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

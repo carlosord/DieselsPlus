@@ -558,9 +558,8 @@ public class EntityLinkGenerator {
           }
         }
         _builder.append("private ");
-        ModelEntity _type = r.getType();
-        String _entityName = _type.getEntityName();
-        _builder.append(_entityName, "");
+        String _className = e.getClassName();
+        _builder.append(_className, "");
         _builder.append(" ");
         String _name = r.getName();
         _builder.append(_name, "");
@@ -634,10 +633,9 @@ public class EntityLinkGenerator {
         }
         _builder.append("private ");
         TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance_2.getTypes();
         String _variableType = v.getVariableType();
-        String _get_4 = _types.get(_variableType);
-        _builder.append(_get_4, "");
+        String _typeFor = _instance_2.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _variableName_1 = v.getVariableName();
         _builder.append(_variableName_1, "");
@@ -1188,10 +1186,9 @@ public class EntityLinkGenerator {
           if (((!(v instanceof ModelTypeCollectionVariableClass)) && (!(v instanceof SimpleTypeCollectionVariableClass)))) {
             _builder.append("public ");
             TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-            Map<String, String> _types = _instance.getTypes();
             String _variableType = v.getVariableType();
-            String _get = _types.get(_variableType);
-            _builder.append(_get, "");
+            String _typeFor = _instance.getTypeFor(_variableType);
+            _builder.append(_typeFor, "");
             _builder.append(" get");
             String _variableName = v.getVariableName();
             String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -1214,10 +1211,9 @@ public class EntityLinkGenerator {
             _builder.append(_upperFirst_1, "");
             _builder.append("(");
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType_1 = v.getVariableType();
-            String _get_1 = _types_1.get(_variableType_1);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType_1);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName_3 = v.getVariableName();
             _builder.append(_variableName_3, "");
@@ -1475,10 +1471,9 @@ public class EntityLinkGenerator {
       for(final ModelMethod m : _methods) {
         _builder.append("public abstract ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        String _get = _types.get(_methodReturnType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_methodReturnType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -1487,10 +1482,9 @@ public class EntityLinkGenerator {
           List<ModelVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final ModelVariableDefinition p : _methodParameters) {
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            String _get_1 = _types_1.get(_variableType);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -1499,8 +1493,8 @@ public class EntityLinkGenerator {
               List<ModelVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              ModelVariableDefinition _get_2 = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get_2);
+              ModelVariableDefinition _get = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

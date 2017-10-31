@@ -255,10 +255,9 @@ public class ValueTypeGenerator {
         }
         _builder.append("private ");
         TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance_2.getTypes();
         String _variableType = v.getVariableType();
-        String _get_4 = _types.get(_variableType);
-        _builder.append(_get_4, "");
+        String _typeFor = _instance_2.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _variableName_1 = v.getVariableName();
         _builder.append(_variableName_1, "");
@@ -289,10 +288,9 @@ public class ValueTypeGenerator {
       List<ModelVariableDefinition> _attributes = value.getAttributes();
       for(final ModelVariableDefinition v : _attributes) {
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _variableType = v.getVariableType();
-        String _get = _types.get(_variableType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _variableName = v.getVariableName();
         _builder.append(_variableName, "");
@@ -301,8 +299,8 @@ public class ValueTypeGenerator {
           List<ModelVariableDefinition> _attributes_2 = value.getAttributes();
           int _size = _attributes_2.size();
           int _minus = (_size - 1);
-          ModelVariableDefinition _get_1 = _attributes_1.get(_minus);
-          boolean _equals = v.equals(_get_1);
+          ModelVariableDefinition _get = _attributes_1.get(_minus);
+          boolean _equals = v.equals(_get);
           boolean _not = (!_equals);
           if (_not) {
             _builder.append(", ");
@@ -356,10 +354,9 @@ public class ValueTypeGenerator {
       for(final ModelVariableDefinition v : _attributes) {
         _builder.append("public ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _variableType = v.getVariableType();
-        String _get = _types.get(_variableType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_variableType);
+        _builder.append(_typeFor, "");
         _builder.append(" get");
         String _variableName = v.getVariableName();
         String _upperFirst = StringUtils.toUpperFirst(_variableName);
@@ -386,10 +383,9 @@ public class ValueTypeGenerator {
         _builder.append(_upperFirst_1, "");
         _builder.append("(");
         TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-        Map<String, String> _types_1 = _instance_1.getTypes();
         String _variableType_1 = v_1.getVariableType();
-        String _get_1 = _types_1.get(_variableType_1);
-        _builder.append(_get_1, "");
+        String _typeFor_1 = _instance_1.getTypeFor(_variableType_1);
+        _builder.append(_typeFor_1, "");
         _builder.append(" ");
         String _variableName_3 = v_1.getVariableName();
         _builder.append(_variableName_3, "");

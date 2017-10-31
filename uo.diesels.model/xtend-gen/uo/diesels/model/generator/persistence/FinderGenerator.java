@@ -142,10 +142,9 @@ public class FinderGenerator {
         }
         _builder.append("public static ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        String _get = _types.get(_methodReturnType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_methodReturnType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -154,10 +153,9 @@ public class FinderGenerator {
           List<PersistenceVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final PersistenceVariableDefinition p : _methodParameters) {
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            String _get_1 = _types_1.get(_variableType);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -166,8 +164,8 @@ public class FinderGenerator {
               List<PersistenceVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              PersistenceVariableDefinition _get_2 = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get_2);
+              PersistenceVariableDefinition _get = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");
@@ -191,10 +189,10 @@ public class FinderGenerator {
             _builder.append("\t");
             FinderMethodImplementations _instance_2 = FinderMethodImplementations.getInstance();
             Map<String, String> _implementations = _instance_2.getImplementations();
-            String _get_3 = _implementations.get("param");
+            String _get_1 = _implementations.get("param");
             int _plusPlus = cont++;
             String _variableName_1 = p_1.getVariableName();
-            String _format = String.format(_get_3, Integer.valueOf(_plusPlus), _variableName_1);
+            String _format = String.format(_get_1, Integer.valueOf(_plusPlus), _variableName_1);
             _builder.append(_format, "\t");
             _builder.newLineIfNotEmpty();
           }
@@ -206,15 +204,15 @@ public class FinderGenerator {
             _builder.append("\t");
             FinderMethodImplementations _instance_3 = FinderMethodImplementations.getInstance();
             Map<String, String> _implementations_1 = _instance_3.getImplementations();
-            String _get_4 = _implementations_1.get("singleResult");
-            _builder.append(_get_4, "\t");
+            String _get_2 = _implementations_1.get("singleResult");
+            _builder.append(_get_2, "\t");
             _builder.newLineIfNotEmpty();
           } else {
             _builder.append("\t");
             FinderMethodImplementations _instance_4 = FinderMethodImplementations.getInstance();
             Map<String, String> _implementations_2 = _instance_4.getImplementations();
-            String _get_5 = _implementations_2.get("resultList");
-            _builder.append(_get_5, "\t");
+            String _get_3 = _implementations_2.get("resultList");
+            _builder.append(_get_3, "\t");
             {
               if ((!(m instanceof MethodCollectionReturnClass))) {
                 _builder.append(")");

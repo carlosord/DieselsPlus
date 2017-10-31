@@ -94,11 +94,11 @@ class ServiceImplGenerator {
 		'''
 			«FOR m: methods»
 				@Override
-				public «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p: m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF (!p.equals(m.methodParameters.get(m.methodParameters.size - 1)))», «ENDIF»«ENDFOR») throws BusinessException {
+				public «TypeCodeTransformation.instance.getTypeFor(m.methodReturnType)» «m.methodName»(«FOR p: m.methodParameters»«TypeCodeTransformation.instance.getTypeFor(p.variableType)» «p.variableName»«IF (!p.equals(m.methodParameters.get(m.methodParameters.size - 1)))», «ENDIF»«ENDFOR») throws BusinessException {
 					«IF m.methodKeyword != null»
-						Command<«StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))»> c = new Command<«StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))»>() {			
+						Command<«StringUtils.toUpperFirst(TypeCodeTransformation.instance.getTypeFor(m.methodReturnType))»> c = new Command<«StringUtils.toUpperFirst(TypeCodeTransformation.instance.getTypeFor(m.methodReturnType))»>() {			
 							@Override
-							public «StringUtils.toUpperFirst(TypeCodeTransformation.instance.types.get(m.methodReturnType))» execute() throws BusinessException {
+							public «StringUtils.toUpperFirst(TypeCodeTransformation.instance.getTypeFor(m.methodReturnType))» execute() throws BusinessException {
 								«IF m.methodKeyword.equals("delete")»							
 									«(m as JpaMethodClass).keyword = "find"»
 									«var entity = (m as JpaMethodClass).entity»

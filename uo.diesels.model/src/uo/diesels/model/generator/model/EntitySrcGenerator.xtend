@@ -154,7 +154,7 @@ class EntitySrcGenerator {
 	def createMethods(ModelEntity e) {
 		'''
 			«FOR m : e.srcMethods»
-				public «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR») {
+				public «TypeCodeTransformation.instance.getTypeFor(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.getTypeFor(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR») {
 					// TODO Auto-generated method stub
 				«IF !m.methodReturnType.equals("void")»	return null;«ENDIF»
 				}

@@ -314,7 +314,7 @@ class EntityGenerator {
 							«ENDIF»
 						«ENDIF»
 					«ENDIF»
-					private «TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»;
+					private «TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»;
 				«ENDIF»
 			«ENDFOR»
 			«FOR v : e.attributes»
@@ -334,7 +334,7 @@ class EntityGenerator {
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
-				private «TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«v.collectionVariable»;
+				private «TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»«v.collectionVariable»;
 			«ENDFOR»
 			«««			En caso concreto de que la id sea un enlace declarado en su padre
 			«FOR v : e.primaryKey»
@@ -482,7 +482,7 @@ class EntityGenerator {
 		var allIds = e.
 			idVariables;
 		'''
-			public «e.className»(«FOR v : allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
+			public «e.className»(«FOR v : allIds»«IF v.variableTypeClass instanceof SimpleLink»«var a = getTypeFromRelationName(v.variableType, v.variableName)»«a.type.entityName» «a.name»«ELSE»«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»«ENDIF»«IF !v.equals(allIds.get(allIds.size-1))», «ENDIF»«ENDFOR») {
 				super(«FOR i : superClassIds»«i.variableName»«IF !i.equals(superClassIds.get(superClassIds.size-1))», «ENDIF»«ENDFOR»);
 			«««				En caso concreto de que la id sea un enlace declarado en su padre
 				«FOR v : e.primaryKey»
@@ -547,7 +547,7 @@ class EntityGenerator {
 		'''
 			«FOR p : e.primaryKey»
 				«IF(!(p.variableTypeClass instanceof Link))»		
-					public «TypeCodeTransformation.instance.types.get(p.variableType)» get«StringUtils.toUpperFirst(p.variableName)»() {
+					public «TypeCodeTransformation.instance.getTypeFor(p.variableType)» get«StringUtils.toUpperFirst(p.variableName)»() {
 						return this.«p.variableName»;
 					}
 					
@@ -555,11 +555,11 @@ class EntityGenerator {
 			«ENDFOR»
 			«FOR v : e.attributes»			
 				«IF !(v instanceof ModelTypeCollectionVariableClass) && !(v instanceof SimpleTypeCollectionVariableClass) »
-					public «TypeCodeTransformation.instance.types.get(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
+					public «TypeCodeTransformation.instance.getTypeFor(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
 						return this.«v.variableName»;
 					}
 							
-					public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName») {
+					public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName») {
 						this.«v.variableName» = «v.variableName»;
 					}
 					
@@ -624,7 +624,7 @@ class EntityGenerator {
 			def createMethods(SimpleEntityClass e) {
 				'''
 					«FOR m : e.methods»
-						public abstract «TypeCodeTransformation.instance.types.get(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.types.get(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
+						public abstract «TypeCodeTransformation.instance.getTypeFor(m.methodReturnType)» «m.methodName»(«FOR p : m.methodParameters»«TypeCodeTransformation.instance.getTypeFor(p.variableType)» «p.variableName»«IF !p.equals(m.methodParameters.get(m.methodParameters.size-1))», «ENDIF»«ENDFOR»);
 					«ENDFOR»			
 				'''
 			}

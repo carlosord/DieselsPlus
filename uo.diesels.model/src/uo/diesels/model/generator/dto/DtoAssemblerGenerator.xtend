@@ -85,7 +85,7 @@ class DtoAssemblerGenerator {
 	
 	def createDefaultConstructor(DtoForClass d) {
 		'''
-			public «d.name»(«FOR v : d.attributes»«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
+			public «d.name»(«FOR v : d.attributes»«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»«IF !v.equals(d.attributes.get(d.attributes.size-1))», «ENDIF»«ENDFOR») {
 			«FOR v : d.attributes»
 				this.«v.variableName» = «v.variableName»;
 			«ENDFOR»

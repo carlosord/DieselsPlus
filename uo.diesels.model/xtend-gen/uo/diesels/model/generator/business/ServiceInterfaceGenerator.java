@@ -3,7 +3,6 @@ package uo.diesels.model.generator.business;
 import com.google.common.collect.Iterables;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -133,10 +132,9 @@ public class ServiceInterfaceGenerator {
       for(final BusinessMethod m : _methods) {
         _builder.append("public ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        String _get = _types.get(_methodReturnType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_methodReturnType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -145,10 +143,9 @@ public class ServiceInterfaceGenerator {
           List<BusinessVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final BusinessVariableDefinition p : _methodParameters) {
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            String _get_1 = _types_1.get(_variableType);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -157,8 +154,8 @@ public class ServiceInterfaceGenerator {
               List<BusinessVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              BusinessVariableDefinition _get_2 = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get_2);
+              BusinessVariableDefinition _get = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");

@@ -149,10 +149,9 @@ public class ServiceImplGenerator {
         _builder.newLine();
         _builder.append("public ");
         TypeCodeTransformation _instance = TypeCodeTransformation.getInstance();
-        Map<String, String> _types = _instance.getTypes();
         String _methodReturnType = m.getMethodReturnType();
-        String _get = _types.get(_methodReturnType);
-        _builder.append(_get, "");
+        String _typeFor = _instance.getTypeFor(_methodReturnType);
+        _builder.append(_typeFor, "");
         _builder.append(" ");
         String _methodName = m.getMethodName();
         _builder.append(_methodName, "");
@@ -161,10 +160,9 @@ public class ServiceImplGenerator {
           List<BusinessVariableDefinition> _methodParameters = m.getMethodParameters();
           for(final BusinessVariableDefinition p : _methodParameters) {
             TypeCodeTransformation _instance_1 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_1 = _instance_1.getTypes();
             String _variableType = p.getVariableType();
-            String _get_1 = _types_1.get(_variableType);
-            _builder.append(_get_1, "");
+            String _typeFor_1 = _instance_1.getTypeFor(_variableType);
+            _builder.append(_typeFor_1, "");
             _builder.append(" ");
             String _variableName = p.getVariableName();
             _builder.append(_variableName, "");
@@ -173,8 +171,8 @@ public class ServiceImplGenerator {
               List<BusinessVariableDefinition> _methodParameters_2 = m.getMethodParameters();
               int _size = _methodParameters_2.size();
               int _minus = (_size - 1);
-              BusinessVariableDefinition _get_2 = _methodParameters_1.get(_minus);
-              boolean _equals = p.equals(_get_2);
+              BusinessVariableDefinition _get = _methodParameters_1.get(_minus);
+              boolean _equals = p.equals(_get);
               boolean _not = (!_equals);
               if (_not) {
                 _builder.append(", ");
@@ -191,17 +189,15 @@ public class ServiceImplGenerator {
             _builder.append("\t");
             _builder.append("Command<");
             TypeCodeTransformation _instance_2 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_2 = _instance_2.getTypes();
             String _methodReturnType_1 = m.getMethodReturnType();
-            String _get_3 = _types_2.get(_methodReturnType_1);
-            String _upperFirst = StringUtils.toUpperFirst(_get_3);
+            String _typeFor_2 = _instance_2.getTypeFor(_methodReturnType_1);
+            String _upperFirst = StringUtils.toUpperFirst(_typeFor_2);
             _builder.append(_upperFirst, "\t");
             _builder.append("> c = new Command<");
             TypeCodeTransformation _instance_3 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_3 = _instance_3.getTypes();
             String _methodReturnType_2 = m.getMethodReturnType();
-            String _get_4 = _types_3.get(_methodReturnType_2);
-            String _upperFirst_1 = StringUtils.toUpperFirst(_get_4);
+            String _typeFor_3 = _instance_3.getTypeFor(_methodReturnType_2);
+            String _upperFirst_1 = StringUtils.toUpperFirst(_typeFor_3);
             _builder.append(_upperFirst_1, "\t");
             _builder.append(">() {\t\t\t");
             _builder.newLineIfNotEmpty();
@@ -213,10 +209,9 @@ public class ServiceImplGenerator {
             _builder.append("\t");
             _builder.append("public ");
             TypeCodeTransformation _instance_4 = TypeCodeTransformation.getInstance();
-            Map<String, String> _types_4 = _instance_4.getTypes();
             String _methodReturnType_3 = m.getMethodReturnType();
-            String _get_5 = _types_4.get(_methodReturnType_3);
-            String _upperFirst_2 = StringUtils.toUpperFirst(_get_5);
+            String _typeFor_4 = _instance_4.getTypeFor(_methodReturnType_3);
+            String _upperFirst_2 = StringUtils.toUpperFirst(_typeFor_4);
             _builder.append(_upperFirst_2, "\t\t");
             _builder.append(" execute() throws BusinessException {");
             _builder.newLineIfNotEmpty();
@@ -247,11 +242,11 @@ public class ServiceImplGenerator {
                     _builder.append(" = ");
                     BusinessMethodImplementations _instance_5 = BusinessMethodImplementations.getInstance();
                     Map<String, String> _implementations = _instance_5.getImplementations();
-                    String _get_6 = _implementations.get("find");
+                    String _get_1 = _implementations.get("find");
                     String _parametersToServiceMethod = m.parametersToServiceMethod();
                     String _plus = ((("new " + entityName) + "Key(") + _parametersToServiceMethod);
                     String _plus_1 = (_plus + ")");
-                    String _format = String.format(_get_6, (entityName + ".class"), _plus_1);
+                    String _format = String.format(_get_1, (entityName + ".class"), _plus_1);
                     _builder.append(_format, "\t\t\t");
                     _builder.newLineIfNotEmpty();
                   } else {
@@ -264,9 +259,9 @@ public class ServiceImplGenerator {
                     _builder.append(" = ");
                     BusinessMethodImplementations _instance_6 = BusinessMethodImplementations.getInstance();
                     Map<String, String> _implementations_1 = _instance_6.getImplementations();
-                    String _get_7 = _implementations_1.get("find");
+                    String _get_2 = _implementations_1.get("find");
                     String _parametersToServiceMethod_1 = m.parametersToServiceMethod();
-                    String _format_1 = String.format(_get_7, (entityName + ".class"), _parametersToServiceMethod_1);
+                    String _format_1 = String.format(_get_2, (entityName + ".class"), _parametersToServiceMethod_1);
                     _builder.append(_format_1, "\t\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -280,10 +275,10 @@ public class ServiceImplGenerator {
                 BusinessMethodImplementations _instance_7 = BusinessMethodImplementations.getInstance();
                 Map<String, String> _implementations_2 = _instance_7.getImplementations();
                 String _methodKeyword_2 = m.getMethodKeyword();
-                String _get_8 = _implementations_2.get(_methodKeyword_2);
+                String _get_3 = _implementations_2.get(_methodKeyword_2);
                 String _entityName = ((JpaMethodClass) m).getEntityName();
                 String _lowerFirst_2 = StringUtils.toLowerFirst(_entityName);
-                String _format_2 = String.format(_get_8, _lowerFirst_2);
+                String _format_2 = String.format(_get_3, _lowerFirst_2);
                 _builder.append(_format_2, "\t\t\t");
                 _builder.newLineIfNotEmpty();
               }
@@ -307,11 +302,11 @@ public class ServiceImplGenerator {
                     _builder.append("return ");
                     BusinessMethodImplementations _instance_8 = BusinessMethodImplementations.getInstance();
                     Map<String, String> _implementations_3 = _instance_8.getImplementations();
-                    String _get_9 = _implementations_3.get("find");
+                    String _get_4 = _implementations_3.get("find");
                     String _parametersToServiceMethod_2 = m.parametersToServiceMethod();
                     String _plus_2 = ((("new " + entityName_1) + "Key(") + _parametersToServiceMethod_2);
                     String _plus_3 = (_plus_2 + ")");
-                    String _format_3 = String.format(_get_9, (entityName_1 + ".class"), _plus_3);
+                    String _format_3 = String.format(_get_4, (entityName_1 + ".class"), _plus_3);
                     _builder.append(_format_3, "\t\t\t");
                     _builder.newLineIfNotEmpty();
                   } else {
@@ -320,9 +315,9 @@ public class ServiceImplGenerator {
                     _builder.append("return ");
                     BusinessMethodImplementations _instance_9 = BusinessMethodImplementations.getInstance();
                     Map<String, String> _implementations_4 = _instance_9.getImplementations();
-                    String _get_10 = _implementations_4.get("find");
+                    String _get_5 = _implementations_4.get("find");
                     String _parametersToServiceMethod_3 = m.parametersToServiceMethod();
-                    String _format_4 = String.format(_get_10, (entityName_1 + ".class"), _parametersToServiceMethod_3);
+                    String _format_4 = String.format(_get_5, (entityName_1 + ".class"), _parametersToServiceMethod_3);
                     _builder.append(_format_4, "\t\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -336,9 +331,9 @@ public class ServiceImplGenerator {
                 BusinessMethodImplementations _instance_10 = BusinessMethodImplementations.getInstance();
                 Map<String, String> _implementations_5 = _instance_10.getImplementations();
                 String _methodKeyword_4 = m.getMethodKeyword();
-                String _get_11 = _implementations_5.get(_methodKeyword_4);
+                String _get_6 = _implementations_5.get(_methodKeyword_4);
                 String _parametersToServiceMethod_4 = m.parametersToServiceMethod();
-                String _format_5 = String.format(_get_11, _parametersToServiceMethod_4);
+                String _format_5 = String.format(_get_6, _parametersToServiceMethod_4);
                 _builder.append(_format_5, "\t\t\t");
                 _builder.newLineIfNotEmpty();
               }
@@ -360,11 +355,11 @@ public class ServiceImplGenerator {
                 BusinessMethodImplementations _instance_11 = BusinessMethodImplementations.getInstance();
                 Map<String, String> _implementations_6 = _instance_11.getImplementations();
                 String _methodKeyword_6 = m.getMethodKeyword();
-                String _get_12 = _implementations_6.get(_methodKeyword_6);
+                String _get_7 = _implementations_6.get(_methodKeyword_6);
                 String _methodFinderName = m.getMethodFinderName();
                 String _methodName_1 = m.getMethodName();
                 String _parametersToServiceMethod_5 = m.parametersToServiceMethod();
-                String _format_6 = String.format(_get_12, _methodFinderName, _methodName_1, _parametersToServiceMethod_5);
+                String _format_6 = String.format(_get_7, _methodFinderName, _methodName_1, _parametersToServiceMethod_5);
                 _builder.append(_format_6, "\t\t\t");
                 _builder.newLineIfNotEmpty();
               }

@@ -123,7 +123,7 @@ class ValueTypeGenerator {
 						«ENDIF»
 					«ENDIF»
 				«ENDIF»
-				private «TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»;
+				private «TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»;
 			«ENDFOR»	
 		'''
 	}
@@ -136,7 +136,7 @@ class ValueTypeGenerator {
 	
 	def createDefaultConstructor(ValueTypeClass value) {
 		'''
-			public «value.name»(«FOR v : value.attributes»«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName»«IF !v.equals(value.attributes.get(value.attributes.size-1))», «ENDIF»«ENDFOR») {
+			public «value.name»(«FOR v : value.attributes»«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName»«IF !v.equals(value.attributes.get(value.attributes.size-1))», «ENDIF»«ENDFOR») {
 				«FOR v : value.attributes»
 					«IF !(v instanceof ModelTypeCollectionVariableClass) && !(v instanceof SimpleTypeCollectionVariableClass)»
 						this.«v.variableName» = «v.variableName»;
@@ -151,13 +151,13 @@ class ValueTypeGenerator {
 	def createGettersSetters(ValueTypeClass value) {
 		'''
 			«FOR v : value.attributes»			
-				public «TypeCodeTransformation.instance.types.get(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
+				public «TypeCodeTransformation.instance.getTypeFor(v.variableType)» get«StringUtils.toUpperFirst(v.variableName)»() {
 					return this.«v.variableName»;
 				}
 				
 			«ENDFOR»			
 			«FOR v : value.attributes»				
-				public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.types.get(v.variableType)» «v.variableName») {
+				public void set«StringUtils.toUpperFirst(v.variableName)»(«TypeCodeTransformation.instance.getTypeFor(v.variableType)» «v.variableName») {
 					this.«v.variableName» = «v.variableName»;
 				}
 				
