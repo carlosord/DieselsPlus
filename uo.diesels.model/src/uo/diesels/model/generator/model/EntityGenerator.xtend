@@ -154,7 +154,7 @@ class EntityGenerator {
 		}
 		for (link : resource.allContents.toIterable.filter(typeof(SimpleLink))) {
 			var l = new SimpleLinkClass(link);
-			if (ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null){
+			if (ModelUtils.isReflexiveRelation(l.getRelations) && ModelUtils.containsEntity(l.getRelations, e) != null){
 				var r1 = l.getRelations.get(0);
 				var r2 = l.getRelations.get(1);
 				if (r1.multiplicity.contains("one")) {
@@ -192,24 +192,26 @@ class EntityGenerator {
 					}
 				}
 			} else {
-				var thisRel = ModelUtils.containsEntity(l.getRelations, e);
-				var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e);
-				if (thisRel != null && otherRel != null && otherRel.isNavigable) {
-					if (thisRel.multiplicity.contains("one")) {
-						if (otherRel.multiplicity.contains("one")) {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
+				if (ModelUtils.containsEntity(l.getRelations, e) != null) {
+					var thisRel = ModelUtils.containsEntity(l.getRelations, e);
+					var otherRel = ModelUtils.getOtherRelationFromLink(l.getRelations, e);
+					if (thisRel != null && otherRel != null && otherRel.isNavigable) {
+						if (thisRel.multiplicity.contains("one")) {
+							if (otherRel.multiplicity.contains("one")) {
+								imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
+							} else {
+								imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+								imports.add(ImportConstants.SET_IMPORT);
+								imports.add(ImportConstants.HASHSET_IMPORT);
+							}
 						} else {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
-							imports.add(ImportConstants.SET_IMPORT);
-							imports.add(ImportConstants.HASHSET_IMPORT);
-						}
-					} else {
-						if (otherRel.multiplicity.contains("one")) {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
-						} else {
-							imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(2));
-							imports.add(ImportConstants.SET_IMPORT);
-							imports.add(ImportConstants.HASHSET_IMPORT);
+							if (otherRel.multiplicity.contains("one")) {
+								imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytoone").get(1));
+							} else {
+								imports.add(JPAAnnotations.getInstance.getAnnotations.get("manytomany").get(2));
+								imports.add(ImportConstants.SET_IMPORT);
+								imports.add(ImportConstants.HASHSET_IMPORT);
+							}
 						}
 					}
 				}
@@ -217,7 +219,7 @@ class EntityGenerator {
 		}
 		for (associativeEntity : resource.allContents.toIterable.filter(typeof(AssociativeEntity))) {
 			var l = new AssociativeEntityClass(associativeEntity);
-			if (ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null) {
+			if (ModelUtils.isReflexiveRelation(l.getRelations) && ModelUtils.containsEntity(l.getRelations, e) != null) {
 				var r1 = l.getRelations.get(0);
 				var r2 = l.getRelations.get(1);
 				if (r2.multiplicity.contains("one")) {
@@ -235,13 +237,15 @@ class EntityGenerator {
 					imports.add(ImportConstants.HASHSET_IMPORT);
 				}
 			} else {
-				var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e);
-				if (otherRel.multiplicity.contains("one")) {
-					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
-				} else {
-					imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
-					imports.add(ImportConstants.SET_IMPORT);
-					imports.add(ImportConstants.HASHSET_IMPORT);
+				if (ModelUtils.containsEntity(l.getRelations, e) != null) {
+					var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e);
+					if (otherRel.multiplicity.contains("one")) {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(2));
+					} else {
+						imports.add(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(1));
+						imports.add(ImportConstants.SET_IMPORT);
+						imports.add(ImportConstants.HASHSET_IMPORT);
+					}
 				}
 			}
 		}
@@ -364,7 +368,7 @@ class EntityGenerator {
 		'''
 			«FOR link : resource.allContents.toIterable.filter(typeof(SimpleLink))»
 				«var l = new SimpleLinkClass(link)»
-				«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+				«IF ModelUtils.isReflexiveRelation(l.getRelations) && ModelUtils.containsEntity(l.getRelations, e) != null»
 					«var r1 = l.getRelations.get(0)»
 					«var r2 = l.getRelations.get(1)»
 					«IF (r1.multiplicity.contains("one"))»
@@ -433,11 +437,11 @@ class EntityGenerator {
 			«ENDFOR»			
 			«FOR associativeEntity : resource.allContents.toIterable.filter(typeof(AssociativeEntity))»
 				«var l = new AssociativeEntityClass(associativeEntity)»
-				«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+				«IF ModelUtils.isReflexiveRelation(l.getRelations) && ModelUtils.containsEntity(l.getRelations, e) != null»
 					«var r1 = l.getRelations.get(0)»
 					«var r2 = l.getRelations.get(1)»
 					«IF (r2.multiplicity.contains("one"))»
-						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), r2.optional)»
+						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1), r1.name, r2.optional)»
 						private «l.className» «r2.name»;
 					«ELSE»
 						«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), r1.name)»
@@ -456,7 +460,7 @@ class EntityGenerator {
 					«IF thisRel != null»
 						«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
 						«IF (otherRel.multiplicity.contains("one"))»
-							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(0), otherRel.optional)»
+							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetoone").get(1), thisRel.name, otherRel.optional)»
 							private «className» «otherRel.name»;
 						«ELSE»
 							«String.format(JPAAnnotations.getInstance.getAnnotations.get("onetomany").get(0), thisRel.name)»
@@ -663,7 +667,7 @@ class EntityGenerator {
 				SimpleEntityClass e) {
 				'''
 					«FOR l : associativeEntities»
-						«IF ModelUtils.isReflexiveRelation(l.getRelations, e) && ModelUtils.containsEntity(l.getRelations, e) != null»
+						«IF ModelUtils.isReflexiveRelation(l.getRelations) && ModelUtils.containsEntity(l.getRelations, e) != null»
 							«var r1 = l.getRelations.get(0)»
 							«var r2 = l.getRelations.get(1)»
 							«var className = l.className»
@@ -706,26 +710,28 @@ class EntityGenerator {
 								
 							«ENDIF»
 						«ELSE»
-							«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
-							«var className = l.name»
-							«IF (otherRel.multiplicity.contains("one"))»
-								void _set«StringUtils.toUpperFirst(otherRel.name)»(«className» «otherRel.name») {
-									this.«otherRel.name» = «otherRel.name»;
-								}
-								
-								public «className» get«StringUtils.toUpperFirst(otherRel.name)»() {
-									return this.«otherRel.name»;
-								}
-								
-							«ELSE»
-								Set<«className»> _get«StringUtils.toUpperFirst(otherRel.name)»() {
-									return this.«otherRel.name»;
-								}
-								
-								public Set<«className»> get«StringUtils.toUpperFirst(otherRel.name)»() {
-									return new HashSet<>(«otherRel.name»);
-								}
-								
+							«IF ModelUtils.containsEntity(l.getRelations, e) != null»
+								«var otherRel = ModelUtils.getOtherRelationFromLink(l.relations, e)»
+								«var className = l.name»
+								«IF (otherRel.multiplicity.contains("one"))»
+									void _set«StringUtils.toUpperFirst(otherRel.name)»(«className» «otherRel.name») {
+										this.«otherRel.name» = «otherRel.name»;
+									}
+									
+									public «className» get«StringUtils.toUpperFirst(otherRel.name)»() {
+										return this.«otherRel.name»;
+									}
+									
+								«ELSE»
+									Set<«className»> _get«StringUtils.toUpperFirst(otherRel.name)»() {
+										return this.«otherRel.name»;
+									}
+									
+									public Set<«className»> get«StringUtils.toUpperFirst(otherRel.name)»() {
+										return new HashSet<>(«otherRel.name»);
+									}
+
+								«ENDIF»
 							«ENDIF»
 						«ENDIF»								
 					«ENDFOR»
